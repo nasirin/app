@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +22,13 @@ use Illuminate\Support\Facades\Route;
 //EMPLOYEES
 Route::get('/employee', [EmployeeController::class, 'index']);
 Route::get('/employee/{id}', [EmployeeController::class, 'show']);
-Route::put('/employee/{id}', [EmployeeController::class, 'update']);
+Route::put('/employee/{id}', [EmployeeController::class, 'change']);
 Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
 Route::post('/employee', [EmployeeController::class, 'store']);
+
+//EMPLOYEES
+Route::get('/customer', [CustomerController::class, 'index']);
+Route::get('/customer/{id}', [CustomerController::class, 'show']);
+Route::put('/customer/{id}', [CustomerController::class, 'change']);
+Route::delete('/customer/{id}', [CustomerController::class, 'destroy']);
+Route::post('/customer', [CustomerController::class, 'store']);

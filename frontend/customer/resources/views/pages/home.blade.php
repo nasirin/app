@@ -104,7 +104,7 @@
                         <h2 class="title-a">Best Indekos In <?= $location ?></h2>
                     </div>
                     <div class="title-link">
-                        <a href="/template/property-grid.html">All Property
+                        <a href="/best-rooms">All Property
                             <span class="bi bi-chevron-right"></span>
                         </a>
                     </div>

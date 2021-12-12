@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\FasilityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NecessitiController;
 use App\Http\Controllers\RoomController;
@@ -33,3 +34,6 @@ Route::resource('/booking', BookingController::class);
 
 // necessities
 Route::resource('/necessities', NecessitiController::class);
+
+// fasility
+Route::resource('/fasility', FasilityController::class);

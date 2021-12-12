@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/template/#">
+                    <a href="/room">
                         <i class="bi bi-circle"></i><span>All Rooms</span>
                     </a>
                 </li>

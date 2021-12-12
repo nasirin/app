@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
@@ -18,3 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/best-rooms', [RoomController::class, 'index']);
 Route::get('/detail/{id}', [RoomController::class, 'show']);
+
+// AUTH
+Route::get('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'loginAuth']);
+Route::post('/register', [AuthController::class, 'regAuth']);
+Route::get('/logout', [AuthController::class, 'logout']);

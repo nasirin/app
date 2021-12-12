@@ -39,7 +39,7 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="/template/#"> <i class="bi bi-circle"></i><span>New</span> </a>
+                    <a href="/booking"> <i class="bi bi-circle"></i><span>New</span> </a>
                 </li>
                 <li>
                     <a href="/template/#">
@@ -64,8 +64,13 @@
         <!-- End Forms Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="/template/#">
+            <a class="nav-link collapsed" href="/necessities">
                 <i class="bi bi-layout-text-window-reverse"></i><span>Necessities</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/fasility">
+                <i class="bi bi-layout-text-window-reverse"></i><span>Fasilities</span>
             </a>
         </li>
         <!-- End Tables Nav -->

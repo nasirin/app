@@ -16,7 +16,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " href="/template/property-grid.html">Best Rooms</a>
+                    <a class="nav-link " href="/best-rooms">Best Rooms</a>
                 </li>
 
                 <li class="nav-item">

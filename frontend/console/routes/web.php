@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FasilityController;
@@ -37,3 +38,6 @@ Route::resource('/necessities', NecessitiController::class);
 
 // fasility
 Route::resource('/fasility', FasilityController::class);
+
+// ADMIN
+Route::resource('/admin', AdminController::class);

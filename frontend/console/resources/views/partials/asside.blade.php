@@ -97,7 +97,7 @@
         <li class="nav-heading">Only pimpinan</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/template/users-profile.html">
+            <a class="nav-link collapsed" href="/admin">
                 <i class="bi bi-person"></i>
                 <span>Admin</span>
             </a>

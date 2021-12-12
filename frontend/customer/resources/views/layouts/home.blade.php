@@ -27,7 +27,6 @@
     @yield('content')
 
   </main><!-- End #main -->
-
   @include('partials.footer')
 
   <div id="preloader"></div>

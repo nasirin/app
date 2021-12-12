@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/best-rooms', [RoomController::class, 'index']);
+Route::get('/detail/{id}', [RoomController::class, 'show']);

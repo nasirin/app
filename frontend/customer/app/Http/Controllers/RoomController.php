@@ -45,7 +45,7 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('pages.detail-kos');
     }
 
     /**

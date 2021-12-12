@@ -49,7 +49,7 @@
                                 <div class="price-box d-flex">
                                     <span class="price-a">rent | $ 12.000</span>
                                 </div>
-                                <a href="property-single.html" class="link-a">Click here to view
+                                <a href="/detail/slug" class="link-a">Click here to view
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
                             </div>
@@ -96,7 +96,7 @@
                                 <div class="price-box d-flex">
                                     <span class="price-a">rent | $ 12.000</span>
                                 </div>
-                                <a href="property-single.html" class="link-a">Click here to view
+                                <a href="/detail/slug" class="link-a">Click here to view
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
                             </div>
@@ -143,7 +143,7 @@
                                 <div class="price-box d-flex">
                                     <span class="price-a">rent | $ 12.000</span>
                                 </div>
-                                <a href="property-single.html" class="link-a">Click here to view
+                                <a href="/detail/slug" class="link-a">Click here to view
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
                             </div>
@@ -190,7 +190,7 @@
                                 <div class="price-box d-flex">
                                     <span class="price-a">rent | $ 12.000</span>
                                 </div>
-                                <a href="property-single.html" class="link-a">Click here to view
+                                <a href="/detail/slug" class="link-a">Click here to view
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
                             </div>
@@ -237,7 +237,7 @@
                                 <div class="price-box d-flex">
                                     <span class="price-a">rent | $ 12.000</span>
                                 </div>
-                                <a href="property-single.html" class="link-a">Click here to view
+                                <a href="/detail/slug" class="link-a">Click here to view
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
                             </div>
@@ -284,7 +284,7 @@
                                 <div class="price-box d-flex">
                                     <span class="price-a">rent | $ 12.000</span>
                                 </div>
-                                <a href="property-single.html" class="link-a">Click here to view
+                                <a href="/detail/slug" class="link-a">Click here to view
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
                             </div>

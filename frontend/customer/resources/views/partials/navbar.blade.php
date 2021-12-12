@@ -24,7 +24,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " href="#">My profile</a>
+                    <a class="nav-link " href="/profile/slug">My profile</a>
                 </li>
 
             </ul>

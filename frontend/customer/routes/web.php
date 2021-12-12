@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,7 @@ Route::get('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'loginAuth']);
 Route::post('/register', [AuthController::class, 'regAuth']);
 Route::get('/logout', [AuthController::class, 'logout']);
+
+
+// PROFILE
+Route::get('/profile/{id}', [UserController::class, 'index']);

@@ -137,73 +137,40 @@
                 </div>
             </div>
             <div class="col-md-10 offset-md-1">
-            <iframe width="100%" height="460" src="https://www.youtube.com/embed/5TWBbDI1Ofw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="460" src="https://www.youtube.com/embed/5TWBbDI1Ofw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="col-md-12">
                 <div class="row section-t3">
                     <div class="col-sm-12">
                         <div class="title-box-d">
-                            <h3 class="title-d">Contact Us</h3>
+                            <h3 class="title-d">Booking Now</h3>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-lg-4">
-                        <img src="/template/assets/img/agent-4.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-6">
                         <div class="property-agent">
-                            <h4 class="title-agent">Anabella Geller</h4>
                             <p class="color-text-a">
-                                Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                                dui. Quisque velit nisi,
-                                pretium ut lacinia in, elementum id enim.
+                                Pastikan anda telah melakukan pembayaran dahulu sebelum melakukan konfirmasi. semua pembayaran atas nama <b>Dpavillon</b> . selain itu di luar tanggung jawab kami. semua deskripsi kamar diatas sudah termasuk pembayaran.
                             </p>
                             <ul class="list-unstyled">
                                 <li class="d-flex justify-content-between">
-                                    <strong>Phone:</strong>
+                                    <strong>BNI:</strong>
                                     <span class="color-text-a">(222) 4568932</span>
                                 </li>
                                 <li class="d-flex justify-content-between">
-                                    <strong>Mobile:</strong>
+                                    <strong>BCA:</strong>
                                     <span class="color-text-a">777 287 378 737</span>
                                 </li>
                                 <li class="d-flex justify-content-between">
-                                    <strong>Email:</strong>
+                                    <strong>Mandiri:</strong>
                                     <span class="color-text-a">annabella@example.com</span>
                                 </li>
-                                <li class="d-flex justify-content-between">
-                                    <strong>Skype:</strong>
-                                    <span class="color-text-a">Annabela.ge</span>
-                                </li>
                             </ul>
-                            <div class="socials-a">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <i class="bi bi-facebook" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <i class="bi bi-twitter" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <i class="bi bi-instagram" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <i class="bi bi-linkedin" aria-hidden="true"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-4">
+                    <div class="col-md-12 col-lg-6">
                         <div class="property-contact">
                             <form class="form-a">
                                 <div class="row">
@@ -223,7 +190,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 mt-3">
-                                        <button type="submit" class="btn btn-a">Send Message</button>
+                                        <button type="submit" class="btn btn-a">Send Message whatsapp</button>
                                     </div>
                                 </div>
                             </form>

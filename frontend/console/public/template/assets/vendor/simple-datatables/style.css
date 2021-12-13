@@ -162,9 +162,9 @@
 	opacity: 0.6;
 }
 
-.dataTables-empty {
+/* .dataTables-empty {
 	text-align: center;
-}
+} */
 
 .dataTable-top::after, .dataTable-bottom::after {
 	clear: both;

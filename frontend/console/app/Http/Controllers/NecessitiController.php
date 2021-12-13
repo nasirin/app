@@ -23,7 +23,7 @@ class NecessitiController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.necessities.tambah');
     }
 
     /**

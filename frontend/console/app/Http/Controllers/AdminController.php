@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class AdminController extends Controller
 {
@@ -13,7 +14,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.index');
+        $res = Http::get('http://localhost:8000/api/employee')->json();
+        $data = [
+            'admin' => $res['data']
+        ];
+        return view('pages.admin.index', $data);
     }
 
     /**

@@ -33,14 +33,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Raheem Lehner</td>
-                                <td>Dynamic Division Officer</td>
-                                <td>47</td>
-                                <td>2011-04-19</td>
-                                <td>2011-04-19</td>
-                            </tr>
+                            <?php foreach ($admin as $data) : ?>
+                                <tr>
+                                    <th scope="row"><?= $data['id'] ?></th>
+                                    <td><?= $data['fullname'] ?></td>
+                                    <td><?= $data['level']?></td>
+                                    <td><?= $data['email']?></td>
+                                    <td><?= $data['phone']?></td>
+                                    <td>
+                                        
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                     <!-- End Table with stripped rows -->

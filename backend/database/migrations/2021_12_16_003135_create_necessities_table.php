@@ -16,9 +16,10 @@ class CreateNecessitiesTable extends Migration
         Schema::create('necessities', function (Blueprint $table) {
             $table->id();
             $table->string("necessity", 30);
-            $table->bigInteger("cost", 16);
+            $table->bigInteger("cost");
             $table->date("tanggal");
-            $table->bigInteger("sum", 16);
+            $table->bigInteger("pcs");
+            $table->bigInteger("total");
             $table->string("file")->nullable();
             $table->timestamps();
         });

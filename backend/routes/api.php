@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\KebutuhanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,9 +34,9 @@ Route::put('/customer/{id}', [CustomerController::class, 'change']);
 Route::delete('/customer/{id}', [CustomerController::class, 'destroy']);
 Route::post('/customer', [CustomerController::class, 'store']);
 
-//EMPLOYEES
-Route::get('/necessities', [NecessitiesController::class, 'index']);
-Route::get('/necessities/{id}', [NecessitiesController::class, 'show']);
-Route::put('/necessities/{id}', [NecessitiesController::class, 'change']);
-Route::delete('/necessities/{id}', [NecessitiesController::class, 'destroy']);
-Route::post('/necessities', [NecessitiesController::class, 'store']);
+//necessities
+Route::get('/necessities', [KebutuhanController::class, 'index']);
+Route::get('/necessities/{id}', [KebutuhanController::class, 'show']);
+Route::patch('/necessities/{id}', [KebutuhanController::class, 'change']);
+Route::delete('/necessities/{id}', [KebutuhanController::class, 'destroy']);
+Route::post('/necessities', [KebutuhanController::class, 'store']);

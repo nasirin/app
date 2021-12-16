@@ -32,3 +32,10 @@ Route::get('/customer/{id}', [CustomerController::class, 'show']);
 Route::put('/customer/{id}', [CustomerController::class, 'change']);
 Route::delete('/customer/{id}', [CustomerController::class, 'destroy']);
 Route::post('/customer', [CustomerController::class, 'store']);
+
+//EMPLOYEES
+Route::get('/necessities', [NecessitiesController::class, 'index']);
+Route::get('/necessities/{id}', [NecessitiesController::class, 'show']);
+Route::put('/necessities/{id}', [NecessitiesController::class, 'change']);
+Route::delete('/necessities/{id}', [NecessitiesController::class, 'destroy']);
+Route::post('/necessities', [NecessitiesController::class, 'store']);

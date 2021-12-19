@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\FasilityController;
 use App\Http\Controllers\KebutuhanController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
@@ -56,3 +57,10 @@ Route::get('/room/{id}', [RoomController::class, 'show']);
 Route::patch('/room/{id}', [RoomController::class, 'change']);
 Route::delete('/room/{id}', [RoomController::class, 'destroy']);
 Route::post('/room', [RoomController::class, 'store']);
+
+//fasilities
+Route::get('/fasility', [FasilityController::class, 'index']);
+Route::get('/fasility/{id}', [FasilityController::class, 'show']);
+Route::patch('/fasility/{id}', [FasilityController::class, 'change']);
+Route::delete('/fasility/{id}', [FasilityController::class, 'destroy']);
+Route::post('/fasility', [FasilityController::class, 'store']);

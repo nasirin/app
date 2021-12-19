@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fasilities;
+use App\Models\RoomFasility;
 use App\Models\Rooms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,7 +12,7 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $room = Rooms::all();
+        $room = Rooms::with('RoomFasilities.fasilities')->get();
 
         return response()->json([
             'status' => 'success',
@@ -50,7 +52,8 @@ class RoomController extends Controller
             "map" => 'required',
             "gallery" => 'required',
             "price" => 'required',
-            "thumbnail" => "required"
+            "thumbnail" => "required",
+            'fasilities_id' => 'required|integer'
         ];
 
         $data = $request->all();
@@ -64,11 +67,15 @@ class RoomController extends Controller
             ]);
         }
 
-        Rooms::create($data);
+        $Fasilities = Fasilities::findOrFail($request->fasilities_id);
+        $room = Rooms::create($data);
+        $roomFasilities = ['rooms_id' => $room['id'], 'fasilities_id' => $Fasilities['id']];
+
+        RoomFasility::create($roomFasilities);
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Room data successfully created'
+            'message' => 'Room data successfully created',
         ]);
     }
 

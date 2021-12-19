@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fasilies;
+use App\Models\Fasilities;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -10,7 +10,7 @@ class FasilityController extends Controller
 {
     public function index()
     {
-        $fasilty = Fasilies::all();
+        $fasilty = Fasilities::all();
         return response()->json([
             'status' => 'success',
             'data' => $fasilty
@@ -19,7 +19,7 @@ class FasilityController extends Controller
 
     public function show($id)
     {
-        $fasilty = Fasilies::findOrFail($id);
+        $fasilty = Fasilities::findOrFail($id);
         return response()->json([
             'status' => 'success',
             'data' => $fasilty
@@ -28,7 +28,7 @@ class FasilityController extends Controller
 
     public function destroy($id)
     {
-        $fasilty = Fasilies::findOrFail($id);
+        $fasilty = Fasilities::findOrFail($id);
         $fasilty->delete();
         return response()->json([
             'status' => 'success',
@@ -49,7 +49,7 @@ class FasilityController extends Controller
             ]);
         }
 
-        Fasilies::create($data);
+        Fasilities::create($data);
         return response()->json([
             'status' => 'success',
             'message' => 'fasilities data successfully created',
@@ -58,7 +58,7 @@ class FasilityController extends Controller
 
     public function change(Request $request, $id)
     {
-        $fasilty = Fasilies::findOrFail($id);
+        $fasilty = Fasilities::findOrFail($id);
         $data = $request->all();
         $fasilty->fill($data);
         $fasilty->save();

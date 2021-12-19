@@ -22,4 +22,9 @@ class Rooms extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
     protected $casts = ['gallery' => 'array', 'price' => 'array'];
+
+    public function RoomFasilities()
+    {
+        return $this->hasMany(RoomFasility::class);
+    }
 }

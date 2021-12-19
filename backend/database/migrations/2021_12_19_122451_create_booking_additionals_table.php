@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePricingsTable extends Migration
+class CreateBookingAdditionalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePricingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pricings', function (Blueprint $table) {
+        Schema::create('booking_additionals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_id')->constrained()->onDelete('cascade');
-            $table->bigInteger('price');
-            $table->enum('type', ['month', 'year']);
+            $table->foreignId('booking_id')->constrained()->onDelete('cascade');
+            $table->string('additional');
+            $table->bigInteger('cost');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreatePricingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pricings');
+        Schema::dropIfExists('booking_additionals');
     }
 }

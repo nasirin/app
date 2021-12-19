@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingAddCntoller;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
@@ -30,7 +31,7 @@ Route::patch('/employee/{id}', [EmployeeController::class, 'change']);
 Route::delete('/employee/{id}', [EmployeeController::class, 'destroy']);
 Route::post('/employee', [EmployeeController::class, 'store']);
 
-//EMPLOYEES
+//customers
 Route::get('/customer', [CustomerController::class, 'index']);
 Route::get('/customer/{id}', [CustomerController::class, 'show']);
 Route::patch('/customer/{id}', [CustomerController::class, 'change']);
@@ -43,13 +44,6 @@ Route::get('/necessities/{id}', [KebutuhanController::class, 'show']);
 Route::patch('/necessities/{id}', [KebutuhanController::class, 'change']);
 Route::delete('/necessities/{id}', [KebutuhanController::class, 'destroy']);
 Route::post('/necessities', [KebutuhanController::class, 'store']);
-
-//booking
-Route::get('/booking', [BookingController::class, 'index']);
-Route::get('/booking/{id}', [BookingController::class, 'show']);
-Route::patch('/booking/{id}', [BookingController::class, 'change']);
-Route::delete('/booking/{id}', [BookingController::class, 'destroy']);
-Route::post('/booking', [BookingController::class, 'store']);
 
 //room
 Route::get('/room', [RoomController::class, 'index']);
@@ -64,3 +58,18 @@ Route::get('/fasility/{id}', [FasilityController::class, 'show']);
 Route::patch('/fasility/{id}', [FasilityController::class, 'change']);
 Route::delete('/fasility/{id}', [FasilityController::class, 'destroy']);
 Route::post('/fasility', [FasilityController::class, 'store']);
+
+//booking
+Route::get('/booking', [BookingController::class, 'index']);
+Route::get('/booking/{id}', [BookingController::class, 'show']);
+Route::delete('/booking/{id}', [BookingController::class, 'destroy']);
+Route::post('/booking', [BookingController::class, 'store']);
+Route::patch('/booking/{id}', [BookingController::class, 'checkout']);
+
+//booking addtional
+Route::patch('/badd/{id}', [BookingAddCntoller::class, 'change']);
+Route::delete('/badd/{id}', [BookingAddCntoller::class, 'destroy']);
+Route::post('/badd', [BookingAddCntoller::class, 'store']);
+
+//billing
+Route::post('/billing', [BookingController::class, 'store']);

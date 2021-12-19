@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReservationsTable extends Migration
+class CreateBookingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,12 +18,16 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->foreignId('room_id')->constrained()->onDelete('cascade');
-            $table->string('code', 50);
+            $table->string('code', 50)->unique();
             $table->date('check_in');
-            $table->bigInteger('guest');
+            $table->bigInteger('guest')->default(1);
             $table->enum('payment_type', ['on check in', 'transfer']);
-            $table->enum('payment_status', ['pending', 'success', 'cancel'])->default('pending');
-            $table->boolean('status')->default(0);
+            $table->enum('payment_status', ['pending', 'success', 'cancel', 'waiting confirm'])->default('pending');
+            $table->bigInteger('cost');
+            $table->enum('rental_type', ['month', 'years']);
+            $table->text('note')->nullable();
+            $table->string('file_payment', 50)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

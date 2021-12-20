@@ -16,21 +16,22 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Form admin</h5>
+                    <h5 class="card-title">Form admin </h5>
 
                     <!-- General Form Elements -->
-                    <form action="{{url('admin')}}" method="POST">
+                    <form action="{{url('admin/'.$admin['id'])}}" method="POST">
                         @csrf
+                        @method('patch')
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Fullname</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="fullname">
+                                <input type="text" class="form-control" name="fullname" value="{{$admin['fullname']}}">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" name="email">
+                                <input type="email" class="form-control" value="{{$admin['email']}}" readonly>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -42,20 +43,20 @@
                         <div class="row mb-3">
                             <label for="inputNumber" class="col-sm-2 col-form-label">Phone Number</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" name="phone">
+                                <input type="number" class="form-control" name="phone" value="{{$admin['phone']}}">
                             </div>
                         </div>
                         <fieldset class="row mb-3">
                             <legend class="col-form-label col-sm-2 pt-0">Level</legend>
                             <div class="col-sm-10">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="level" id="gridRadios1" value="admin" checked>
+                                    <input class="form-check-input" type="radio" name="level" id="gridRadios1" value="admin" <?= $admin['level'] == 'admin' ? 'checked' : '' ?>>
                                     <label class="form-check-label" for="gridRadios1">
                                         Admin
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="level" id="gridRadios2" value="pimpinan">
+                                    <input class="form-check-input" type="radio" name="level" id="gridRadios2" value="pimpinan" <?= $admin['level'] == 'pimpinan' ? 'checked' : '' ?>>
                                     <label class="form-check-label" for="gridRadios2">
                                         Owner
                                     </label>

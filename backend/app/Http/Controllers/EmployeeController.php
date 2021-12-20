@@ -59,12 +59,11 @@ class EmployeeController extends Controller
 
         $password = Hash::make($request->password);
         $data['password'] = $password;
-        $employee = Employees::create($data);
+        Employees::create($data);
 
         return response()->json([
             'status' => 'success',
             'message' => 'employee data successfully saved',
-            'data' => $employee
         ]);
     }
 

@@ -18,7 +18,8 @@
 
             <div class="card">
                 <div class="card-body">
-                    <a href="/admin/create" class="btn  btn-primary btn-sm my-2">Tambah admin</a>
+
+                    <a href="{{route('admin.create')}}" class="btn  btn-primary btn-sm my-2"><i class="bx bxs-file-plus"></i>Tambah admin</a>
 
                     <!-- Table with stripped rows -->
                     <table class="table" id="myTable">
@@ -33,15 +34,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($admin as $data) : ?>
+                            <?php foreach ($admin as $key => $value) : ?>
                                 <tr>
-                                    <th scope="row"><?= $data['id'] ?></th>
-                                    <td><?= $data['fullname'] ?></td>
-                                    <td><?= $data['level']?></td>
-                                    <td><?= $data['email']?></td>
-                                    <td><?= $data['phone']?></td>
+                                    <th scope="row"><?= $key + 1 ?></th>
+                                    <td><?= $value['fullname'] ?></td>
+                                    <td><?= $value['level'] ?></td>
+                                    <td><?= $value['email'] ?></td>
+                                    <td><?= $value['phone'] ?></td>
                                     <td>
-                                        
+                                        <a href="{{url('admin/'.$value['id'])}}" class="btn btn-warning btn-sm"> <i class="bx bxs-edit"></i></a>
+                                        <form action="{{url('admin/'.$value['id'])}}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button onclick="return confirm('apakah anda yakin?')" class="btn btn-danger btn-sm"><i class="bx bxs-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

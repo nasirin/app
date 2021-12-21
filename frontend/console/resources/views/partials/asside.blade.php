@@ -69,7 +69,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/fasility">
+            <a class="nav-link collapsed" href="{{route('fasility.index')}}">
                 <i class="bi bi-layout-text-window-reverse"></i><span>Fasilities</span>
             </a>
         </li>

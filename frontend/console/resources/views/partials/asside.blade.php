@@ -92,6 +92,13 @@
                 </li>
             </ul>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/customer">
+                <i class="bi bi-person"></i>
+                <span>Customers</span>
+            </a>
+        </li>
         <!-- End Icons Nav -->
 
         <li class="nav-heading">Only pimpinan</li>

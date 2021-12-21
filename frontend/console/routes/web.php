@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FasilityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NecessitiController;
@@ -41,3 +42,6 @@ Route::resource('/fasility', FasilityController::class);
 
 // ADMIN
 Route::resource('/admin', AdminController::class);
+
+// CUSTOMER
+Route::resource('/customer', CustomerController::class);

@@ -42,7 +42,8 @@
                                     <td><?= $value['phone'] ?></td>
                                     <td><?= $value['jobs'] ?></td>
                                     <td>
-                                        <a href="{{url('customer/'.$value['id'])}}" class="btn btn-warning btn-sm"> <i class="bx bxs-edit"></i></a>
+                                        <a href="{{url('customer/'.$value['id'])}}" class="btn btn-info btn-sm"> <i class="ri-eye-2-line"></i></a>
+                                        <a href="{{url('customer/'.$value['id'].'/edit')}}" class="btn btn-warning btn-sm"> <i class="bx bxs-edit"></i></a>
                                         <form action="{{url('customer/'.$value['id'])}}" method="POST" class="d-inline">
                                             @csrf
                                             @method('delete')

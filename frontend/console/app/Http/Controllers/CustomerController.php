@@ -54,7 +54,7 @@ class CustomerController extends Controller
         $res = Http::get('http://localhost:8000/api/customer/' . $id)->json();
         $data['customer'] = $res['data'];
 
-        return view('pages.customer.ubah', $data);
+        return view('pages.customer.profil', $data);
     }
 
     /**
@@ -65,7 +65,10 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $res = Http::get('http://localhost:8000/api/customer/' . $id)->json();
+        $data['customer'] = $res['data'];
+
+        return view('pages.customer.ubah', $data);
     }
 
     /**
@@ -79,7 +82,7 @@ class CustomerController extends Controller
     {
         $data = $request->all();
         $res = Http::patch('http://localhost:8000/api/customer/' . $id, $data);
-        
+
         // masih perlu beberapa penyesuaian kondisi
 
         return redirect('/customer');

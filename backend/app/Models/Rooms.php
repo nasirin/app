@@ -16,8 +16,9 @@ class Rooms extends Model
         "room_size",
         "map",
         "gallery",
-        "price",
-        "thumbnail"
+        "price_monthly",
+        "price_years",
+        "thumbnail",
     ];
 
     protected $hidden = ['created_at', 'updated_at'];

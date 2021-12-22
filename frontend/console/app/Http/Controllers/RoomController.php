@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class RoomController extends Controller
 {
@@ -13,6 +14,8 @@ class RoomController extends Controller
      */
     public function index()
     {
+        $res = Http::get('http://localhost:8000/api/room')->json();
+        // dd($res);
         return view('pages.rooms.index');
     }
 
@@ -34,7 +37,10 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $res = $request->all();
+        dd($res);
+        // echo json_encode($res);
     }
 
     /**

@@ -51,14 +51,14 @@ class RoomController extends Controller
             "room_size" => 'required',
             "map" => 'required',
             "gallery" => 'required',
-            "price" => 'required',
+            "price_monthly" => 'required|integer',
             "thumbnail" => "required",
-            'fasilities_id' => 'required|integer'
+            // 'fasilities_id' => 'required|integer'
         ];
 
-        $data = $request->all();
+        $room = $request->all();
 
-        $validate = Validator::make($data, $rule);
+        $validate = Validator::make($room, $rule);
 
         if ($validate->fails()) {
             return response()->json([
@@ -67,15 +67,37 @@ class RoomController extends Controller
             ]);
         }
 
-        $Fasilities = Fasilities::findOrFail($request->fasilities_id);
-        $room = Rooms::create($data);
-        $roomFasilities = ['rooms_id' => $room['id'], 'fasilities_id' => $Fasilities['id']];
+        if ($request->hasfile('gallery')) {
+            foreach ($request->file('gallery') as $key => $file) {
+                $path = $file->store('/gallery');
+                $insert[$key]['path'] = $path;
+            }
+        }
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $store = $thumbnail->store('/gallery/thumbnail');
+            $img = $store;
+        }
 
-        RoomFasility::create($roomFasilities);
+        $room['gallery'] = $insert;
+        $room['thumbnail'] = $img;
+
+        $result = Rooms::create($room);
+
+        foreach ($request->fasilities_id as $key => $value) {
+            $fasility = [
+                'rooms_id' => $result->id,
+                'fasilities_id' => $value
+            ];
+
+            RoomFasility::create($fasility);
+        }
+
 
         return response()->json([
             'status' => 'success',
             'message' => 'Room data successfully created',
+            'data' => $result
         ]);
     }
 

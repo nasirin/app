@@ -43,7 +43,7 @@ class EmployeeController extends Controller
             'fullname' => 'required|string',
             'phone' => 'required|integer',
             'email' => 'required|unique:employees|email',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:6'
         ];
 
         $data = $request->all();
@@ -74,7 +74,7 @@ class EmployeeController extends Controller
         $rules = [
             'fullname' => 'string',
             'phone' => 'integer',
-            'email' => 'unique:employees|email',
+            'email' => 'email',
             'password' => 'string|min:6',
         ];
 
@@ -100,7 +100,6 @@ class EmployeeController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'employee data successfully changed',
-            'data' => $employee
         ]);
     }
 }

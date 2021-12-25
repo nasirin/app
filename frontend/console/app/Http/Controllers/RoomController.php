@@ -16,7 +16,18 @@ class RoomController extends Controller
     {
         $res = Http::get('http://localhost:8000/api/room')->json();
         // dd($res);
-        return view('pages.rooms.index');
+        $message = null;
+
+        if ($res['status'] == 'error') {
+            $message = $res['message'];
+        }
+
+        $data = [
+            'message' => $message,
+            'rooms' => $res['data']
+        ];
+
+        return view('pages.rooms.index', $data);
     }
 
     /**
@@ -26,7 +37,13 @@ class RoomController extends Controller
      */
     public function create()
     {
-        return view('pages.rooms.tambah');
+        $res = Http::get('http://localhost:8000/api/fasility')->json();
+
+        $data = [
+            'fasilities' => $res['data'],
+        ];
+
+        return view('pages.rooms.tambah', $data);
     }
 
     /**
@@ -37,10 +54,20 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $res = $request->all();
-        dd($res);
-        // echo json_encode($res);
+        $data = $request->all();
+
+        $room = Http::attach($request->file('thumbnail'), file_get_contents($request['thumbnail']))->post('http://localhost:8000/api/room', $data);
+
+        dd($room->json());
+        // attach('image', file_get_contents($request->file('profile_image')->getRealPath()))->
+
+        // if ($room['status'] == 'error') {
+        //     return redirect()->back()->withErrors($room['message'])->withInput();
+        // }
+
+        // dd($room);
+
+        // return redirect('/room')->withSuccess();
     }
 
     /**
@@ -51,7 +78,7 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('pages.rooms.detail');
     }
 
     /**
@@ -62,7 +89,7 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd('halaman ubah');
     }
 
     /**
@@ -74,7 +101,6 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -85,6 +111,7 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = Http::delete('http://localhost:8000/api/room/' . $id);
+        dd($res->json());
     }
 }

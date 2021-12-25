@@ -16,6 +16,13 @@
     <div class="row">
         <div class="col-lg-12">
 
+            @if(session('message'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-1"></i>
+                {{session('message')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
             <div class="card">
                 <div class="card-body">
 
@@ -42,7 +49,8 @@
                                     <td><?= $value['email'] ?></td>
                                     <td><?= $value['phone'] ?></td>
                                     <td>
-                                        <a href="{{url('admin/'.$value['id'])}}" class="btn btn-warning btn-sm"> <i class="bx bxs-edit"></i></a>
+                                        <a href="{{url('admin/'.$value['id'])}}" class="btn btn-info btn-sm"> <i class="ri-eye-2-line"></i></a>
+                                        <a href="{{url('admin/'.$value['id'].'/edit')}}" class="btn btn-warning btn-sm"> <i class="bx bxs-edit"></i></a>
                                         <form action="{{url('admin/'.$value['id'])}}" method="POST" class="d-inline">
                                             @csrf
                                             @method('delete')

@@ -19,7 +19,7 @@
                     <h5 class="card-title">Form admin </h5>
 
                     <!-- General Form Elements -->
-                    <form action="{{url('admin/'.$admin['id'])}}" method="POST">
+                    <form action="{{url('admin/'.$admin['id'])}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                         <div class="row mb-3">
@@ -66,7 +66,7 @@
                         <div class="row mb-3">
                             <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="file" id="formFile" name="img" accept="image/jpg, image/jpeg, image/png">
+                                <input class="form-control" type="file" id="formFile" name="avatar" accept="image/jpg, image/jpeg, image/png">
                             </div>
                         </div>
                         <div class="row mb-3">

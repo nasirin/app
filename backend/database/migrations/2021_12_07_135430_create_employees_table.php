@@ -16,9 +16,9 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('fullname', 30);
-            $table->string('avatar', 30)->nullable();
+            $table->string('avatar', 100)->nullable();
             $table->string('phone', 16);
-            $table->string('email', 20)->unique();
+            $table->string('email', 50)->unique();
             $table->string('password', 100);
             $table->enum('level', ['admin', 'pimpinan'])->default('admin');
             $table->timestamps();

@@ -16,6 +16,14 @@
     <div class="row">
         <div class="col-lg-12">
 
+            @if($message)
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-1"></i>
+                A simple success alert with icon—check it out!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
             <div class="card">
                 <div class="card-body">
                     <a href="/room/create" class="btn  btn-primary btn-sm my-2">Add Room</a>
@@ -33,15 +41,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($rooms as $key => $room)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Brandon Jacob</td>
-                                <td>Designer</td>
-                                <td>28</td>
-                                <td>2016-05-25</td>
-                                <td>2016-05-25</td>
+                                <th scope="row">{{$key+1}}</th>
+                                <td>{{$room["no_room"]}}</td>
+                                <td>{{$room["location"]}}</td>
+                                <td>{{$room["type"]}}</td>
+                                <td>{{$room["status"]}}</td>
+                                <td>
+                                    <a href="{{url('room/'.$room['id'])}}" class="btn btn-info btn-sm"> <i class="ri-eye-2-line"></i></a>
+                                    <a href="{{url('room/'.$room['id'].'/edit')}}" class="btn btn-warning btn-sm"> <i class="bx bxs-edit"></i></a>
+                                    <form action="{{url('room/'.$room['id'])}}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button onclick="return confirm('apakah anda yakin?')" class="btn btn-danger btn-sm"><i class="bx bxs-trash"></i></button>
+                                    </form>
+                                </td>
                             </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                     <!-- End Table with stripped rows -->

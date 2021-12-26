@@ -10,11 +10,16 @@ use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
 
+    protected $api;
+
+    public function __construct()
+    {
+        $this->api = env("API_BACKEND");
+    }
 
     public function index()
     {
-        $res = Http::get('http://localhost:8000/api/employee')->json();
-        // dd($res);
+        $res = Http::get($this->api . 'employee')->json();
         $data = [
             'admin' => $res['data']
         ];
@@ -51,7 +56,7 @@ class AdminController extends Controller
             $data['avatar'] = $request->file('avatar')->store('employees');
         }
 
-        $admin = Http::asForm()->post('http://localhost:8000/api/employee', $data)->json();
+        $admin = Http::asForm()->post($this->api . 'employee', $data)->json();
 
         if ($admin['status'] == 'error') {
             return redirect()->back()->withErrors($admin['message'])->withInput();
@@ -68,7 +73,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        $res = Http::get('http://localhost:8000/api/employee/' . $id)->json();
+        $res = Http::get($this->api . 'employee/' . $id)->json();
         $data['admin'] = $res['data'];
         return view('pages.admin.profil', $data);
     }
@@ -81,7 +86,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $res = Http::get('http://localhost:8000/api/employee/' . $id)->json();
+        $res = Http::get($this->api . 'employee/' . $id)->json();
         $data = [
             'admin' => $res['data']
         ];
@@ -104,8 +109,8 @@ class AdminController extends Controller
         if ($validate->fails()) {
             return redirect()->back()->withErrors($validate->errors())->withInput();
         }
-        
-        $avatar  = Http::get('http://localhost:8000/api/employee/' . $id)->json();
+
+        $avatar  = Http::get($this->api . 'employee/' . $id)->json();
         $img = $avatar['data'];
         // dd($img['avatar']);
 
@@ -116,7 +121,7 @@ class AdminController extends Controller
             $data['avatar'] = $request->file('avatar')->store('employees');
         }
 
-        $res = Http::asForm()->patch('http://localhost:8000/api/employee/' . $id, $data);
+        $res = Http::asForm()->patch($this->api . 'employee/' . $id, $data);
 
         return redirect('/admin')->with('message', $res['message']);
     }
@@ -129,12 +134,12 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $avatar  = Http::get('http://localhost:8000/api/employee/' . $id)->json();
+        $avatar  = Http::get($this->api . 'employee/' . $id)->json();
         $img = $avatar['data'];
         if ($img) {
             Storage::delete($img['avatar']);
         }
-        $res = Http::delete('http://localhost:8000/api/employee/' . $id);
+        $res = Http::delete($this->api . 'employee/' . $id);
         return back()->with('message', $res['message']);
     }
 }

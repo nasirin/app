@@ -16,13 +16,7 @@
     <div class="row">
         <div class="col-lg-12">
 
-            @if($message)
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="bi bi-check-circle me-1"></i>
-                A simple success alert with icon—check it out!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
+            @include('partials.alertSuccess')
 
             <div class="card">
                 <div class="card-body">

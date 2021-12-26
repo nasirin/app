@@ -4,26 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $api;
+
+    public function __construct()
+    {
+        $this->api = env("API_BACKEND");
+    }
+
     public function index()
     {
-        $res = Http::get('http://localhost:8000/api/room')->json();
-        // dd($res);
-        $message = null;
-
-        if ($res['status'] == 'error') {
-            $message = $res['message'];
-        }
+        $res = Http::get($this->api . 'room')->json();
 
         $data = [
-            'message' => $message,
             'rooms' => $res['data']
         ];
 
@@ -37,7 +34,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $res = Http::get('http://localhost:8000/api/fasility')->json();
+        $res = Http::get($this->api . 'fasility')->json();
 
         $data = [
             'fasilities' => $res['data'],
@@ -54,20 +51,48 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+        $rule = [
+            "no_room" => 'required',
+            'location' => 'required',
+            'type' => 'required|in:male,female',
+            "status" => 'required|in:available, unavailable',
+            "room_size" => 'required',
+            "map" => 'required',
+            "price_monthly" => 'required|integer',
+            'thumbnail' => 'required|image|file|mimes:jpg,jpeg,png|max:1024',
+            'gallery.*' => 'required|mimes:jpg,jpeg,png|max:1024',
+            'fasilities_id' => 'required'
+        ];
+
         $data = $request->all();
 
-        $room = Http::attach($request->file('thumbnail'), file_get_contents($request['thumbnail']))->post('http://localhost:8000/api/room', $data);
+        $validate = Validator::make($data, $rule);
 
-        dd($room->json());
-        // attach('image', file_get_contents($request->file('profile_image')->getRealPath()))->
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors())->withInput();
+        }
 
-        // if ($room['status'] == 'error') {
-        //     return redirect()->back()->withErrors($room['message'])->withInput();
-        // }
+        if ($request->hasfile('gallery')) {
+            foreach ($request->file('gallery') as $key => $file) {
+                $path = $file->store('gallery');
+                $insert[$key]['path'] = $path;
+            }
+        }
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $store = $thumbnail->store('/gallery/thumbnail');
+            $img = $store;
+        }
 
-        // dd($room);
+        $data['gallery'] = $insert;
+        $data['thumbnail'] = $img;
 
-        // return redirect('/room')->withSuccess();
+        $room = Http::post($this->api . 'room', $data);
+
+        if ($room['status'] == 'error') {
+            return redirect()->back()->withErrors($room['message'])->withInput();
+        }
+        return redirect('/room')->with('message', $room['message']);
     }
 
     /**
@@ -89,7 +114,14 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        dd('halaman ubah');
+        $fasilities = Http::get($this->api . 'fasility')->json();
+        $room = Http::get($this->api . 'room/' . $id)->json();
+
+        $data = [
+            'fasilities' => $fasilities['data'],
+            'rooms' => $room['data'],
+        ];
+        return view('pages.rooms.ubah', $data);
     }
 
     /**
@@ -101,6 +133,55 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rule = [
+            "no_room" => 'required',
+            'location' => 'required',
+            'type' => 'required|in:male,female',
+            "status" => 'required|in:available, unavailable',
+            "room_size" => 'required',
+            "map" => 'required',
+            "price_monthly" => 'required|integer',
+            'thumbnail' => 'image|file|mimes:jpg,jpeg,png|max:1024',
+            'gallery.*' => 'mimes:jpg,jpeg,png|max:1024',
+        ];
+
+        $data = $request->all();
+
+        $validate = Validator::make($data, $rule);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors())->withInput();
+        }
+
+        $gallery = Http::get($this->api . 'room/' . $id)->json();
+
+        if ($request->hasfile('gallery')) {
+
+            foreach ($gallery['data']['gallery'] as $key => $value) {
+                Storage::delete($value['path']);
+            }
+
+            foreach ($request->file('gallery') as $key => $file) {
+                $path = $file->store('gallery');
+                $insert[$key]['path'] = $path;
+            }
+            $data['gallery'] = $insert;
+        }
+
+        if ($request->hasFile('thumbnail')) {
+            Storage::delete($gallery['data']['thumbnail']);
+            $thumbnail = $request->file('thumbnail');
+            $store = $thumbnail->store('/gallery/thumbnail');
+            $img = $store;
+            $data['thumbnail'] = $img;
+        }
+
+        $room = Http::patch($this->api . 'room/' . $id, $data);
+
+        if ($room['status'] == 'error') {
+            return redirect()->back()->withErrors($room['message'])->withInput();
+        }
+        return redirect('/room')->with('message', $room['message']);
     }
 
     /**
@@ -111,7 +192,15 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        $res = Http::delete('http://localhost:8000/api/room/' . $id);
-        dd($res->json());
+        $gallery = Http::get($this->api . 'room/' . $id)->json();
+
+        foreach ($gallery['data']['gallery'] as $key => $value) {
+            Storage::delete($value['path']);
+        }
+
+        Storage::delete($gallery['data']['thumbnail']);
+
+        $res = Http::delete($this->api . 'room/' . $id);
+        return redirect('/room')->with('message', $res['message']);
     }
 }

@@ -22,7 +22,7 @@ class RoomController extends Controller
 
     public function show($id)
     {
-        $room = Rooms::findOrFail($id);
+        $room = Rooms::findOrFail($id)->with('RoomFasilities')->first();
 
         return response()->json([
             'status' => 'success',
@@ -37,7 +37,7 @@ class RoomController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => "Room data successfully deleted"
+            'message' => "Room data successfully deleted"
         ]);
     }
 
@@ -50,10 +50,10 @@ class RoomController extends Controller
             "status" => 'required|in:available, unavailable',
             "room_size" => 'required',
             "map" => 'required',
-            "gallery" => 'required',
             "price_monthly" => 'required|integer',
-            "thumbnail" => "required",
-            // 'fasilities_id' => 'required|integer'
+            'thumbnail' => 'required',
+            'gallery.*' => 'required',
+            'fasilities_id' => 'required'
         ];
 
         $room = $request->all();
@@ -66,21 +66,6 @@ class RoomController extends Controller
                 'message' => $validate->errors()
             ]);
         }
-
-        if ($request->hasfile('gallery')) {
-            foreach ($request->file('gallery') as $key => $file) {
-                $path = $file->store('/gallery');
-                $insert[$key]['path'] = $path;
-            }
-        }
-        if ($request->hasFile('thumbnail')) {
-            $thumbnail = $request->file('thumbnail');
-            $store = $thumbnail->store('/gallery/thumbnail');
-            $img = $store;
-        }
-
-        $room['gallery'] = $insert;
-        $room['thumbnail'] = $img;
 
         $result = Rooms::create($room);
 
@@ -97,7 +82,7 @@ class RoomController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Room data successfully created',
-            'data' => $result
+            // 'data' => $result
         ]);
     }
 

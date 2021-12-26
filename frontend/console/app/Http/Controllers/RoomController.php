@@ -77,15 +77,14 @@ class RoomController extends Controller
                 $path = $file->store('gallery');
                 $insert[$key]['path'] = $path;
             }
+            $data['gallery'] = $insert;
         }
         if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->file('thumbnail');
             $store = $thumbnail->store('/gallery/thumbnail');
             $img = $store;
+            $data['thumbnail'] = $img;
         }
-
-        $data['gallery'] = $insert;
-        $data['thumbnail'] = $img;
 
         $room = Http::post($this->api . 'room', $data);
 
@@ -103,7 +102,7 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        return view('pages.rooms.detail');
+        dd('tampil halaman frontend user detail kamar');
     }
 
     /**

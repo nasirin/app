@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('content')
 <div class="pagetitle">
-    <h1>Create new Necessity</h1>
+    <h1>Update Necessity</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -19,12 +19,13 @@
                     <h5 class="card-title">Form Necessity</h5>
 
                     <!-- General Form Elements -->
-                    <form action="{{url('/necessities')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('/necessities/'.$necessities['id'])}}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('patch')
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Necessity</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" required name="necessity" value="{{old['necessity']}}">
+                                <input type="text" class="form-control" required name="necessity" value="{{$necessities['necessity']}}">
                                 @if($errors->first('necessity'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i class="bi bi-exclamation-octagon me-1"></i>
@@ -37,7 +38,7 @@
                         <div class="row mb-3">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Cost</label>
                             <div class="col-sm-10">
-                                <input type="number" min="0" class="form-control" required name="cost" value="{{old['cost']}}">
+                                <input type="number" min="0" class="form-control" required name="cost" value="{{$necessities['cost']}}">
                                 @if($errors->first('cost'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i class="bi bi-exclamation-octagon me-1"></i>
@@ -50,7 +51,7 @@
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Date</label>
                             <div class="col-sm-10">
-                                <input type="date" class="form-control" name="tanggal" required value="{{old['tanggal']}}">
+                                <input type="date" class="form-control" name="tanggal" required value="{{$necessities['tanggal']}}">
                                 @if($errors->first('tanggal'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i class="bi bi-exclamation-octagon me-1"></i>
@@ -63,7 +64,7 @@
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Pcs</label>
                             <div class="col-sm-10">
-                                <input type="number" min="0" class="form-control" name="pcs" required value="{{old['pcs']}}">
+                                <input type="number" min="0" class="form-control" name="pcs" required value="{{$necessities['pcs']}}">
                                 @if($errors->first('pcs'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i class="bi bi-exclamation-octagon me-1"></i>
@@ -77,6 +78,7 @@
                             <label for="inputPassword" class="col-sm-2 col-form-label">Nota</label>
                             <div class="col-sm-10">
                                 <input type="file" class="form-control" name="file" accept="image/png,image/jpg,image/jpeg">
+                                <img src="{{url('storage/'.$necessities['file'])}}" width="300" class="mt-2" alt="">
                                 @if($errors->first('file'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i class="bi bi-exclamation-octagon me-1"></i>

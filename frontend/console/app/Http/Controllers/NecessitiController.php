@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class NecessitiController extends Controller
 {
+    protected $api;
+    public function __construct()
+    {
+        $this->api = env('API_BACKEND');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,9 @@ class NecessitiController extends Controller
      */
     public function index()
     {
-        return view('pages.necessities.index');
+        $necessities = Http::get($this->api . 'necessities')->json();
+        $data['necessities'] = $necessities['data'];
+        return view('pages.necessities.index', $data);
     }
 
     /**
@@ -34,7 +44,29 @@ class NecessitiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rule = [
+            'necessity' => 'required',
+            'cost' => 'required|integer',
+            'tanggal' => 'required|date',
+            'pcs' => 'required|integer',
+            'file' => 'image|file|mimes:jpg,jpeg,png|max:1024'
+        ];
+
+        $data = $request->all();
+
+        $validate = Validator::make($data, $rule);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors())->withInput();
+        }
+
+        if ($request->hasFile('file')) {
+            $note = $request->file('file')->store('necessity');
+            $data['file'] = $note;
+        }
+
+        $necessity = Http::post($this->api . 'necessities', $data)->json();
+        return redirect('/necessities')->with('message', $necessity['message']);
     }
 
     /**
@@ -56,7 +88,9 @@ class NecessitiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $necessities = Http::get($this->api . 'necessities/' . $id)->json();
+        $data['necessities'] = $necessities['data'];
+        return view('pages.necessities.ubah', $data);
     }
 
     /**
@@ -68,7 +102,33 @@ class NecessitiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rule = [
+            'necessity' => 'required',
+            'cost' => 'required|integer',
+            'tanggal' => 'required|date',
+            'pcs' => 'required|integer',
+            'file' => 'image|file|mimes:jpg,jpeg,png|max:1024'
+        ];
+
+        $data = $request->all();
+
+        $validate = Validator::make($data, $rule);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors())->withInput();
+        }
+
+        $file = Http::get($this->api . 'necessities/' . $id)->json();
+
+
+        if ($request->hasFile('file')) {
+            Storage::delete($file['data']['file']);
+            $note = $request->file('file')->store('necessity');
+            $data['file'] = $note;
+        }
+
+        $necessity = Http::patch($this->api . 'necessities/' . $id, $data)->json();
+        return redirect('/necessities')->with('message', $necessity['message']);
     }
 
     /**
@@ -79,6 +139,9 @@ class NecessitiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $file = Http::get($this->api . 'necessities/' . $id)->json();
+        Storage::delete($file['data']['file']);
+        $necessities = Http::delete($this->api . 'necessities/' . $id)->json();
+        return redirect('/necessities')->with('message', $necessities['message']);
     }
 }

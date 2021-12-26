@@ -19,49 +19,98 @@
                     <h5 class="card-title">Form customer</h5>
 
                     <!-- General Form Elements -->
-                    <form action="{{url('customer/'.$customer['id'])}}" method="POST">
+                    <form action="{{url('customer/'.$customer['id'])}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">First name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="first_name" value="{{$customer['first_name']}}">
+                                @if($errors->first('first_name'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('first_name')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Last name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="last_name" value="{{$customer['last_name']}}">
+                                @if($errors->first('last_name'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('last_name')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Nick name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="nick_name" value="{{$customer['nick_name']}}">
+                                @if($errors->first('nick_name'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('nick_name')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Address</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="address" value="{{$customer['address']}}">
+                                @if($errors->first('address'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('address')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputNumber" class="col-sm-2 col-form-label">Phone Number</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" name="phone" value="{{$customer['phone']}}">
+                                @if($errors->first('phone'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('phone')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
                                 <input type="email" class="form-control" name="email" value="{{$customer['email']}}">
+                                @if($errors->first('email'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('email')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
                                 <input type="password" class="form-control" name="password">
+                                @if($errors->first('password'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('password')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
 
@@ -120,12 +169,26 @@
                             <label for="inputNumber" class="col-sm-2 col-form-label">Photo</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="file" id="formFile" name="avatar" accept="image/jpg, image/jpeg, image/png">
+                                @if($errors->first('avatar'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('avatar')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputNumber" class="col-sm-2 col-form-label">Identity</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="file" id="formFile" name="identity" accept="image/jpg, image/jpeg, image/png">
+                                @if($errors->first('identity'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('identity')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">

@@ -19,48 +19,97 @@
                     <h5 class="card-title">Form customer</h5>
 
                     <!-- General Form Elements -->
-                    <form action="{{route('customer.store')}}" method="POST">
+                    <form action="{{route('customer.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">First name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="first_name">
+                                <input type="text" class="form-control" name="first_name" required value="{{old('first_name')}}">
+                                @if($errors->first('first_name'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('first_name')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Last name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="last_name">
+                                <input type="text" class="form-control" name="last_name" required value="{{old('last_name')}}">
+                                @if($errors->first('last_name'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('last_name')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Nick name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nick_name">
+                                <input type="text" class="form-control" name="nick_name" required value="{{old('nick_name')}}">
+                                @if($errors->first('nick_name'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('nick_name')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Address</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="address">
+                                <input type="text" class="form-control" name="address" required value="{{old('address')}}">
+                                @if($errors->first('address'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('address')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputNumber" class="col-sm-2 col-form-label">Phone Number</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" name="phone">
+                                <input type="number" class="form-control" name="phone" required value="{{old('phone')}}">
+                                @if($errors->first('phone'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('phone')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" name="email">
+                                <input type="email" class="form-control" name="email" required value="{{old('email')}}">
+                                @if($errors->first('email'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('email')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password">
+                                <input type="password" class="form-control" name="password" required>
+                                @if($errors->first('password'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('password')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
 
@@ -85,14 +134,14 @@
                             <legend class="col-form-label col-sm-2 pt-0">Status</legend>
                             <div class="col-sm-10">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" id="gridRadios1" value="single" checked>
-                                    <label class="form-check-label" for="gridRadios1">
+                                    <input class="form-check-input" type="radio" name="status" id="gridRadios3" value="single" checked>
+                                    <label class="form-check-label" for="gridRadios3">
                                         Single
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" id="gridRadios2" value="married">
-                                    <label class="form-check-label" for="gridRadios2">
+                                    <input class="form-check-input" type="radio" name="status" id="gridRadios4" value="married">
+                                    <label class="form-check-label" for="gridRadios4">
                                         Married
                                     </label>
                                 </div>
@@ -102,14 +151,14 @@
                             <legend class="col-form-label col-sm-2 pt-0">Jobs</legend>
                             <div class="col-sm-10">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="jobs" id="gridRadios1" value="student" checked>
-                                    <label class="form-check-label" for="gridRadios1">
+                                    <input class="form-check-input" type="radio" name="jobs" id="gridRadios5" value="student" checked>
+                                    <label class="form-check-label" for="gridRadios5">
                                         Student
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="jobs" id="gridRadios2" value="worker">
-                                    <label class="form-check-label" for="gridRadios2">
+                                    <input class="form-check-input" type="radio" name="jobs" id="gridRadios6" value="worker">
+                                    <label class="form-check-label" for="gridRadios6">
                                         Worker
                                     </label>
                                 </div>
@@ -119,12 +168,26 @@
                             <label for="inputNumber" class="col-sm-2 col-form-label">Photo</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="file" id="formFile" name="avatar" accept="image/jpg, image/jpeg, image/png">
+                                @if($errors->first('avatar'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('avatar')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="inputNumber" class="col-sm-2 col-form-label">Identity</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="file" id="formFile" name="identity" accept="image/jpg, image/jpeg, image/png">
+                                @if($errors->first('identity'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-octagon me-1"></i>
+                                    {{$errors->first('identity')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mb-3">

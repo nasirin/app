@@ -18,12 +18,12 @@ class CreateCustomersTable extends Migration
             $table->string('first_name', 30);
             $table->string('last_name', 30);
             $table->string('nick_name', 30);
-            $table->string('avatar', 50)->nullable();
+            $table->string('avatar')->nullable();
             $table->string('address', 100);
             $table->string('phone', 16);
             $table->string('email', 30)->unique();
-            $table->string('identity', 50)->nullable();
-            $table->string('password');
+            $table->string('identity')->nullable();
+            $table->string('password')->nullable();
             $table->enum('gender', ['male', 'female']);
             $table->enum('status', ['single', 'married']);
             $table->enum('jobs', ['student', 'worker'])->nullable();

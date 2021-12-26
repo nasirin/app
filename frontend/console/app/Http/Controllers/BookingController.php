@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class BookingController extends Controller
 {
+    protected $api;
+    public function __construct()
+    {
+        $this->api = env('API_BACKEND');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,10 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return view('pages.booking.index');
+        $booking = Http::get($this->api . 'booking')->json();
+
+        $data['booking'] = $booking['data'];
+        return view('pages.booking.index', $data);
     }
 
     /**
@@ -23,7 +32,11 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        $customer = Http::get($this->api . 'customer')->json();
+        $data = [
+            'customers' => $customer['data']
+        ];
+        return view('pages.booking.tambah', $data);
     }
 
     /**

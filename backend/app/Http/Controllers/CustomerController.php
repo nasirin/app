@@ -69,12 +69,11 @@ class CustomerController extends Controller
 
         $password = Hash::make($request->password);
         $data['password'] = $password;
-        $customer = Customers::create($data);
+        Customers::create($data);
 
         return response()->json([
             'status' => 'success',
-            'message' => 'customer data successfully saved',
-            'data' => $customer
+            'message' => 'customer data successfully saved'
         ]);
     }
 
@@ -89,9 +88,9 @@ class CustomerController extends Controller
             // "avatar"=> "kangsunat",
             "address" => "string|min:3",
             "phone" => "string|min:11|max:16",
-            "email" => "email|unique:customers",
+            // "email" => "email|unique:customers",
             // "identotity"=>"dfaaf",
-            "password" => "string|min:6",
+            // 'password' => 'string|min:6',
             "gender" => "in:male,female",
             "status" => "in:single,married",
             // "jobs"=>"student"
@@ -119,7 +118,6 @@ class CustomerController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'customer data successfully changed',
-            'data' => $customer
         ]);
     }
 }

@@ -2,7 +2,7 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="/template//">
+            <a class="nav-link collapsed" href="/">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -55,7 +55,7 @@
                     <a href="/template/#"> <i class="bi bi-circle"></i><span>Normal</span> </a>
                 </li>
                 <li>
-                    <a href="/template/#">
+                    <a href="/booking">
                         <i class="bi bi-circle"></i><span>All Booking</span>
                     </a>
                 </li>

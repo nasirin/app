@@ -36,7 +36,6 @@ class BookingController extends Controller
         $rule = [
             'customer_id' => 'required|integer',
             'room_id' => 'required|integer',
-            // 'code' => 'required|unique:bookings',
             'check_in' => 'required',
             'guest' => 'required',
             'payment_type' => 'required|in:on check in,transfer',

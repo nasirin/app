@@ -20,7 +20,7 @@ class BookingController extends Controller
     public function index()
     {
         $booking = Http::get($this->api . 'booking')->json();
-
+        dd($booking);
         $data['booking'] = $booking['data'];
         return view('pages.booking.index', $data);
     }
@@ -33,8 +33,10 @@ class BookingController extends Controller
     public function create()
     {
         $customer = Http::get($this->api . 'customer')->json();
+        $room = Http::get($this->api . 'room')->json();
         $data = [
-            'customers' => $customer['data']
+            'customers' => $customer['data'],
+            'rooms' => $room['data']
         ];
         return view('pages.booking.tambah', $data);
     }

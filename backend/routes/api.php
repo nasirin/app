@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FasilityController;
 use App\Http\Controllers\KebutuhanController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\SummaryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,3 +74,6 @@ Route::post('/badd', [BookingAddCntoller::class, 'store']);
 
 //billing
 Route::post('/billing', [BookingController::class, 'store']);
+
+// SUMMARY
+Route::get('/summary', [SummaryController::class, 'index']);

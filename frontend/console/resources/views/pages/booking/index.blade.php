@@ -19,8 +19,6 @@
             <div class="card">
                 <div class="card-body my-2">
 
-                <a href="{{route('booking.create')}}" class="btn  btn-primary btn-sm my-2"><i class="bx bxs-file-plus"></i>Addd new booking</a>
-
                     <!-- Table with stripped rows -->
                     <table class="table" id="myTable">
                         <thead>
@@ -35,16 +33,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($booking as $key => $value)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Brandon Jacob</td>
+                                <th scope="row">{{$key + 1 }}</th>
+                                <td>{{$value['no_room']}}</td>
                                 <td>Designer</td>
                                 <td>28</td>
                                 <td>2016-05-25</td>
                                 <td>2016-05-25</td>
                                 <td>2016-05-25</td>
                             </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                     <!-- End Table with stripped rows -->

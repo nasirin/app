@@ -36,8 +36,8 @@
                                     <i class="bi bi-cart"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>145</h6>
-                                    <span class="small pt-1 fw-bold">Rp 1.000.000</span>
+                                    <h6>{{$summary['kebutuhan']['totalItem']}}</h6>
+                                    <span class="small pt-1 fw-bold">{{'Rp '.number_format($summary['kebutuhan']['totalPengeluaran'],0,',','.')}}</span>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                     <i class="bi bi-currency-dollar"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>Rp 3.264.000</h6>
+                                    <h6>{{'Rp '.number_format($summary['pendapatan'],0,',','.')}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                                     <i class="bi bi-people"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>145</h6>
+                                    <h6>{{$summary['totalCustomer']}}</h6>
                                 </div>
                             </div>
                         </div>

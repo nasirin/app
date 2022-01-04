@@ -50,6 +50,7 @@
                                         @method('delete')
                                         <button onclick="return confirm('apakah anda yakin?')" class="btn btn-danger btn-sm"><i class="bx bxs-trash"></i></button>
                                     </form>
+                                    <a href="#" title="Add Booking" class="btn btn-info btn-sm"> <i class="ri-book-2-fill"></i></a>
                                 </td>
                             </tr>
                             @endforeach

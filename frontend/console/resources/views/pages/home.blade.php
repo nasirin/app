@@ -128,56 +128,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($newBooking as $key => $data)
                                     <tr>
-                                        <th scope="row"><a href="/template/#">#2457</a></th>
-                                        <td>Brandon Jacob</td>
+                                        <th scope="row">{{$key+1}}</th>
+                                        <td>{{$data['customer']['nick_name']}}</td>
                                         <td>
-                                            <a href="/template/#" class="text-primary">A001</a>
+                                            <a href="#" class="text-primary">{{$data['room']['no_room']}}</a>
                                         </td>
-                                        <td>13 oktober 2021 | 08:00</td>
-                                        <td>On checkin</td>
-                                        <td><span class="badge bg-warning">New</span></td>
+                                        <td>{{$data['check_in']}}</td>
+                                        <td>{{$data['payment_type']}}</td>
+                                        <td><span class="badge bg-warning">Waiting Confirm</span></td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row"><a href="/template/#">#2147</a></th>
-                                        <td>Bridie Kessler</td>
-                                        <td>
-                                            <a href="/template/#" class="text-primary">B012</a>
-                                        </td>
-                                        <td>12 januari 2022 | 12:00</td>
-                                        <td>Transfer</td>
-                                        <td><span class="badge bg-warning">new</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="/template/#">#2049</a></th>
-                                        <td>Ashleigh Langosh</td>
-                                        <td>
-                                            <a href="/template/#" class="text-primary">C111</a>
-                                        </td>
-                                        <td>14 oktober 2021 | 09:00</td>
-                                        <td>On checkin</td>
-                                        <td><span class="badge bg-warning">New</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="/template/#">#2644</a></th>
-                                        <td>Angus Grady</td>
-                                        <td>
-                                            <a href="/template/#" class="text-primar">A827</a>
-                                        </td>
-                                        <td>13 oktober 2021 | 21:00</td>
-                                        <td>Transfer</td>
-                                        <td><span class="badge bg-warning">New</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="/template/#">#2644</a></th>
-                                        <td>Raheem Lehner</td>
-                                        <td>
-                                            <a href="/template/#" class="text-primary">A100</a>
-                                        </td>
-                                        <td>13 juli 2021 | 08:00</td>
-                                        <td>On checkin</td>
-                                        <td><span class="badge bg-warning">New</span></td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -199,7 +161,7 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">Grace Booking</h5>
+                            <h5 class="card-title">Grace Billing</h5>
 
                             <table class="table table-borderless datatable">
                                 <thead>
@@ -212,51 +174,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($graceBilling as $key => $data)
                                     <tr>
-                                        <th scope="row"><a href="/template/#">#2457</a></th>
-                                        <td>Brandon Jacob</td>
+                                        <th scope="row">{{$key + 1}}</th>
+                                        <td>{{$data['booking']['customer']['nick_name']}}</td>
                                         <td>
-                                            <a href="/template/#" class="text-primary">A001</a>
+                                            {{$data['booking']['room']['no_room']}}
                                         </td>
-                                        <td>13 oktober 2021</td>
-                                        <td>Rp 900.000</td>
+                                        <td>{{$data['payment_due']}}</td>
+                                        <td>{{$data['total']}}</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row"><a href="/template/#">#2147</a></th>
-                                        <td>Bridie Kessler</td>
-                                        <td>
-                                            <a href="/template/#" class="text-primary">B012</a>
-                                        </td>
-                                        <td>12 januari 2022</td>
-                                        <td>Rp 900.000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="/template/#">#2049</a></th>
-                                        <td>Ashleigh Langosh</td>
-                                        <td>
-                                            <a href="/template/#" class="text-primary">C111</a>
-                                        </td>
-                                        <td>14 oktober 2021</td>
-                                        <td>Rp 200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="/template/#">#2644</a></th>
-                                        <td>Angus Grady</td>
-                                        <td>
-                                            <a href="/template/#" class="text-primar">A827</a>
-                                        </td>
-                                        <td>13 oktober 2021</td>
-                                        <td>Rp 500.000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><a href="/template/#">#2644</a></th>
-                                        <td>Raheem Lehner</td>
-                                        <td>
-                                            <a href="/template/#" class="text-primary">A100</a>
-                                        </td>
-                                        <td>13 juli 2021</td>
-                                        <td>Rp 1.000.000</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

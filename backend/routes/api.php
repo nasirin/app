@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BookingAddCntoller;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomerController;
@@ -66,6 +67,7 @@ Route::get('/booking/{id}', [BookingController::class, 'show']);
 Route::delete('/booking/{id}', [BookingController::class, 'destroy']);
 Route::post('/booking', [BookingController::class, 'store']);
 Route::patch('/booking/{id}', [BookingController::class, 'checkout']);
+Route::get('/new-booking', [BookingController::class, 'newBooking']);
 
 //booking addtional
 Route::patch('/badd/{id}', [BookingAddCntoller::class, 'change']);
@@ -73,7 +75,7 @@ Route::delete('/badd/{id}', [BookingAddCntoller::class, 'destroy']);
 Route::post('/badd', [BookingAddCntoller::class, 'store']);
 
 //billing
-Route::post('/billing', [BookingController::class, 'store']);
+Route::get('/grace-billing', [BillingController::class, 'graceBilling']);
 
 // SUMMARY
 Route::get('/summary', [SummaryController::class, 'index']);

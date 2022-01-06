@@ -78,8 +78,12 @@ class BookingController extends Controller
         ]);
     }
 
-    public function checkout(Request $request, $id)
+    public function newBooking()
     {
-        # ini digunakan untuk checkout pelanggan
+        $newbooking = Bookings::where('payment_status', 'waiting confirm')->with(['customer', 'room'])->get();
+
+        return response()->json([
+            'data' => $newbooking
+        ]);
     }
 }

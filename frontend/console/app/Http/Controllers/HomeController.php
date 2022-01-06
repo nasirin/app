@@ -16,8 +16,13 @@ class HomeController extends Controller
     public function index()
     {
         $summary = Http::get($this->api . 'summary')->json();
+        $newBooking = Http::get($this->api . 'new-booking')->json();
+        $graceBilling = Http::get($this->api . 'grace-billing')->json();
+        // dd($graceBilling['data']);
         $data = [
-            'summary' => $summary
+            'summary' => $summary,
+            'newBooking' => $newBooking['data'],
+            'graceBilling' => $graceBilling['data']
         ];
         return view('pages.home', $data);
     }

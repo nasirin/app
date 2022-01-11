@@ -22,26 +22,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+
 
 Route::get('/profile', [UserController::class, 'index']);
 
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'signin'])->name('signin');
 
-// ROOMS
-Route::resource('/room', RoomController::class);
+Route::group(['middleware' => 'loged'], function () {
 
-// BOOKING
-Route::resource('/booking', BookingController::class);
+    Route::get('/', [HomeController::class, 'index']);
 
-// necessities
-Route::resource('/necessities', NecessitiController::class);
+    Route::group(['middleware' => ['cek_login:admin']], function () {
+        // ROOMS
+        Route::resource('/room', RoomController::class);
 
-// fasility
-Route::resource('/fasility', FasilityController::class);
+        // BOOKING
+        Route::resource('/booking', BookingController::class);
 
-// ADMIN
-Route::resource('/admin', AdminController::class);
+        // necessities
+        Route::resource('/necessities', NecessitiController::class);
 
-// CUSTOMER
-Route::resource('/customer', CustomerController::class);
+        // fasility
+        Route::resource('/fasility', FasilityController::class);
+
+        // ADMIN
+        Route::resource('/admin', AdminController::class);
+
+        // CUSTOMER
+        Route::resource('/customer', CustomerController::class);
+    });
+});

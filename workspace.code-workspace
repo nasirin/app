@@ -7,5 +7,7 @@
 			"path": "frontend\\console"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "console"
+	}
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BookingAddCntoller;
 use App\Http\Controllers\BookingController;
@@ -79,3 +80,7 @@ Route::get('/grace-billing', [BillingController::class, 'graceBilling']);
 
 // SUMMARY
 Route::get('/summary', [SummaryController::class, 'index']);
+
+
+// AUTH ADMIN
+Route::post('/admin/login', [AdminAuthController::class, 'login']);

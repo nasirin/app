@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class loged
@@ -16,8 +17,7 @@ class loged
      */
     public function handle(Request $request, Closure $next)
     {
-        // return $next($request);
-        if (session()->has('id')) {
+        if (Session::has('user')) {
             return $next($request);
         } else {
             return redirect('login');

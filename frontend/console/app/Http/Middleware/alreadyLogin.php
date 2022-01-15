@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
-class idAdmin
+class alreadyLogin
 {
     /**
      * Handle an incoming request.
@@ -14,20 +15,12 @@ class idAdmin
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $roles)
+    public function handle(Request $request, Closure $next)
     {
-        // if (!Auth::check()) {
-        //     return redirect('login');
-        // }
-        
-        // $user = Auth::user();
-
-        // if ($user->level == $roles) {
-        //     return $next($request);
-        // }
-
-        // return redirect('login')->with('error', "kamu gak punya akses");
-
-        
+        if (!Session::has('user')) {
+            return $next($request);
+        } else {
+            return redirect('/');
+        }
     }
 }

@@ -20,16 +20,16 @@
 
              <li class="nav-item dropdown pe-3">
                  <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/template/#" data-bs-toggle="dropdown">
-                     <img src="{{$baseURL.session('avatar')}}" alt="Profile" class="rounded-circle" />
-                     <span class="d-none d-md-block dropdown-toggle ps-2">{{session('name')}}</span> </a><!-- End Profile Iamge Icon -->
+                     <img src="{{session('user.avatar')}}" alt="Profile" class="rounded-circle" />
+                     <span class="d-none d-md-block dropdown-toggle ps-2">{{session('user.name')}}</span> </a><!-- End Profile Iamge Icon -->
 
                  <ul class="
                 dropdown-menu dropdown-menu-end dropdown-menu-arrow
                 profile
               ">
                      <li class="dropdown-header">
-                         <h6>{{session('level')}}</h6>
-                         <span>Web Designer</span>
+                         <h6>{{session('user.level')}}</h6>
+                         <!-- <span>Web Designer</span> -->
                      </li>
                      <li>
                          <hr class="dropdown-divider" />

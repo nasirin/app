@@ -24,10 +24,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/profile', [UserController::class, 'index']);
 
-Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('no_loged');
+// suth
+Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('already_loged');
 Route::post('login', [AuthController::class, 'signin'])->name('signin');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
 
 Route::group(['middleware' => 'loged'], function () {
 
@@ -50,4 +52,7 @@ Route::group(['middleware' => 'loged'], function () {
 
     // CUSTOMER
     Route::resource('/customer', CustomerController::class);
+
+    // PROFILE
+    Route::get('/profile', [UserController::class, 'index']);
 });

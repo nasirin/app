@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     protected $api;
-    public function __construct()
+    protected $url;
+    public function __construct(UrlGenerator $url)
     {
         $this->api = env('API_BACKEND');
+        $this->url = $url->to('/') . '/storage/';
     }
 
     public function login()
     {
+        // dd(!session()->get('id'));
         return view('pages.login');
     }
 
@@ -44,10 +47,12 @@ class AuthController extends Controller
 
         if ($login['status'] === 'success') {
             session([
-                'id' => $login['data']['id'],
-                'name' => $login['data']['fullname'],
-                'avatar' => $login['data']['avatar'],
-                'level' => $login['data']['level']
+                "user" => [
+                    'id' => $login['data']['id'],
+                    'name' => $login['data']['fullname'],
+                    'avatar' => $this->url . $login['data']['avatar'],
+                    'level' => $login['data']['level']
+                ]
             ]);
 
             return redirect('/');
@@ -59,5 +64,11 @@ class AuthController extends Controller
         //     // 'status' => 'error',
         //     'data' => $login
         // ]);
+    }
+
+    public function logout()
+    {
+        session()->flush();
+        return redirect('login');
     }
 }

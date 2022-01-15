@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class loged
+class notLoged
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class loged
     public function handle(Request $request, Closure $next)
     {
         // return $next($request);
-        if (session()->has('id')) {
-            return $next($request);
-        } else {
+        if (!session()->has('id')) {
             return redirect('login');
+        } else {
+            return redirect('/');
         }
     }
 }

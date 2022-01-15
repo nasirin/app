@@ -55,6 +55,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'idAdmin' => \App\Http\Middleware\idAdmin::class,
-        'loged' => \App\Http\Middleware\loged::class
+        'loged' => \App\Http\Middleware\loged::class,
+        'no_loged' => \App\Http\Middleware\notLoged::class
     ];
 }

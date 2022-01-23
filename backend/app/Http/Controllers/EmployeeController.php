@@ -40,6 +40,7 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $rules = [
+            // 'avatar' => 'image|file|mimes:jpg,jpeg,png|max:1024',
             'fullname' => 'required|string',
             'phone' => 'required|integer',
             'email' => 'required|unique:employees|email',
@@ -55,6 +56,10 @@ class EmployeeController extends Controller
                 'status' => 'error',
                 'message' => $validator->errors()
             ]);
+        }
+
+        if ($request->hasFile('avatar')) {
+            $data['avatar'] = $request->file('avatar')->store('employees');
         }
 
         $password = Hash::make($request->password);

@@ -93,7 +93,7 @@
                         <div class="row mb-3">
                             <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="file" id="formFile" name="avatar" accept="image/jpg, image/jpeg, image/png">
+                                <input class="form-control" type="file" name="avatar">
                                 @if($errors->first('avatar'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i class="bi bi-exclamation-octagon me-1"></i>

@@ -56,7 +56,7 @@ class AdminController extends Controller
             $data['avatar'] = $request->file('avatar')->store('employees');
         }
 
-        $admin = Http::asForm()->post($this->api . 'employee', $data)->json();
+        $admin = Http::post($this->api . 'employee', $data);
 
         if ($admin['status'] == 'error') {
             return redirect()->back()->withErrors($admin['message'])->withInput();

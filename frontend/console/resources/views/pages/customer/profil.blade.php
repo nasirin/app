@@ -44,6 +44,9 @@
                         <li class="nav-item">
                             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                         </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#booking">Booking</button>
+                        </li>
 
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
@@ -97,20 +100,19 @@
                                 <div class="col-lg-3 col-md-4 label">Job</div>
                                 <div class="col-lg-9 col-md-8">{{$customer["jobs"]}}</div>
                             </div>
+                        </div>
+                        <div class="tab-pane fade show profile-overview" id="booking">
+                            <h5 class="card-title">Booking Details</h5>
 
-                            <h5 class="card-title">Booking Details (DUMMY)</h5>
-
+                            @foreach($booking as $data)
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label ">Room</div>
-                                <div class="col-lg-9 col-md-8">nomor kamar</div>
+                                <div class="col-lg-9 col-md-8">{{$data['room']['no_room']}}</div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label ">Room Cost </div>
-                                <div class="col-lg-9 col-md-8">Rp 500.000 (bulan | tahun)</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">Room Status </div>
-                                <div class="col-lg-9 col-md-8">Active</div>
+                                <div class="col-lg-9 col-md-8">{{'Rp '.number_format($data['cost'],0,',','.').'/'.$data['rental_type']}}</div>
+                                <!-- <div class="col-lg-9 col-md-8">Rp 500.000 (bulan | tahun)</div> -->
                             </div>
 
                             <div class="row">
@@ -125,24 +127,43 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($data['booking_additional'] as $key => $add)
                                             <tr>
-                                                <td>1</td>
-                                                <td>Tambahan 1</td>
-                                                <td>Rp 12.000</td>
+                                                <td>{{$key+1}}</td>
+                                                <td>{{$add['additional']}}</td>
+                                                <td>{{"Rp ".number_format($add['cost'],0,',','.')}}</td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Expired Date</div>
-                                <div class="col-lg-9 col-md-8">20 agustus 2022</div>
+                                <div class="col-lg-3 col-md-4 label ">Billing</div>
+                                <div class="col-lg-9 col-md-8">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Due date</th>
+                                                <th>Billing</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($data['billing'] as $key => $add)
+                                            <tr>
+                                                <td>{{$key+1}}</td>
+                                                <td>{{$add['payment_due']}}</td>
+                                                <td>{{"Rp ".number_format($add['total'],0,',','.')}}</td>
+                                                <td>{{$add['payment_status']}}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Total</div>
-                                <div class="col-lg-9 col-md-8">Rp 600.000</div>
-                            </div>
+                            @endforeach
                         </div>
 
                         <div class="tab-pane fade profile-edit pt-3" id="profile-edit">

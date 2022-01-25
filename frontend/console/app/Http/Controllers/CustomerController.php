@@ -90,7 +90,10 @@ class CustomerController extends Controller
     public function show($id)
     {
         $res = Http::get($this->api . 'customer/' . $id)->json();
-        $data['customer'] = $res['data'];
+        $data = [
+            'customer' => $res['data'],
+            'booking' => $res['data']['booking']
+        ];
 
         return view('pages.customer.profil', $data);
     }

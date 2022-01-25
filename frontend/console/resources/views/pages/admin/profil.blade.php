@@ -85,7 +85,7 @@
                                 <div class="row mb-3">
                                     <label for="inputEmail" class="col-sm-4 col-form-label">Email</label>
                                     <div class="col-sm-8">
-                                        <input type="email" class="form-control" name="email" required value="{{$admin['email']}}">
+                                        <input type="email" class="form-control" name="email" required value="{{$admin['email']}}" <?= session('user.id') == $admin['id'] ? 'disabled' : '' ?>>
                                         @if($errors->first('email'))
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                             <i class="bi bi-exclamation-octagon me-1"></i>
@@ -125,13 +125,13 @@
                                     <legend class="col-form-label col-sm-4 pt-0">Level</legend>
                                     <div class="col-sm-8">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="level" id="gridRadios1" value="admin" <?= $admin['level'] == 'admin' ? 'checked' : '' ?>>
+                                            <input class="form-check-input" type="radio" name="level" id="gridRadios1" value="admin" <?= $admin['level'] == 'admin' ? 'checked' : 'disabled' ?>>
                                             <label class="form-check-label" for="gridRadios1">
                                                 Admin
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="level" id="gridRadios2" value="pimpinan" <?= $admin['level'] == 'pimpinan' ? 'checked' : '' ?>>
+                                            <input class="form-check-input" type="radio" name="level" id="gridRadios2" value="pimpinan" <?= $admin['level'] == 'pimpinan' ? 'checked' : 'disabled' ?>>
                                             <label class="form-check-label" for="gridRadios2">
                                                 Owner
                                             </label>

@@ -18,12 +18,11 @@
 
             @include('partials.alertSuccess')
 
-            
+
             <div class="card">
                 <div class="card-body">
 
                     <a href="{{route('admin.create')}}" class="btn  btn-primary btn-sm my-2"><i class="bx bxs-file-plus"></i>Tambah admin</a>
-
                     <!-- Table with stripped rows -->
                     <table class="table" id="myTable">
                         <thead>
@@ -46,12 +45,14 @@
                                     <td><?= $value['phone'] ?></td>
                                     <td>
                                         <a href="{{url('admin/'.$value['id'])}}" class="btn btn-info btn-sm"> <i class="ri-eye-2-line"></i></a>
+                                        @if(session('user.id') != $value['id'])
                                         <a href="{{url('admin/'.$value['id'].'/edit')}}" class="btn btn-warning btn-sm"> <i class="bx bxs-edit"></i></a>
                                         <form action="{{url('admin/'.$value['id'])}}" method="POST" class="d-inline">
                                             @csrf
                                             @method('delete')
                                             <button onclick="return confirm('apakah anda yakin?')" class="btn btn-danger btn-sm"><i class="bx bxs-trash"></i></button>
                                         </form>
+                                        @endif
                                     </td>
                                 </tr>
                             <?php endforeach ?>

@@ -128,6 +128,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if($newBooking)
                                     @foreach($newBooking as $key => $data)
                                     <tr>
                                         <th scope="row">{{$key+1}}</th>
@@ -140,6 +141,7 @@
                                         <td><span class="badge bg-warning">Waiting Confirm</span></td>
                                     </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

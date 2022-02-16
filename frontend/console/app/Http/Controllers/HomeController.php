@@ -18,10 +18,7 @@ class HomeController extends Controller
         $summary = Http::get($this->api . 'summary')->json();
         $newBooking = Http::get($this->api . 'new-booking')->json();
         $graceBilling = Http::get($this->api . 'grace-billing')->json();
-<<<<<<< Updated upstream
-=======
         // dd($summary);
->>>>>>> Stashed changes
         $data = [
             'summary' => $summary,
             'newBooking' => $newBooking['data'],

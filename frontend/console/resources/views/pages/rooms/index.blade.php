@@ -20,7 +20,9 @@
 
             <div class="card">
                 <div class="card-body">
+                    @if(session('user.level')=='pimpinan')
                     <a href="/room/create" class="btn  btn-primary btn-sm my-2">Add Room</a>
+                    @endif
 
                     <!-- Table with stripped rows -->
                     <table class="table" id="myTable">

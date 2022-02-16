@@ -74,7 +74,7 @@
             </a>
         </li>
         <!-- End Tables Nav -->
-
+        @if(session('user.level')=='pimpinan')
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="/template/#">
                 <i class="bi bi-bar-chart"></i><span>Report</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -92,7 +92,7 @@
                 </li>
             </ul>
         </li>
-
+        @endif
         <li class="nav-item">
             <a class="nav-link collapsed" href="/customer">
                 <i class="bi bi-person"></i>
@@ -100,6 +100,7 @@
             </a>
         </li>
         <!-- End Icons Nav -->
+        @if(session('user.level') == 'pimpinan')
 
         <li class="nav-heading">Only pimpinan</li>
 
@@ -109,6 +110,7 @@
                 <span>Admin</span>
             </a>
         </li>
+        @endif
     </ul>
 </aside>
 <!-- End Sidebar-->

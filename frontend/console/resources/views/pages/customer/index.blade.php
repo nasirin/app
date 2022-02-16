@@ -18,8 +18,8 @@
             @include('partials.alertSuccess')
             <div class="card">
                 <div class="card-body">
-
                     <a href="{{route('customer.create')}}" class="btn  btn-primary btn-sm my-2"><i class="bx bxs-file-plus"></i>Tambah customer</a>
+
 
                     <!-- Table with stripped rows -->
                     <table class="table" id="myTable">

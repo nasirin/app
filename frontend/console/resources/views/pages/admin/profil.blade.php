@@ -21,7 +21,7 @@
                     @if($admin['avatar'])
                     <img src="{{url('storage/'.$admin['avatar'])}}" alt="Profile" class="rounded-circle">
                     @else
-                    <img src="{{url('template/assets/img/default user.png')}}" alt="Profile" class="rounded-circle">
+                    <img src="{{url('admin.png')}}" alt="Profile" class="rounded-circle">
                     @endif
                     <h2>{{$admin["fullname"]}}</h2>
                     <h3>{{$admin['level']}}</h3>

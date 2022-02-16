@@ -15,12 +15,12 @@
             </a>
             <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="/template/#">
+                    <a href="/room/?status=available">
                         <i class="bi bi-circle"></i><span>Available Rooms</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/template/#">
+                    <a href="/room/?status=unavailable">
                         <i class="bi bi-circle"></i><span>Unavailable Rooms</span>
                     </a>
                 </li>

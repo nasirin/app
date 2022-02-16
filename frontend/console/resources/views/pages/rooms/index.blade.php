@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>Data Rooms</h1>
+    <h1>Data Rooms {{$status}}</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -47,11 +47,13 @@
                                 <td>
                                     <a href="{{url('room/'.$room['id'])}}" class="btn btn-info btn-sm"> <i class="ri-eye-2-line"></i></a>
                                     <a href="{{url('room/'.$room['id'].'/edit')}}" class="btn btn-warning btn-sm"> <i class="bx bxs-edit"></i></a>
+                                    @if(session('user.level') == 'pimpinan')
                                     <form action="{{url('room/'.$room['id'])}}" method="POST" class="d-inline">
                                         @csrf
                                         @method('delete')
                                         <button onclick="return confirm('apakah anda yakin?')" class="btn btn-danger btn-sm"><i class="bx bxs-trash"></i></button>
                                     </form>
+                                    @endif
                                     <a href="#" title="Add Booking" class="btn btn-info btn-sm"> <i class="ri-book-2-fill"></i></a>
                                 </td>
                             </tr>

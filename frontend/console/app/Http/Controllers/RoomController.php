@@ -16,12 +16,19 @@ class RoomController extends Controller
         $this->api = env("API_BACKEND");
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $res = Http::get($this->api . 'room')->json();
+        $status = $request->query('status');
+        if ($status) {
+            $res = Http::get($this->api . 'room?status=' . $status)->json();
+        } else {
+            $res = Http::get($this->api . 'room')->json();
+        }
+        // dd($res);
 
         $data = [
-            'rooms' => $res['data']
+            'rooms' => $res['data'],
+            'status' => $status
         ];
 
         return view('pages.rooms.index', $data);

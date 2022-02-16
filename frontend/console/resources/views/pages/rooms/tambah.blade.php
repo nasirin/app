@@ -24,7 +24,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">No Room</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">No Room *</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="no_room" required value="{{old('no_room')}}">
                                 @if($errors->first('no_room'))
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputEmail" class="col-sm-2 col-form-label">Location</label>
+                            <label for="inputEmail" class="col-sm-2 col-form-label">Location *</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="location" required value="{{old('location')}}">
                                 @if($errors->first('location'))
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputEmail" class="col-sm-2 col-form-label">Map link</label>
+                            <label for="inputEmail" class="col-sm-2 col-form-label">Map link *</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="map" required value="{{old('map')}}">
                                 @if($errors->first('map'))
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Size</label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Size *</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="room_size" placeholder="example : 4 x 4" required value="{{old('room_size')}}">
                                 @if($errors->first('room_size'))
@@ -79,7 +79,7 @@
                             <label for="inputPassword" class="col-sm-2 col-form-label">Price</label>
                             <div class="col-sm-10">
                                 <div class="row mb-3">
-                                    <label for="inputPassword" class="col-sm-2 col-form-label">Monthly</label>
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Monthly *</label>
                                     <div class="col-sm-10">
                                         <input type="number" min="0" class="form-control" name="price_monthly" required value="{{old('price_monthly')}}" >
                                         @if($errors->first('price_monthly'))
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Thumbnail</label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Thumbnail *</label>
                             <div class="col-sm-10">
                                 <input type="file" accept="image/jpg,image/png,image/jpeg" class="form-control" name="thumbnail" required>
                                 @if($errors->first('thumbnail'))
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Photos</label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Photos *</label>
                             <div class="col-sm-10">
                                 <input type="file" accept="image/jpg,image/png,image/jpeg" class="form-control" name="gallery[]" multiple>
                                 @if($errors->first('gallery'))
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         <fieldset class="row mb-3">
-                            <legend class="col-form-label col-sm-2 pt-0">type</legend>
+                            <legend class="col-form-label col-sm-2 pt-0">type *</legend>
                             <div class="col-sm-10">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="type" id="gridRadios1" value="male" checked>
@@ -143,7 +143,7 @@
                             </div>
                         </fieldset>
                         <fieldset class="row mb-3">
-                            <legend class="col-form-label col-sm-2 pt-0">Status</legend>
+                            <legend class="col-form-label col-sm-2 pt-0">Status *</legend>
                             <div class="col-sm-10">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="status" id="gridRadios1" value="available" checked>
@@ -163,7 +163,7 @@
                     </div>
                     <div class="card-body">
 
-                        <h5 class="card-title">Fasilities</h5>
+                        <h5 class="card-title">Fasilities *</h5>
                         <div class="row mb-3">
                             @if($errors->first('fasilities_id'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">

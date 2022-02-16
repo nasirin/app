@@ -20,7 +20,7 @@ class BookingController extends Controller
     public function index()
     {
         $booking = Http::get($this->api . 'booking')->json();
-        dd($booking);
+        // dd($booking);
         $data['booking'] = $booking['data'];
         return view('pages.booking.index', $data);
     }

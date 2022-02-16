@@ -13,8 +13,12 @@ class RoomController extends Controller
     public function index(Request $request)
     {
         $status = $request->query('status');
+        $lokasi = $request->query('location');
+
         if ($status) {
             $room = Rooms::with('RoomFasilities.fasilities')->where('status', $status)->get();
+        } elseif ($lokasi) {
+            $room = Rooms::with('RoomFasilities.fasilities')->where('status', 'available')->where('location', $lokasi)->get();
         } else {
             $room = Rooms::with('RoomFasilities.fasilities')->get();
         }

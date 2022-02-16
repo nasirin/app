@@ -4,17 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Torann\GeoIP\Facades\GeoIP;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $apibe;
+    protected $apiconsole;
+    public function __construct()
+    {
+        $this->apibe = env('API_BACKEND');
+        $this->apiconsole = env('API_CONSOLE');
+    }
+
     public function index()
     {
         $location = GeoIP::getLocation($_SERVER['REMOTE_ADDR']);
+        $room = Http::get($this->apibe . 'api/room');
+        if (!$room) {
+            $roomDefault = Http::get($this->apibe . '/api/room?status=available')->json();
+        }
+
         $data = [
             'location' => $location->city
         ];

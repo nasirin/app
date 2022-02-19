@@ -96,4 +96,9 @@ class BookingController extends Controller
     {
         //
     }
+
+    public function NewBooking()
+    {
+        
+    }
 }

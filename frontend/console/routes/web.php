@@ -40,6 +40,7 @@ Route::group(['middleware' => 'loged'], function () {
 
     // BOOKING
     Route::resource('/booking', BookingController::class);
+    Route::get('/new-booking', [BookingController::class, 'NewBooking']);
 
     // necessities
     Route::resource('/necessities', NecessitiController::class);

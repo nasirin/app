@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fasilities;
 use App\Models\RoomFasility;
 use App\Models\Rooms;
 use Illuminate\Http\Request;
@@ -66,6 +65,7 @@ class RoomController extends Controller
         ];
 
         $room = $request->all();
+        // dd($room);
 
         $validate = Validator::make($room, $rule);
 
@@ -76,23 +76,30 @@ class RoomController extends Controller
             ]);
         }
 
-        $result = Rooms::create($room);
 
-        foreach ($request->fasilities_id as $key => $value) {
-            $fasility = [
-                'rooms_id' => $result->id,
-                'fasilities_id' => $value
-            ];
-
-            RoomFasility::create($fasility);
+        if ($request->hasFile('thumnail') && $request->hasFile('gallery')) {
+            # code...
         }
 
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Room data successfully created',
-            // 'data' => $result
-        ]);
+
+        // $result = Rooms::create($room);
+
+        // foreach ($request->fasilities_id as $key => $value) {
+        //     $fasility = [
+        //         'rooms_id' => $result->id,
+        //         'fasilities_id' => $value
+        //     ];
+
+        //     RoomFasility::create($fasility);
+        // }
+
+
+        // return response()->json([
+        //     'status' => 'success',
+        //     'message' => 'Room data successfully created',
+        //     // 'data' => $result
+        // ]);
     }
 
     public function change(Request $request, $id)

@@ -79,18 +79,22 @@ class RoomController extends Controller
             return redirect()->back()->withErrors($validate->errors())->withInput();
         }
 
-        if ($request->hasfile('gallery')) {
-            foreach ($request->file('gallery') as $key => $file) {
-                $path = $file->store('gallery');
-                $insert[$key]['path'] = $path;
-            }
-            $data['gallery'] = $insert;
-        }
-        if ($request->hasFile('thumbnail')) {
-            $thumbnail = $request->file('thumbnail');
-            $store = $thumbnail->store('/gallery/thumbnail');
-            $img = $store;
-            $data['thumbnail'] = $img;
+        // if ($request->hasfile('gallery')) {
+        //     foreach ($request->file('gallery') as $key => $file) {
+        //         $path = $file->store('gallery');
+        //         $insert[$key]['path'] = $path;
+        //     }
+        //     $data['gallery'] = $insert;
+        // }
+        // if ($request->hasFile('thumbnail')) {
+        //     $thumbnail = $request->file('thumbnail');
+        //     $store = $thumbnail->store('/gallery/thumbnail');
+        //     $img = $store;
+        //     $data['thumbnail'] = $img;
+        // }
+
+        if ($request->hasFile('galery')) {
+            
         }
 
         $room = Http::post($this->api . 'room', $data);

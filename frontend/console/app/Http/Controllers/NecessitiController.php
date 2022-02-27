@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Validator;
 class NecessitiController extends Controller
 {
     protected $api;
+    protected $url;
     public function __construct()
     {
         $this->api = env('API_BACKEND');
+        $this->url = url('/storage') . '/';
     }
     /**
      * Display a listing of the resource.
@@ -63,6 +65,7 @@ class NecessitiController extends Controller
         if ($request->hasFile('file')) {
             $note = $request->file('file')->store('necessity');
             $data['file'] = $note;
+            $data['url'] = $this->url;
         }
 
         $necessity = Http::post($this->api . 'necessities', $data)->json();

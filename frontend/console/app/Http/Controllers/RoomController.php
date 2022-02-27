@@ -177,6 +177,7 @@ class RoomController extends Controller
                 $insert[$key]['path'] = $path;
             }
             $data['gallery'] = $insert;
+            $data['url'] = $this->url;
         }
 
         if ($request->hasFile('thumbnail')) {

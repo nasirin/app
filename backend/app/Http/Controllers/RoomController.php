@@ -9,34 +9,13 @@ use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        // dd($request->all());
         $room = Rooms::with('RoomFasilities.fasilities');
-
-        if ($request->has('location')) {
-            $room->where('location', $request->location);
-        }
-
-        if ($request->has('status')) {
-            $room->where('status', $request['status']);
-        }
-
-        if ($request->has('gender')) {
-            $room->where('type', $request['gender']);
-        }
-
-        if ($request->has('minPrice')) {
-            $room->where('price_monthly', '<=', $request['minPrice']);
-        }
-
-        if ($request->has('fasility')) {
-            $room->whereRelation("RoomFasilities", "fasilities_id", '=', $request['fasility']);
-        }
 
         return response()->json([
             'status' => 'success',
-            'data' => $room->get()
+            'data' => $room->paginate(5)
         ]);
     }
 
@@ -131,6 +110,36 @@ class RoomController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Room data successfully updated'
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $room = Rooms::with('RoomFasilities.fasilities');
+
+        if ($request->has('city')) {
+            $room->where('location', $request['city']);
+        }
+
+        if ($request->has('status')) {
+            $room->where('status', $request['status']);
+        }
+
+        if ($request->has('gender')) {
+            $room->where('type', $request['gender']);
+        }
+
+        if ($request->has('minPrice')) {
+            $room->where('price_monthly', '<=', $request['minPrice']);
+        }
+
+        if ($request->has('fasility')) {
+            $room->whereRelation("RoomFasilities", "fasilities_id", '=', $request['fasility']);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $room->paginate(5)
         ]);
     }
 }

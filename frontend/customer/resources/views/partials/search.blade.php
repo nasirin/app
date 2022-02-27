@@ -20,7 +20,7 @@
                 <div class="col-md-6 mb-2">
                     <div class="form-group mt-3">
                         <label class="pb-2" for="garages">For gender</label>
-                        <select class="form-control form-select form-control-a" id="garages">
+                        <select class="form-control form-select form-control-a" name="gender" id="garages">
                             <option>Any</option>
                             <option>Male</option>
                             <option>Female</option>
@@ -43,21 +43,21 @@
                     <div class="form-group mt-3">
                         <label class="pb-2" for="bathrooms">Fasilites</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="1" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Indoor bathroom
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="2" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Toilet seat
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Hot water
@@ -70,133 +70,133 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Wardrobe
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 TV
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 AC
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Table
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 WiFi
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Chair
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Fan
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Window
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Including electricity costs
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Parking area
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Parking area
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Kitchen
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Washing machine
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Security
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Laundry
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Mushola
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Refrigerator
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Dispenser
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" name="fasilities[]"
+                            <input class="form-check-input" type="checkbox" value="" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Family room

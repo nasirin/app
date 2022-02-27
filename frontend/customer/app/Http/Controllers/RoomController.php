@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class RoomController extends Controller
 {
+    protected $apibe;
+    protected $apiconsole;
+    public function __construct()
+    {
+        $this->apibe = env('API_BACKEND');
+        $this->apiconsole = env('API_CONSOLE');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -85,6 +93,8 @@ class RoomController extends Controller
     public function search(Request $request)
     {
         $search = $request->all();
-        dd($search);
+        $room = Http::get($this->apibe . 'search', $search);
+
+        return $room->json();
     }
 }

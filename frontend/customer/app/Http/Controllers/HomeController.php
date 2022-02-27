@@ -20,7 +20,7 @@ class HomeController extends Controller
     {
         $location = GeoIP::getLocation($_SERVER['REMOTE_ADDR']);
         $lokasi = $location->city;
-        $room = Http::get($this->apibe . 'room?location=' . $location->city)->json();
+        $room = Http::get($this->apibe . 'room?location=' . $location->city);
         if ($room['data'] == null) {
             $room = Http::get($this->apibe . 'room?status=available')->json();
             $lokasi = '';
@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         $data = [
             'location' => $lokasi,
-            'carousel' => $room['data']
+            'carousel' => $room['data']['data']
         ];
 
         return view('pages.home', $data);

@@ -81,4 +81,10 @@ class RoomController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->all();
+        dd($search);
+    }
 }

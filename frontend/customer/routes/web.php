@@ -31,3 +31,6 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 // PROFILE
 Route::get('/profile/{id}', [UserController::class, 'index']);
+
+// SEARCH
+Route::post('search', [RoomController::class, 'search']);

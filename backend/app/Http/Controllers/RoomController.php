@@ -11,20 +11,32 @@ class RoomController extends Controller
 {
     public function index(Request $request)
     {
-        $status = $request->query('status');
-        $lokasi = $request->query('location');
+        // dd($request->all());
+        $room = Rooms::with('RoomFasilities.fasilities');
 
-        if ($status) {
-            $room = Rooms::with('RoomFasilities.fasilities')->where('status', $status)->get();
-        } elseif ($lokasi) {
-            $room = Rooms::with('RoomFasilities.fasilities')->where('status', 'available')->where('location', $lokasi)->get();
-        } else {
-            $room = Rooms::with('RoomFasilities.fasilities')->get();
+        if ($request->has('location')) {
+            $room->where('location', $request->location);
+        }
+
+        if ($request->has('status')) {
+            $room->where('status', $request['status']);
+        }
+
+        if ($request->has('gender')) {
+            $room->where('type', $request['gender']);
+        }
+
+        if ($request->has('minPrice')) {
+            $room->where('price_monthly', '<=', $request['minPrice']);
+        }
+
+        if ($request->has('fasility')) {
+            $room->whereRelation("RoomFasilities", "fasilities_id", '=', $request['fasility']);
         }
 
         return response()->json([
             'status' => 'success',
-            'data' => $room
+            'data' => $room->get()
         ]);
     }
 
@@ -65,7 +77,7 @@ class RoomController extends Controller
         ];
 
         $room = $request->all();
-        
+
         $validate = Validator::make($room, $rule);
 
         if ($validate->fails()) {

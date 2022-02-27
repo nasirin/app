@@ -19,16 +19,20 @@
              <!-- End Search Icon-->
 
              <li class="nav-item dropdown pe-3">
-                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/template/#" data-bs-toggle="dropdown">
-                     <img src="{{session('user.avatar')}}" alt="Profile" class="rounded-circle" />
-                     <span class="d-none d-md-block dropdown-toggle ps-2">{{session('user.name')}}</span> </a><!-- End Profile Iamge Icon -->
+                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/template/#"
+                     data-bs-toggle="dropdown">
+                     <img src="<?= session('user.avatar') == null ? '/admin.png' : session('user.avatar') ?>"
+                         alt="Profile" class="rounded-circle" />
+                     <span class="d-none d-md-block dropdown-toggle ps-2">{{ session('user.name') }}</span> </a>
+                 <!-- End Profile Iamge Icon -->
 
-                 <ul class="
+                 <ul
+                     class="
                 dropdown-menu dropdown-menu-end dropdown-menu-arrow
                 profile
               ">
                      <li class="dropdown-header">
-                         <h6>{{session('user.level')}}</h6>
+                         <h6>{{ session('user.level') }}</h6>
                          <!-- <span>Web Designer</span> -->
                      </li>
                      <li>
@@ -46,7 +50,7 @@
                      </li>
 
                      <li>
-                         <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
+                         <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">
                              <i class="bi bi-box-arrow-right"></i>
                              <span>Sign Out</span>
                          </a>

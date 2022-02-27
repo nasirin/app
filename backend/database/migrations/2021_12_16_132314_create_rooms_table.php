@@ -25,6 +25,7 @@ class CreateRoomsTable extends Migration
             $table->bigInteger('price_monthly');
             $table->bigInteger('price_years')->nullable();
             $table->string('thumbnail');
+            $table->string('url', 50);
             $table->timestamps();
         });
     }

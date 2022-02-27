@@ -19,7 +19,6 @@ class AuthController extends Controller
 
     public function login()
     {
-        // dd(!session()->get('id'));
         return view('pages.login');
     }
 
@@ -50,7 +49,7 @@ class AuthController extends Controller
                 "user" => [
                     'id' => $login['data']['id'],
                     'name' => $login['data']['fullname'],
-                    'avatar' => $this->url . $login['data']['avatar'],
+                    'avatar' => $login['data']['url'] . $login['data']['avatar'],
                     'level' => $login['data']['level']
                 ]
             ]);

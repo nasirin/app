@@ -20,6 +20,7 @@ class AdminController extends Controller
     public function index()
     {
         $res = Http::get($this->api . 'employee')->json();
+        // dd(session('user'));
         $data = [
             'admin' => $res['data']
         ];
@@ -44,7 +45,13 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $rule = ['avatar' => 'image|file|mimes:jpg,jpeg,png|max:1024'];
+        $rule = [
+            'avatar' => 'image|file|mimes:jpg,jpeg,png|max:1024',
+            'fullname' => 'required|string',
+            'phone' => 'required|integer',
+            'email' => 'required|email',
+            'password' => 'required|string|min:6'
+        ];
         $data = $request->all();
         $validate = Validator::make($data, $rule);
 
@@ -53,7 +60,9 @@ class AdminController extends Controller
         }
 
         if ($request->hasFile('avatar')) {
-            $data['avatar'] = $request->file('avatar')->store('employees');
+            $img = $request->file('avatar')->store('employees');
+            $data['avatar'] = $img;
+            $data['url'] = url('/storage') . '/';
         }
 
         $admin = Http::post($this->api . 'employee', $data);
@@ -75,6 +84,8 @@ class AdminController extends Controller
     {
         $res = Http::get($this->api . 'employee/' . $id)->json();
         $data['admin'] = $res['data'];
+
+        // dd($data);
         return view('pages.admin.profil', $data);
     }
 
@@ -119,6 +130,7 @@ class AdminController extends Controller
                 Storage::delete($img['avatar']);
             }
             $data['avatar'] = $request->file('avatar')->store('employees');
+            $data['url'] = url('/storage') . '/';
         }
 
         $res = Http::asForm()->patch($this->api . 'employee/' . $id, $data);
@@ -136,7 +148,7 @@ class AdminController extends Controller
     {
         $avatar  = Http::get($this->api . 'employee/' . $id)->json();
         $img = $avatar['data'];
-        if ($img) {
+        if ($img['avatar']) {
             Storage::delete($img['avatar']);
         }
         $res = Http::delete($this->api . 'employee/' . $id);

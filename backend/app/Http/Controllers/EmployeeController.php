@@ -40,7 +40,6 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            // 'avatar' => 'image|file|mimes:jpg,jpeg,png|max:1024',
             'fullname' => 'required|string',
             'phone' => 'required|integer',
             'email' => 'required|unique:employees|email',

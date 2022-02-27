@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                     @if($admin['avatar'])
-                    <img src="{{url('storage/'.$admin['avatar'])}}" alt="Profile" class="rounded-circle">
+                    <img src="{{$admin['url'].$admin['avatar']}}" alt="Profile" class="rounded-circle">
                     @else
                     <img src="{{url('admin.png')}}" alt="Profile" class="rounded-circle">
                     @endif

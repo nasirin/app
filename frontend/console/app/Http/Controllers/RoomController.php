@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Validator;
 class RoomController extends Controller
 {
     protected $api;
+    protected $url;
 
     public function __construct()
     {
         $this->api = env("API_BACKEND");
+        $this->url = url('/storage') . '/';
     }
 
     public function index(Request $request)
@@ -79,23 +81,22 @@ class RoomController extends Controller
             return redirect()->back()->withErrors($validate->errors())->withInput();
         }
 
-        // if ($request->hasfile('gallery')) {
-        //     foreach ($request->file('gallery') as $key => $file) {
-        //         $path = $file->store('gallery');
-        //         $insert[$key]['path'] = $path;
-        //     }
-        //     $data['gallery'] = $insert;
-        // }
-        // if ($request->hasFile('thumbnail')) {
-        //     $thumbnail = $request->file('thumbnail');
-        //     $store = $thumbnail->store('/gallery/thumbnail');
-        //     $img = $store;
-        //     $data['thumbnail'] = $img;
-        // }
-
-        if ($request->hasFile('galery')) {
-            
+        if ($request->hasfile('gallery')) {
+            foreach ($request->file('gallery') as $key => $file) {
+                $path = $file->store('gallery');
+                $insert[$key]['path'] = $path;
+            }
+            $data['gallery'] = $insert;
         }
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $store = $thumbnail->store('/gallery/thumbnail');
+            $img = $store;
+            $data['thumbnail'] = $img;
+            $data['url'] = $this->url;
+        }
+
+        // dd($data);
 
         $room = Http::post($this->api . 'room', $data);
 

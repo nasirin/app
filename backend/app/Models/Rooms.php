@@ -29,4 +29,9 @@ class Rooms extends Model
     {
         return $this->hasMany(RoomFasility::class);
     }
+
+    public function fasilites()
+    {
+        return $this->hasMany(Fasilities::class);
+    }
 }

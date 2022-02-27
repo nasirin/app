@@ -16,4 +16,9 @@ class RoomFasility extends Model
     {
         return $this->belongsTo(Fasilities::class);
     }
+
+    public function room()
+    {
+        return $this->belongsTo(Rooms::class);
+    }
 }

@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $room = Rooms::with('RoomFasilities.fasilities');
+
+        if ($request->has('status')) {
+            $room->where('status', $request['status']);
+        }
 
         return response()->json([
             'status' => 'success',

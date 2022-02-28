@@ -21,7 +21,10 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return view('pages.list');
+        $query['status'] = 'available';
+        $room = Http::get($this->apibe . 'room', $query);
+        $data = ['room' => $room['data']];
+        return view('pages.list', $data);
     }
 
     /**

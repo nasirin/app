@@ -19,15 +19,12 @@ class HomeController extends Controller
     public function index()
     {
         $location = GeoIP::getLocation($_SERVER['REMOTE_ADDR']);
-        $lokasi = $location->city;
-        $room = Http::get($this->apibe . 'room?location=' . $location->city);
-        if ($room['data'] == null) {
-            $room = Http::get($this->apibe . 'room?status=available')->json();
+        $lokasi['city'] = $location->city;
+        $room = Http::get($this->apibe . 'search', $lokasi);
+        if ($room['data']['data'] == null) {
+            $room = Http::get($this->apibe . 'room')->json();
             $lokasi = '';
         }
-
-        // dd($room);
-
         $data = [
             'location' => $lokasi,
             'carousel' => $room['data']['data']

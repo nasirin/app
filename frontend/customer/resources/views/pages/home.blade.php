@@ -35,7 +35,7 @@
                                     <div class="card-overlay-a-content">
                                         <div class="card-header-a">
                                             <h2 class="card-title-a">
-                                                <a href="#">{{ $item['location'] }}
+                                                <a href="/detail/{{ $item['id'] }}">{{ $item['location'] }}
                                                     <br /> Kos {{ $item['type'] }}</a>
                                             </h2>
                                         </div>
@@ -44,7 +44,7 @@
                                                 <span class="price-a">rent/month |
                                                     {{ 'Rp ' . number_format($item['price_monthly'], 0, ',', '.') }}</span>
                                             </div>
-                                            <a href="/template/#" class="link-a">Click for detail
+                                            <a href="/detail/{{ $item['id'] }}" class="link-a">Click for detail
                                                 <span class="bi bi-chevron-right"></span>
                                             </a>
                                         </div>

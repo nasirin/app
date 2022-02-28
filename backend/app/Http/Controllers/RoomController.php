@@ -21,11 +21,12 @@ class RoomController extends Controller
 
     public function show($id)
     {
-        $room = Rooms::findOrFail($id)->with('RoomFasilities')->first();
+        $room = Rooms::with('RoomFasilities.fasilities')->find($id);
 
         return response()->json([
             'status' => 'success',
-            'data' => $room
+            'data' => $room,
+            'id' => $id
         ]);
     }
 
@@ -130,7 +131,7 @@ class RoomController extends Controller
         }
 
         if ($request->has('minPrice')) {
-            $room->where('price_monthly', '<=', $request['minPrice']);
+            $room->where('price_monthly', '>=', $request['minPrice']);
         }
 
         if ($request->has('fasility')) {

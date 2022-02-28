@@ -1,0 +1,7 @@
+set dimensi untuk gambar (W x H)
+
+gallery:
+1920 x 960
+
+thumbanil:
+600 x 800

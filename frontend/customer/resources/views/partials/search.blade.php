@@ -21,9 +21,9 @@
                     <div class="form-group mt-3">
                         <label class="pb-2" for="garages">For gender</label>
                         <select class="form-control form-select form-control-a" name="gender" id="garages">
-                            <option>Any</option>
-                            <option>Male</option>
-                            <option>Female</option>
+                            <option value="">-- select gender --</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                         </select>
                     </div>
                 </div>
@@ -31,11 +31,11 @@
                     <div class="form-group mt-3">
                         <label class="pb-2" for="bedrooms">Min Price</label>
                         <select class="form-control form-select form-control-a" id="bedrooms" name="minPrice">
-                            <option value="">Any</option>
-                            <option>Rp 100.000</option>
-                            <option>Rp 500.000</option>
-                            <option>Rp 700.000</option>
-                            <option>Rp 1.000.000</option>
+                            <option value="">-- select price -- </option>
+                            <option value="100000">Rp 100.000</option>
+                            <option value="500000">Rp 500.000</option>
+                            <option value="700000">Rp 700.000</option>
+                            <option value="1000000">Rp 1.000.000</option>
                         </select>
                     </div>
                 </div>
@@ -205,7 +205,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-12">
                     <button type="submit" class="btn btn-b">Search Property</button>
                 </div>
             </div>

@@ -53,7 +53,10 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        return view('pages.detail-kos');
+        $room = Http::get($this->apibe . 'room/' . $id)->json();
+
+        $data = ['room' => $room['data']];
+        return view('pages.detail-kos', $data);
     }
 
     /**
@@ -94,7 +97,6 @@ class RoomController extends Controller
     {
         $search = $request->all();
         $room = Http::get($this->apibe . 'search', $search);
-
         return $room->json();
     }
 }

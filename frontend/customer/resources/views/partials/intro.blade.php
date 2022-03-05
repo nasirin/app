@@ -20,7 +20,7 @@
                                          </h1>
                                          <p class="intro-subtitle intro-price">
                                              <a href="#"><span class="price-a">rent |
-                                                     {{ 'Rp ' . number_format($value['price_monthly'], 0, ',', '.') }}</span></a>
+                                                     {{ 'Rp ' . number_format($value['price'], 0, ',', '.') }}</span></a>
                                          </p>
                                      </div>
                                  </div>

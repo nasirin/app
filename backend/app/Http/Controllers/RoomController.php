@@ -54,7 +54,7 @@ class RoomController extends Controller
             "status" => 'required|in:available, unavailable',
             "room_size" => 'required',
             "map" => 'required',
-            "price_monthly" => 'required|integer',
+            "price" => 'required',
             'thumbnail' => 'required',
             'gallery.*' => 'required',
             'fasilities_id' => 'required'
@@ -82,11 +82,9 @@ class RoomController extends Controller
             RoomFasility::create($fasility);
         }
 
-
         return response()->json([
             'status' => 'success',
             'message' => 'Room data successfully created',
-            // 'data' => $result
         ]);
     }
 
@@ -135,7 +133,7 @@ class RoomController extends Controller
         }
 
         if ($request->has('minPrice')) {
-            $room->where('price_monthly', '>=', $request['minPrice']);
+            $room->where('price', '>=', $request['minPrice']);
         }
 
         if ($request->has('fasility')) {

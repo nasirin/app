@@ -11,11 +11,13 @@ class RoomController extends Controller
 {
     protected $api;
     protected $url;
+    protected $customer;
 
     public function __construct()
     {
         $this->api = env("API_BACKEND");
         $this->url = url('/storage') . '/';
+        $this->customer = env('URL_CUSTOMER');
     }
 
     public function index(Request $request)
@@ -26,11 +28,11 @@ class RoomController extends Controller
         } else {
             $res = Http::get($this->api . 'room')->json();
         }
-        // dd($res);
 
         $data = [
             'rooms' => $res['data'],
-            'status' => $status
+            'status' => $status,
+            'customer' => $this->customer
         ];
 
         return view('pages.rooms.index', $data);
@@ -67,9 +69,9 @@ class RoomController extends Controller
             "status" => 'required|in:available, unavailable',
             "room_size" => 'required',
             "map" => 'required',
-            "price_monthly" => 'required|integer',
-            'thumbnail' => 'required|image|file|mimes:jpg,jpeg,png|max:1024',
-            'gallery.*' => 'required|mimes:jpg,jpeg,png|max:1024',
+            "price" => 'required|integer',
+            'thumbnail' => 'required|image|mimes:jpg,jpeg,png|max:1024|dimensions:min_width=600,min_height=900',
+            'gallery.*' => 'required|mimes:jpg,jpeg,png|max:1024|dimensions:min_width=500,min_height=300',
             'fasilities_id' => 'required'
         ];
 
@@ -96,9 +98,8 @@ class RoomController extends Controller
             $data['url'] = $this->url;
         }
 
-        // dd($data);
-
         $room = Http::post($this->api . 'room', $data);
+        // dd($room->json());
 
         if ($room['status'] == 'error') {
             return redirect()->back()->withErrors($room['message'])->withInput();
@@ -114,7 +115,6 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        dd('tampil halaman frontend user detail kamar');
     }
 
     /**
@@ -151,9 +151,9 @@ class RoomController extends Controller
             "status" => 'required|in:available, unavailable',
             "room_size" => 'required',
             "map" => 'required',
-            "price_monthly" => 'required|integer',
+            "price" => 'required|integer',
             'thumbnail' => 'image|file|mimes:jpg,jpeg,png|max:1024',
-            'gallery.*' => 'mimes:jpg,jpeg,png|max:1024',
+            'gallery' => 'mimes:jpg,jpeg,png|max:1024',
         ];
 
         $data = $request->all();

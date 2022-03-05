@@ -48,7 +48,7 @@
                                     <div class="card-body-a">
                                         <div class="price-box d-flex">
                                             <span class="price-a">rent/Month | Rp
-                                                {{ number_format($item['price_monthly'], 0, ',', '.') }}</span>
+                                                {{ number_format($item['price'], 0, ',', '.') }}</span>
                                         </div>
                                         <a href="/detail/{{ $item['id'] }}" class="link-a">Click here to view
                                             <span class="bi bi-chevron-right"></span>

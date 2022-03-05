@@ -59,7 +59,7 @@
                                         <span class="bi bi-cash" style="font-size: 40px; font-weight: bold">Rp</span>
                                     </div>
                                     <div class="card-title-c align-self-center">
-                                        <h5 class="title-c"><?= $room['price_monthly'] ?></h5>
+                                        <h5 class="title-c"><?= $room['price'] ?></h5>
                                     </div>
                                 </div>
                             </div>

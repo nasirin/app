@@ -16,14 +16,13 @@ class Rooms extends Model
         "room_size",
         "map",
         "gallery",
-        "price_monthly",
-        "price_years",
+        "price",
         "thumbnail",
         "url",
     ];
 
     protected $hidden = ['created_at', 'updated_at'];
-    protected $casts = ['gallery' => 'array', 'price' => 'array'];
+    protected $casts = ['gallery' => 'array'];
 
     public function RoomFasilities()
     {

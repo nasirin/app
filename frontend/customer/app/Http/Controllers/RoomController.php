@@ -22,8 +22,13 @@ class RoomController extends Controller
     public function index()
     {
         $query['status'] = 'available';
-        $room = Http::get($this->apibe . 'room', $query);
-        $data = ['room' => $room['data']];
+        $room = Http::get($this->apibe . 'best', $query);
+        $fasility = Http::get($this->apibe . 'fasility');
+        $data = [
+            'room' => $room['data'],
+            'fasilities' => $fasility['data']
+        ];
+
         return view('pages.list', $data);
     }
 
@@ -57,8 +62,8 @@ class RoomController extends Controller
     public function show($id)
     {
         $room = Http::get($this->apibe . 'room/' . $id)->json();
-
-        $data = ['room' => $room['data']];
+        $fasility = Http::get($this->apibe . 'fasility');
+        $data = ['room' => $room['data'], 'fasilities' => $fasility['data']];
         return view('pages.detail-kos', $data);
     }
 
@@ -99,7 +104,9 @@ class RoomController extends Controller
     public function search(Request $request)
     {
         $search = $request->all();
-        $room = Http::get($this->apibe . 'search', $search);
-        return $room->json();
+        $room = Http::get($this->apibe . 'search', $search)->json();
+        $fasility = Http::get($this->apibe . 'fasility');
+        $data = ['room' => $room['data'], 'fasilities' => $fasility['data']];
+        return view('pages.list', $data);
     }
 }

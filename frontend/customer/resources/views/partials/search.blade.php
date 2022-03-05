@@ -42,14 +42,16 @@
                 <div class="col-md-12 mb-2">
                     <div class="form-group mt-3">
                         <label class="pb-2" for="bathrooms">Fasilites</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="1" name="fasility[]"
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Indoor bathroom
-                            </label>
-                        </div>
-                        <div class="form-check">
+                        @foreach ($fasilities as $item)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{$item['id']}}" name="fasility[]"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    {{$item['fasility']}}
+                                </label>
+                            </div>
+                        @endforeach
+                        {{-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="2" name="fasility[]"
                                 id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
@@ -201,7 +203,7 @@
                             <label class="form-check-label" for="flexCheckDefault">
                                 Family room
                             </label>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

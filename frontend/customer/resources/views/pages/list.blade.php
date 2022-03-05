@@ -31,7 +31,7 @@
     <section class="property-grid grid">
         <div class="container">
             <div class="row">
-                @foreach ($room['data'] as $item)
+                @foreach ($room as $item)
                     <div class="col-md-4">
                         <div class="card-box-a card-shadow">
                             <div class="img-box-a">
@@ -62,11 +62,11 @@
                                             </li>
                                             <li>
                                                 <h4 class="card-info-title">Status</h4>
-                                                <span>{{$item['status']}}</span>
+                                                <span>{{ $item['status'] }}</span>
                                             </li>
                                             <li>
                                                 <h4 class="card-info-title">No Room</h4>
-                                                <span>{{$item['no_room']}}</span>
+                                                <span>{{ $item['no_room'] }}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -80,29 +80,30 @@
                 <div class="col-sm-12">
                     <nav class="pagination-a">
                         <ul class="pagination justify-content-end">
-                            <li class="page-item disabled">
+                            {{-- previous --}}
+                            {{-- <li class="page-item disabled">
                                 <a class="page-link" href="#" tabindex="-1">
                                     <span class="bi bi-chevron-left"></span>
                                 </a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item next">
+                            </li> --}}
+                            {{-- @foreach ($room['links'] as $item)
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $item['url'] }}">{{ $item['label'] }}</a>
+                                </li>
+                            @endforeach --}}
+
+                            {{-- next --}}
+                            {{-- <li class="page-item next">
                                 <a class="page-link" href="#">
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
-                            </li>
+                            </li> --}}
+
                         </ul>
                     </nav>
                 </div>
             </div>
+            {{-- {{$link->links()}} --}}
         </div>
     </section><!-- End Property Grid Single-->
 @endsection

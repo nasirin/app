@@ -19,7 +19,7 @@ class RoomController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $room->paginate(5)
+            'data' => $room->get()
         ]);
     }
 
@@ -142,7 +142,29 @@ class RoomController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $room->paginate(5)
+            'data' => $room->get()
+        ]);
+    }
+
+    public function best(Request $request)
+    {
+        $room = Rooms::with('RoomFasilities.fasilities');
+
+        if ($request->has('status')) {
+            $room->where('status', $request['status']);
+        }
+        return response()->json([
+            'status' => 'success',
+            'data' => $room->get()
+        ]);
+    }
+
+    public function onShow()
+    {
+        $room = Rooms::with('RoomFasilities.fasilities')->where('status', 'available');
+        return response()->json([
+            'status' => 'success',
+            'data' => $room->get()->take(5)
         ]);
     }
 }

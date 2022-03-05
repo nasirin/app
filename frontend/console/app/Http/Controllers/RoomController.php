@@ -28,6 +28,7 @@ class RoomController extends Controller
         } else {
             $res = Http::get($this->api . 'room')->json();
         }
+        // dd($res);
 
         $data = [
             'rooms' => $res['data'],
@@ -70,7 +71,7 @@ class RoomController extends Controller
             "room_size" => 'required',
             "map" => 'required',
             "price" => 'required|integer',
-            'thumbnail' => 'required|image|mimes:jpg,jpeg,png|max:1024|dimensions:min_width=600,min_height=900',
+            'thumbnail' => 'required|image|mimes:jpg,jpeg,png|max:1024|dimensions:min_width=600,min_height=800',
             'gallery.*' => 'required|mimes:jpg,jpeg,png|max:1024|dimensions:min_width=500,min_height=300',
             'fasilities_id' => 'required'
         ];
@@ -101,9 +102,9 @@ class RoomController extends Controller
         $room = Http::post($this->api . 'room', $data);
         // dd($room->json());
 
-        if ($room['status'] == 'error') {
-            return redirect()->back()->withErrors($room['message'])->withInput();
-        }
+            if ($room['status'] == 'error') {
+                return redirect()->back()->withErrors($room['message'])->withInput();
+            }
         return redirect('/room')->with('message', $room['message']);
     }
 

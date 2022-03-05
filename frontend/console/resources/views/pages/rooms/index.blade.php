@@ -25,7 +25,7 @@
                         @endif
 
                         <!-- Table with stripped rows -->
-                        <table class="table" id="myTable">
+                        <table class="table myTable" id="myTable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -37,7 +37,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($rooms['data'] as $key => $room)
+                                @foreach ($rooms as $key => $room)
                                     <tr>
                                         <th scope="row">{{ $key + 1 }}</th>
                                         <td>{{ $room['no_room'] }}</td>

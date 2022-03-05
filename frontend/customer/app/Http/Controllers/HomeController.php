@@ -21,13 +21,16 @@ class HomeController extends Controller
         $location = GeoIP::getLocation($_SERVER['REMOTE_ADDR']);
         $lokasi['city'] = $location->city;
         $room = Http::get($this->apibe . 'search', $lokasi);
-        if ($room['data']['data'] == null) {
-            $room = Http::get($this->apibe . 'room')->json();
+        if ($room['data'] == null) {
+            $room = Http::get($this->apibe . 'onShow')->json();
             $lokasi = '';
         }
+        $fasility = Http::get($this->apibe . 'fasility');
+
         $data = [
             'location' => $lokasi,
-            'carousel' => $room['data']['data']
+            'carousel' => $room['data'],
+            'fasilities' => $fasility['data']
         ];
 
         return view('pages.home', $data);

@@ -23,15 +23,16 @@ Route::get('/best-rooms', [RoomController::class, 'index']);
 Route::get('/detail/{id}', [RoomController::class, 'show']);
 
 // AUTH
-Route::get('/login', [AuthController::class, 'login']);
-Route::get('/register', [AuthController::class, 'register']);
+
+Route::get('/login', [AuthController::class, 'login'])->middleware('loged');
+Route::get('/register', [AuthController::class, 'register'])->middleware('loged');
 Route::post('/login', [AuthController::class, 'loginAuth']);
 Route::post('/register', [AuthController::class, 'regAuth']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 
 // PROFILE
-Route::get('/profile/{id}', [UserController::class, 'index']);
+Route::get('/profile/{id}', [UserController::class, 'index'])->middleware('login');
 
 // SEARCH
 Route::post('/search', [RoomController::class, 'search']);

@@ -40,9 +40,6 @@ class AuthController extends Controller
         }
 
         $login = Http::post($this->api . 'admin/login', $data)->json();
-        // dd($login);
-
-        // if (!$login) {
 
         if ($login['status'] === 'success') {
             session([

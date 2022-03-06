@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BookingAddCntoller;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FasilityController;
@@ -87,3 +88,6 @@ Route::get('/summary', [SummaryController::class, 'index']);
 
 // AUTH ADMIN
 Route::post('/admin/login', [AdminAuthController::class, 'login']);
+
+// AUTH CUSTOMER
+Route::post('/customer/login', [CustomerAuthController::class, 'login']);

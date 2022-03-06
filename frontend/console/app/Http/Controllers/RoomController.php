@@ -102,9 +102,9 @@ class RoomController extends Controller
         $room = Http::post($this->api . 'room', $data);
         // dd($room->json());
 
-            if ($room['status'] == 'error') {
-                return redirect()->back()->withErrors($room['message'])->withInput();
-            }
+        if ($room['status'] == 'error') {
+            return redirect()->back()->withErrors($room['message'])->withInput();
+        }
         return redirect('/room')->with('message', $room['message']);
     }
 

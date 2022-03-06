@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        // dd(session()->all());
+        
         $summary = Http::get($this->api . 'summary')->json();
         $newBooking = Http::get($this->api . 'new-booking')->json();
         $graceBilling = Http::get($this->api . 'grace-billing')->json();

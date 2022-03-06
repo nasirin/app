@@ -43,15 +43,12 @@ class CustomerController extends Controller
             "first_name" => "required|string|min:3",
             "last_name" => "required|string|min:3",
             "nick_name" => "required|string|min:3",
-            // "avatar"=> "kangsunat",
             "address" => "required|string|min:3",
             "phone" => "required|string|min:11|max:16",
             "email" => "required|email|unique:customers",
-            // "identotity"=>"dfaaf",
             "password" => "required|string|min:6",
             "gender" => "required|in:male,female",
             "status" => "required|in:single,married",
-            // "jobs"=>"student"
         ];
 
         $data = $request->all();

@@ -39,6 +39,15 @@
                         </span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="column cannot be empty">
+                        <input class="input100" type="text" name="jobs" value="{{ old('jobs') }}">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Job
+                            @if ($errors->first('jobs'))
+                                <span style="color: red">| {{ $errors->first('jobs') }}</span>
+                            @endif
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="column cannot be empty">
                         <input class="input100" type="text" name="address" value="{{ old('address') }}">
                         <span class="focus-input100"></span>
                         <span class="label-input100">Address

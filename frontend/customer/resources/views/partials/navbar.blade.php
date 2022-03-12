@@ -31,7 +31,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " href="/profile/slug">My profile</a>
+                    @if (session('user'))
+                        <a class="nav-link " href="/profile/{{ session('user.id') }}">My profile</a>
+                    @endif
                 </li>
 
             </ul>

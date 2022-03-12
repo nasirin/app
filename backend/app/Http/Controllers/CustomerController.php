@@ -62,8 +62,6 @@ class CustomerController extends Controller
             ]);
         }
 
-        // return "ok";
-
         $password = Hash::make($request->password);
         $data['password'] = $password;
         Customers::create($data);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SearchController;
@@ -36,3 +37,7 @@ Route::get('/profile/{id}', [UserController::class, 'index'])->middleware('login
 
 // SEARCH
 Route::post('/search', [RoomController::class, 'search']);
+
+
+// BOOKING
+Route::post('/booking/{id}', [BookingController::class, 'store']);

@@ -90,24 +90,74 @@
                                             <span>{{ $room['room_size'] }}
                                             </span>
                                         </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Fasilities:</strong>
+                                            <ul class="list">
+                                                @foreach ($room['room_fasilities'] as $item)
+                                                    <li class="d-flex justify-content-end">
+                                                        <span>
+                                                            {{ $item['fasilities']['fasility'] }}
+                                                        </span>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-7 col-lg-7 section-md-t3">
                             <div class="row section-t3">
                                 <div class="col-sm-12">
                                     <div class="title-box-d">
-                                        <h3 class="title-d">Fasilities</h3>
+                                        <h3 class="title-d">Booking now</h3>
                                     </div>
                                 </div>
                             </div>
-                            <div class="amenities-list color-text-a">
-                                <ul class="list-a no-margin">
-                                    <?php foreach($room['room_fasilities'] as $item):?>
-                                    <li><?= $item['fasilities']['fasility'] ?></li>
-                                    <?php endforeach;?>
-                                </ul>
+                            <div class="property-contact">
+                                <form class="form-a" method="POST" action="/booking/2">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <input type="datetime-local"
+                                                    class="form-control form-control-lg form-control-a" id="inputName"
+                                                    placeholder="Checkin" required name="check_in">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <select name="payment_type"
+                                                    class="form-control form-control-lg form-control-a">
+                                                    <option value="">-- Pilih jenis pembayaran ---</option>
+                                                    <option value="on check in">Saat check in</option>
+                                                    <option value="transfer">Transefer bank</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <select name="rental_type"
+                                                    class="form-control form-control-lg form-control-a">
+                                                    <option value="">-- Pilih jenis sewa ---</option>
+                                                    <option value="month">Bulanan</option>
+                                                    <option value="years">Tahunan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <textarea id="textMessage" class="form-control"
+                                                    placeholder="Keterangan tambahan" name="note" cols="45"
+                                                    rows="8"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <button type="submit" class="btn btn-a">Book now</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -116,7 +166,7 @@
                     <div class="row section-t3">
                         <div class="col-sm-12">
                             <div class="title-box-d">
-                                <h3 class="title-d">Booking Now</h3>
+                                <h3 class="title-d">Note</h3>
                             </div>
                         </div>
                     </div>
@@ -145,35 +195,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-6">
-                            <div class="property-contact">
-                                <form class="form-a">
-                                    <div class="row">
-                                        <div class="col-md-12 mb-1">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control form-control-lg form-control-a"
-                                                    id="inputName" placeholder="Name *" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mb-1">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control form-control-lg form-control-a"
-                                                    id="inputEmail1" placeholder="Email *" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mb-1">
-                                            <div class="form-group">
-                                                <textarea id="textMessage" class="form-control" placeholder="Comment *"
-                                                    name="message" cols="45" rows="8" required></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mt-3">
-                                            <button type="submit" class="btn btn-a">Book now</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

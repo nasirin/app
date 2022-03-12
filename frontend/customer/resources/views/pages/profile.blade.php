@@ -52,6 +52,10 @@
                                             <span class="color-text-a"> {{ session('user.status') }} </span>
                                         </p>
                                         <p>
+                                            <strong>Job: </strong>
+                                            <span class="color-text-a"> {{ session('user.jobs') }} </span>
+                                        </p>
+                                        <p>
                                             <strong>Phone: </strong>
                                             <span class="color-text-a"> {{ session('user.phone') }} </span>
                                         </p>
@@ -66,34 +70,14 @@
                                     </div>
                                 </div>
                                 <div class="socials-footer">
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="bi bi-facebook" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="bi bi-twitter" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="bi bi-instagram" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="link-one">
-                                                <i class="bi bi-linkedin" aria-hidden="true"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <a href="" class="btn btn-success">Ubah</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 section-t8">
+                    
                     <div class="title-box-d">
                         <h3 class="title-d">My Indekos</h3>
                     </div>

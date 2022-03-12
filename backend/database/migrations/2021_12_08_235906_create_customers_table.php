@@ -27,7 +27,7 @@ class CreateCustomersTable extends Migration
             $table->string('password')->nullable();
             $table->enum('gender', ['male', 'female']);
             $table->enum('status', ['single', 'married']);
-            $table->enum('jobs', ['student', 'worker'])->nullable();
+            $table->string('jobs', 30)->nullable();
             $table->timestamps();
         });
     }

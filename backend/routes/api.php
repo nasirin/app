@@ -73,6 +73,7 @@ Route::delete('/booking/{id}', [BookingController::class, 'destroy']);
 Route::post('/booking', [BookingController::class, 'store']);
 Route::patch('/booking/{id}', [BookingController::class, 'checkout']);
 Route::get('/new-booking', [BookingController::class, 'newBooking']);
+Route::patch('/confirm/{id}', [BookingController::class, 'confirm']);
 
 //booking addtional
 Route::patch('/badd/{id}', [BookingAddCntoller::class, 'change']);

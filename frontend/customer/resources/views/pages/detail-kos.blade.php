@@ -116,7 +116,8 @@
                                 </div>
                             </div>
                             <div class="property-contact">
-                                <form class="form-a" method="POST" action="/booking/2">
+                                <form class="form-a" method="POST"
+                                    action="/booking/{{ $room['id'] }}/{{ $room['price'] }}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12 mb-1">

@@ -67,7 +67,7 @@ class RoomController extends Controller
             "no_room" => 'required',
             'location' => 'required',
             'type' => 'required|in:male,female',
-            "status" => 'required|in:available, unavailable',
+            "status" => 'required|in:available,unavailable',
             "room_size" => 'required',
             "map" => 'required',
             "price" => 'required|integer',
@@ -100,7 +100,6 @@ class RoomController extends Controller
         }
 
         $room = Http::post($this->api . 'room', $data);
-        // dd($room->json());
 
         if ($room['status'] == 'error') {
             return redirect()->back()->withErrors($room['message'])->withInput();
@@ -108,22 +107,6 @@ class RoomController extends Controller
         return redirect('/room')->with('message', $room['message']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $fasilities = Http::get($this->api . 'fasility')->json();
@@ -149,7 +132,7 @@ class RoomController extends Controller
             "no_room" => 'required',
             'location' => 'required',
             'type' => 'required|in:male,female',
-            "status" => 'required|in:available, unavailable',
+            "status" => 'required|in:available,unavailable',
             "room_size" => 'required',
             "map" => 'required',
             "price" => 'required|integer',

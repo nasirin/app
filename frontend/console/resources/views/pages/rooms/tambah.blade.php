@@ -133,16 +133,15 @@
                                 <legend class="col-form-label col-sm-2 pt-0">type *</legend>
                                 <div class="col-sm-10">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="type" id="gridRadios1"
-                                            value="male" checked>
-                                        <label class="form-check-label" for="gridRadios1">
+                                        <input class="form-check-input" type="radio" name="type" id="male" value="male"
+                                            checked>
+                                        <label class="form-check-label" for="male">
                                             Male
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="type" id="gridRadios2"
-                                            value="female">
-                                        <label class="form-check-label" for="gridRadios2">
+                                        <input class="form-check-input" type="radio" name="type" id="female" value="female">
+                                        <label class="form-check-label" for="female">
                                             Female
                                         </label>
                                     </div>
@@ -152,16 +151,16 @@
                                 <legend class="col-form-label col-sm-2 pt-0">Status *</legend>
                                 <div class="col-sm-10">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="status" id="gridRadios1"
+                                        <input class="form-check-input" type="radio" name="status" id="Available"
                                             value="available" checked>
-                                        <label class="form-check-label" for="gridRadios1">
+                                        <label class="form-check-label" for="Available">
                                             Available
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="status" id="gridRadios2"
+                                        <input class="form-check-input" type="radio" name="status" id="Unavailable"
                                             value="unavailable">
-                                        <label class="form-check-label" for="gridRadios2">
+                                        <label class="form-check-label" for="Unavailable">
                                             Unavailable
                                         </label>
                                     </div>

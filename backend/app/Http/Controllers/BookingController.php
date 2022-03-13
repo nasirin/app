@@ -34,8 +34,8 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $rule = [
-            'customer_id' => 'required|integer',
-            'room_id' => 'required|integer',
+            'customers_id' => 'required|integer',
+            'rooms_id' => 'required|integer',
             'check_in' => 'required',
             'guest' => 'required',
             'payment_type' => 'required|in:on check in,transfer',
@@ -56,8 +56,8 @@ class BookingController extends Controller
         }
 
         // cek ketersediaan data
-        Customers::findOrFail($request->customer_id);
-        Rooms::findOrFail($request->room_id);
+        Customers::findOrFail($request->customers_id);
+        Rooms::findOrFail($request->rooms_id);
 
         $data['code'] = uniqid();
         // simpan data booking 
@@ -84,6 +84,22 @@ class BookingController extends Controller
 
         return response()->json([
             'data' => $newbooking
+        ]);
+    }
+
+    public function confirm(Request $request, $id)
+    {
+        $data = [
+            'payment_status' => 'waiting confirm',
+            'file_payment' => $request->file_payment
+        ];
+        $booking = Bookings::findOrfail($id);
+        $booking->fill($data);
+        $booking->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Payment Success'
         ]);
     }
 }

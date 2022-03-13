@@ -16,7 +16,7 @@
                 <!-- General Form Elements -->
                 <form action="{{ url('/room/' . $rooms['id']) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('patch')
+                    @method('PATCH')
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">Detail room</h5>
@@ -103,7 +103,8 @@
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Thumbnail</label>
                                 <div class="col-sm-10">
                                     <div class="row align-items-center">
-                                        <img src="{{ url('storage/' . $rooms['thumbnail']) }}" alt="" class="mb-2 col-sm-4">
+                                        <img src="{{ url('storage/' . $rooms['thumbnail']) }}" alt=""
+                                            class="mb-2 col-sm-4">
                                         <div class="col-sm-8">
                                             <input type="file" accept="image/jpg,image/png,image/jpeg"
                                                 class="form-control" name="thumbnail">
@@ -142,16 +143,15 @@
                                 <legend class="col-form-label col-sm-2 pt-0">type</legend>
                                 <div class="col-sm-10">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="type" id="gridRadios1"
-                                            value="male" checked>
-                                        <label class="form-check-label" for="gridRadios1">
+                                        <input class="form-check-input" type="radio" name="type" id="male" value="male"
+                                            checked>
+                                        <label class="form-check-label" for="male">
                                             Male
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="type" id="gridRadios2"
-                                            value="female">
-                                        <label class="form-check-label" for="gridRadios2">
+                                        <input class="form-check-input" type="radio" name="type" id="female" value="female">
+                                        <label class="form-check-label" for="female">
                                             Female
                                         </label>
                                     </div>
@@ -161,16 +161,16 @@
                                 <legend class="col-form-label col-sm-2 pt-0">Status</legend>
                                 <div class="col-sm-10">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="status" id="gridRadios1"
+                                        <input class="form-check-input" type="radio" name="status" id="available"
                                             value="available" checked>
-                                        <label class="form-check-label" for="gridRadios1">
+                                        <label class="form-check-label" for="available">
                                             Available
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="status" id="gridRadios2"
+                                        <input class="form-check-input" type="radio" name="status" id="unavailable"
                                             value="unavailable">
-                                        <label class="form-check-label" for="gridRadios2">
+                                        <label class="form-check-label" for="unavailable">
                                             Unavailable
                                         </label>
                                     </div>

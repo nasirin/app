@@ -77,62 +77,57 @@
                     </div>
                 </div>
                 <div class="col-md-12 section-t8">
-                    
+
                     <div class="title-box-d">
                         <h3 class="title-d">My Indekos</h3>
                     </div>
                 </div>
                 <div class="row property-grid grid">
-                    <div class="col-md-4">
-                        <div class="card-box-a card-shadow">
-                            <div class="img-box-a">
-                                <img src="/template/assets/img/property-1.jpg" alt="" class="img-a img-fluid">
-                            </div>
-                            <div class="card-overlay">
-                                <div class="card-overlay-a-content">
-                                    <div class="card-header-a">
-                                        <h2 class="card-title-a">
-                                            <a href="#">204 Mount
-                                                <br /> Olive Road Two</a>
-                                        </h2>
-                                    </div>
-                                    <div class="card-body-a">
-                                        <div class="price-box d-flex">
-                                            <span class="price-a">rent | $ 12.000</span>
+                    @foreach ($booking as $item)
+                        <div class="col-md-4">
+                            <div class="card-box-a card-shadow">
+                                <div class="img-box-a">
+                                    <img src="/template/assets/img/property-1.jpg" alt="" class="img-a img-fluid">
+                                </div>
+                                <div class="card-overlay">
+                                    <div class="card-overlay-a-content">
+                                        <div class="card-header-a">
+                                            <h2 class="card-title-a">
+                                                <a href="#">{{ $item['room']['location'] }}
+                                                    <br /> Kos {{ $item['room']['type'] }}</a>
+                                            </h2>
                                         </div>
-                                        <div class="price-box d-flex">
-                                            <span class="price-a">active until | 12 oct 2022</span>
+                                        <div class="card-body-a">
+                                            <div class="price-box d-flex">
+                                                <span class="price-a">rent / month |
+                                                    {{ 'Rp ' . number_format($item['room']['price']) }}</span>
+                                            </div>
+                                            <div class="price-box d-flex">
+                                                @if ($item['payment_status'] != 'success')
+                                                    <span class="price-a">status |
+                                                        {{ $item['payment_status'] }}</span>
+                                                @else
+                                                    <span class="price-a">active until | 12 oct 2022</span>
+                                                @endif
+                                            </div>
+                                            @if ($item['payment_status'] != 'waiting confirm' && $item['payment_status'] != 'success')
+                                                <a href="/checkout/{{ $item['id'] }}" class="link-a">Click here
+                                                    to view
+                                                    <span class="bi bi-chevron-right"></span>
+                                                </a>
+                                            @else
+                                                <a href="/myrent/{{ $item['id'] }}" class="link-a">Click here to
+                                                    view
+                                                    <span class="bi bi-chevron-right"></span>
+                                                </a>
+                                            @endif
                                         </div>
-                                        <a href="/detail/slug" class="link-a">Click here to view
-                                            <span class="bi bi-chevron-right"></span>
-                                        </a>
-                                    </div>
-                                    <div class="card-footer-a">
-                                        <ul class="card-info d-flex justify-content-around">
-                                            <li>
-                                                <h4 class="card-info-title">Area</h4>
-                                                <span>340m
-                                                    <sup>2</sup>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <h4 class="card-info-title">Beds</h4>
-                                                <span>2</span>
-                                            </li>
-                                            <li>
-                                                <h4 class="card-info-title">Baths</h4>
-                                                <span>4</span>
-                                            </li>
-                                            <li>
-                                                <h4 class="card-info-title">Garages</h4>
-                                                <span>1</span>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>

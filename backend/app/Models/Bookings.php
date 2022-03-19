@@ -13,12 +13,12 @@ class Bookings extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customers::class);
+        return $this->belongsTo(Customers::class, 'customers_id', 'id');
     }
 
     public function room()
     {
-        return $this->belongsTo(Rooms::class);
+        return $this->belongsTo(Rooms::class, 'rooms_id', 'id');
     }
 
     public function BookingAdditional()
@@ -28,6 +28,6 @@ class Bookings extends Model
 
     public function billing()
     {
-        return $this->hasMany(Billing::class, 'booking_id');
+        return $this->hasMany(Billing::class, 'booking_id', 'id');
     }
 }

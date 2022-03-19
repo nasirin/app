@@ -14,11 +14,15 @@ class UserController extends Controller
         $this->apibe = env('API_BACKEND');
         $this->apiconsole = env('API_CONSOLE');
     }
-    
+
     public function index($id)
     {
         $fasility = Http::get($this->apibe . 'fasility');
-        $data = ['fasilities' => $fasility['data']];
+        $user = Http::get($this->apibe . 'customer/' . session('user.id'))->json();
+        $data = [
+            'fasilities' => $fasility['data'],
+            'booking' => $user['data']['booking']
+        ];
         return view('pages.profile', $data);
     }
 }

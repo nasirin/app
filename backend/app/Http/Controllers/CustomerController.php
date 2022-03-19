@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookings;
 use App\Models\Customers;
+use App\Models\Rooms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -20,10 +22,10 @@ class CustomerController extends Controller
 
     public function show($id)
     {
-        $customer = Customers::with('booking')->find($id);
+        $customer = Customers::with('booking', 'booking.room', 'booking.billing')->find($id);
         return  response()->json([
             'status' => 'success',
-            'data' => $customer
+            'data' => $customer,
         ]);
     }
 

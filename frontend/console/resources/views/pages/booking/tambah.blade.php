@@ -22,16 +22,16 @@
                         <div class="row my-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Customer</label>
                             <div class="col-sm-10">
-                                <select name="customer_id" class="form-control" required>
+                                <select name="customers_id" class="form-control" required>
                                     <option value="">select customer</option>
                                     @foreach($customers as $customer)
                                     <option value="{{$customer['id']}}">{{$customer['first_name'].' '. $customer['last_name']}}</option>
                                     @endforeach
                                 </select>
-                                @if($errors->first('customer_id'))
+                                @if($errors->first('customers_id'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i class="bi bi-exclamation-octagon me-1"></i>
-                                    {{$errors->first('customer_id')}}
+                                    {{$errors->first('customers_id')}}
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                                 @endif

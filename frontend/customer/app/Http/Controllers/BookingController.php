@@ -24,20 +24,22 @@ class BookingController extends Controller
         $data["cost"] = $cost;
 
         $booking = Http::post($this->apibe . 'booking', $data);
-        return redirect()->with('success', $booking['message'])->to('/checkout');
+        return redirect()->to('checkout/' . $booking['id']);
     }
 
     public function checkout($id)
     {
-        return view('pages.checkout');
+        $booking = Http::get($this->apibe . 'booking/' . $id)->json();
+        $data = ['checkout' => $booking['data']];
+        return view('pages.checkout', $data);
     }
 
     public function confirm(Request $request, $id)
     {
-        $data['file_payment'] = 'dfa';
-        $confirm = Http::patch($this->apibe . 'cofirm/' . $id, $data);
-
-        if ($confirm) {
+        if ($request->hasFile('struck')) {
+            $img = $request->file('struck')->store('confirm');
+            $data['file_payment'] = url('storage') . '/' . $img;
+            $confirm = Http::patch($this->apibe . 'confirm/' . $id, $data)->json();
             return redirect()->to('/')->with('success', $confirm['message']);
         }
     }

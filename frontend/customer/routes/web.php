@@ -40,5 +40,5 @@ Route::post('/search', [RoomController::class, 'search']);
 
 // BOOKING
 Route::post('/booking/{id}/{cost}', [BookingController::class, 'store'])->middleware('login');
-Route::get('/checkout/{id}', [BookingController::class, 'checkout']);
-Route::post('/checkout/{id}', [BookingController::class, 'confirm']);
+Route::get('/checkout/{id}', [BookingController::class, 'checkout'])->middleware('login');
+Route::post('/checkout/{id}', [BookingController::class, 'confirm'])->middleware('login');

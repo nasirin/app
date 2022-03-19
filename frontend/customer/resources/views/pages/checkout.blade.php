@@ -42,8 +42,7 @@
                             <div class="agent-info-box">
                                 <div class="agent-title">
                                     <div class="title-box-d">
-                                        <h3 class="title-d">Margaret Stone
-                                            <br> Escala
+                                        <h3 class="title-d">{{ 'Kos ' . $checkout['room']['type'] }}
                                         </h3>
                                     </div>
                                 </div>
@@ -54,23 +53,21 @@
                                     <div class="info-agents color-a">
                                         <p>
                                             <strong>Location </strong>
-                                            <span class="color-text-a"> lokasi kos </span>
-                                        </p>
-                                        <p>
-                                            <strong>Property Type: </strong>
-                                            <span class="color-text-a"> male / female</span>
+                                            <span class="color-text-a"> {{ $checkout['room']['location'] }} </span>
                                         </p>
                                         <p>
                                             <strong>Price/month: </strong>
-                                            <span class="color-text-a"> Rp 123.123.123</span>
+                                            <span class="color-text-a">
+                                                {{ 'Rp ' . number_format($checkout['room']['price'], 0, ',', '.') }}</span>
                                         </p>
                                         <p>
                                             <strong>Rental type: </strong>
-                                            <span class="color-text-a"> Years / Month</span>
+                                            <span class="color-text-a"> {{ $checkout['rental_type'] }}</span>
                                         </p>
                                         <p>
                                             <strong>Total Price: </strong>
-                                            <span class="color-text-a"> Rp 123.123.123</span>
+                                            <span class="color-text-a">
+                                                {{ 'Rp ' . number_format($checkout['cost'], 0, ',', '.') }}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -89,19 +86,21 @@
                 <div class="col-sm-12 mb-5">
                     <div class="row">
                         <div class="col-md-7">
-                            <form action="/checkout/1" method="post">
+                            <form action="/checkout/{{ $checkout['id'] }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-lg form-control-a"
-                                                placeholder="Your Name" required>
+                                                placeholder="Your Name"
+                                                value="{{ session('user.first_name') . ' ' . session('user.last_name') }}"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
                                             <input name="email" class="form-control form-control-lg form-control-a"
-                                                placeholder="Your Email" required>
+                                                placeholder="Your Email" value="{{ session('user.email') }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">

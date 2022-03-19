@@ -23,7 +23,7 @@ class BookingController extends Controller
 
     public function show($id)
     {
-        $booking = Bookings::find($id);
+        $booking = Bookings::with('room')->find($id);
 
         return response()->json([
             'status' => 'success',
@@ -41,7 +41,7 @@ class BookingController extends Controller
             'payment_type' => 'required|in:on check in,transfer',
             // 'payment_status' => 'required|in:pending,success,cancel',
             'cost' => 'required|integer',
-            'rental_type' => 'required|in:month, years'
+            'rental_type' => 'required|in:month,years'
         ];
 
         $data = $request->all();
@@ -57,9 +57,12 @@ class BookingController extends Controller
 
         // cek ketersediaan data
         Customers::findOrFail($request->customers_id);
-        Rooms::findOrFail($request->rooms_id);
+        $room = Rooms::findOrFail($request->rooms_id);
 
         $data['code'] = uniqid();
+        if ($request['rental_type'] == 'years') {
+            $data['cost'] = $room['price'] * 12;
+        }
         // simpan data booking 
         $booking  = Bookings::create($data);
 
@@ -74,7 +77,8 @@ class BookingController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'The order has been saved, immediately make a payment at least 1 hour after ordering.'
+            'message' => 'The order has been saved, immediately make a payment at least 1 hour after ordering.',
+            "id" => $booking->id
         ]);
     }
 
@@ -91,8 +95,9 @@ class BookingController extends Controller
     {
         $data = [
             'payment_status' => 'waiting confirm',
-            'file_payment' => $request->file_payment
+            'file_payment' => $request['file_payment']
         ];
+
         $booking = Bookings::findOrfail($id);
         $booking->fill($data);
         $booking->save();

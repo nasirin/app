@@ -43,4 +43,11 @@ class BookingController extends Controller
             return redirect()->to('/')->with('success', $confirm['message']);
         }
     }
+
+    public function myrent($id)
+    {
+        $booking = Http::get($this->apibe . 'booking/' . $id)->json();
+        $data = ['checkout' => $booking['data']];
+        return view('pages.mykos', $data);
+    }
 }

@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Http;
 class BookingController extends Controller
 {
     protected $api;
+    protected $apiCust;
     public function __construct()
     {
         $this->api = env('API_BACKEND');
+        $this->apiCust = env('URL_CUSTOMER');
     }
     /**
      * Display a listing of the resource.
@@ -20,7 +22,6 @@ class BookingController extends Controller
     public function index()
     {
         $booking = Http::get($this->api . 'booking')->json();
-        // dd($booking);
         $data['booking'] = $booking['data'];
         return view('pages.booking.index', $data);
     }
@@ -60,7 +61,9 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $booking = Http::get($this->api . 'booking/' . $id)->json();
+        $data['booking'] = $booking['data'];
+        return view('pages.booking.detail', $data);
     }
 
     /**
@@ -99,6 +102,11 @@ class BookingController extends Controller
 
     public function NewBooking()
     {
-        
+    }
+
+    public function confirm($id)
+    {
+        $confirm = Http::patch($this->api . 'confirmByadmin/' . $id)->json();
+        return redirect()->back();
     }
 }

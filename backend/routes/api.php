@@ -74,6 +74,7 @@ Route::post('/booking', [BookingController::class, 'store']);
 Route::patch('/booking/{id}', [BookingController::class, 'checkout']);
 Route::get('/new-booking', [BookingController::class, 'newBooking']);
 Route::patch('/confirm/{id}', [BookingController::class, 'confirm']);
+Route::patch('/confirmByadmin/{id}', [BookingController::class, 'confirmByadmin']);
 
 //booking addtional
 Route::patch('/badd/{id}', [BookingAddCntoller::class, 'change']);

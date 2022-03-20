@@ -20,7 +20,7 @@
                     <div class="card-body my-2">
 
                         <!-- Table with stripped rows -->
-                        <table class="table" id="myTable">
+                        <table class="table myTable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

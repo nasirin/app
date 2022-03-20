@@ -90,4 +90,12 @@ class BookingAddCntoller extends Controller
             'data' => $add
         ]);
     }
+
+    public function getByTotalCost($id)
+    {
+        $add = BookingAdditional::where('booking_id', $id)->sum('cost');
+        return response()->json([
+            'data' => $add
+        ]);
+    }
 }

@@ -98,3 +98,4 @@ Route::post('/customer/login', [CustomerAuthController::class, 'login']);
 // BOOKING ADDITIONAL
 Route::resource('/additional', BookingAddCntoller::class);
 Route::get('/additional/booking/{id}', [BookingAddCntoller::class, 'getBybooking']);
+Route::get('/additional/total/{id}', [BookingAddCntoller::class, 'getByTotalCost']);

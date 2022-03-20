@@ -91,8 +91,9 @@
                                 @if ($booking['payment_status'] != 'success')
                                     <p>Konfirmasi dulu sebelum mengisi additional</p>
                                 @else
-                                    <form action="/additional/{{ $booking['id'] }}" method="POST">
+                                    <form action="/additional" method="POST">
                                         @csrf
+                                        <input type="hidden" value="{{ $booking['id'] }}" name="booking_id">
                                         <div class="row mb-3">
                                             <label for="inputEmail" class="col-sm-4 col-form-label">Additional</label>
                                             <div class="col-sm-8">
@@ -114,6 +115,42 @@
                                         </div>
 
                                     </form>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Additional</th>
+                                                <th scope="col">Cost</th>
+                                                <th scope="col">Action</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($additional as $key => $value)
+                                                <tr>
+                                                    <td>{{ $key + 1 }}</td>
+                                                    <td>{{ $value['additional'] }}</td>
+                                                    <td>{{ 'Rp ' . number_format($value['cost'], 0, ',', '.') }}</td>
+                                                    <td>
+                                                        <form action="/additional/{{ $value['id'] }}" method="POST">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button onclick="return confirm('apakah anda yakin?')"
+                                                                class="btn btn-danger btn-sm"><i
+                                                                    class="bx bxs-trash"></i></button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Total Cost</th>
+                                                <td colspan="3">{{ 'Rp ' . number_format($totalCost, 0, ',', '.') }}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 @endif
                             </div>
                         </div>

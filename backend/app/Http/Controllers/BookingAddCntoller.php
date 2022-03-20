@@ -13,7 +13,7 @@ class BookingAddCntoller extends Controller
     {
         $rule = [
             'booking_id' => 'required|integer',
-            'additional' => 'required',
+            'additional' => 'required|unique:booking_additionals',
             'cost' => 'required|integer'
         ];
 
@@ -37,7 +37,7 @@ class BookingAddCntoller extends Controller
         ]);
     }
 
-    public function change(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $rule = [
             'cost' => 'integer'
@@ -72,6 +72,22 @@ class BookingAddCntoller extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Your addition has been deleted'
+        ]);
+    }
+
+    public function show($id)
+    {
+        $add = BookingAdditional::find($id);
+        return response()->json([
+            'data' => $add
+        ]);
+    }
+
+    public function getBybooking($id)
+    {
+        $add = BookingAdditional::where('booking_id', $id)->get();
+        return response()->json([
+            'data' => $add
         ]);
     }
 }

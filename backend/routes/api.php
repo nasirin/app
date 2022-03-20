@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdditionalController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BookingAddCntoller;
@@ -93,3 +94,7 @@ Route::post('/admin/login', [AdminAuthController::class, 'login']);
 
 // AUTH CUSTOMER
 Route::post('/customer/login', [CustomerAuthController::class, 'login']);
+
+// BOOKING ADDITIONAL
+Route::resource('/additional', BookingAddCntoller::class);
+Route::get('/additional/booking/{id}', [BookingAddCntoller::class, 'getBybooking']);

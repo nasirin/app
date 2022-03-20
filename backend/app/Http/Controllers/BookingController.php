@@ -66,15 +66,6 @@ class BookingController extends Controller
         // simpan data booking 
         $booking  = Bookings::create($data);
 
-        // cek ada tambahan apa tidak
-        if ($request->additional) {
-            BookingAdditional::create([
-                'booking_id' => $booking->id,
-                'additional' => $request->additional,
-                'cost' => $request->cost
-            ]);
-        }
-
         return response()->json([
             'status' => 'success',
             'message' => 'The order has been saved, immediately make a payment at least 1 hour after ordering.',

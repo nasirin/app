@@ -101,6 +101,7 @@ class BookingController extends Controller
     public function confirm($id)
     {
         $confirm = Http::patch($this->api . 'confirmByadmin/' . $id)->json();
+        dd($confirm);
         return redirect()->back();
     }
 

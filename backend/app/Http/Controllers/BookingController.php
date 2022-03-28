@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Billing;
 use App\Models\BookingAdditional;
 use App\Models\Bookings;
 use App\Models\Customers;
@@ -105,6 +106,23 @@ class BookingController extends Controller
         $booking = Bookings::findOrfail($id);
         $booking->fill($data);
         $booking->save();
+
+        // insert data to billing
+        if ($booking['rental_type'] == 'month') {
+            $payment_due = date('ymd', strtotime('+1 month', strtotime($booking['check_in'])));
+        } else {
+            $payment_due = date('ymd', strtotime('+1 year', strtotime($booking['check_in'])));
+        }
+
+        $data = [
+            'booking_id' => $booking['id'],
+            'payment_date' => date('ymd'),
+            'payment_due' => $payment_due,
+            'payment_status' => $booking['payment_status'],
+            'payment_type' => $booking['payment_type'],
+            'total' => $booking['cost']
+        ];
+        Billing::create($data);
 
         return response()->json([
             'status' => 'success',

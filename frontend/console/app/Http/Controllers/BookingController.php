@@ -71,37 +71,15 @@ class BookingController extends Controller
         return view('pages.booking.detail', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
     public function destroy($id)
     {
-        //
+        $booking = Http::delete($this->api . 'booking/' . $id)->json();
+        return redirect()->back()->with('msg', $booking);
     }
 
     public function confirm($id)
     {
         $confirm = Http::patch($this->api . 'confirmByadmin/' . $id)->json();
-        dd($confirm);
         return redirect()->back();
     }
 

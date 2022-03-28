@@ -70,7 +70,7 @@ Route::post('/fasility', [FasilityController::class, 'store']);
 //booking
 Route::get('/booking', [BookingController::class, 'index']);
 Route::get('/booking/{id}', [BookingController::class, 'show']);
-Route::delete('/booking/{id}', [BookingController::class, 'destroy']);
+Route::delete('/booking/{id}', [BookingController::class, 'hapus']);
 Route::post('/booking', [BookingController::class, 'store']);
 Route::patch('/booking/{id}', [BookingController::class, 'checkout']);
 Route::get('/new-booking', [BookingController::class, 'newBooking']);

@@ -45,9 +45,8 @@
                                             <a href="/booking/{{ $value['id'] }}" class="btn btn-info btn-sm"> <i
                                                     class="ri-eye-2-line"></i></a>
                                             @if (session('user.id') != $value['id'])
-                                                <a href="{{ url('admin/' . $value['id'] . '/edit') }}"
-                                                    class="btn btn-warning btn-sm"> <i class="bx bxs-edit"></i></a>
-                                                <form action="#" method="POST" class="d-inline">
+                                                <form action="/booking/{{ $value['id'] }}" method="POST"
+                                                    class="d-inline">
                                                     @csrf
                                                     @method('delete')
                                                     <button onclick="return confirm('apakah anda yakin?')"

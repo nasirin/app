@@ -129,4 +129,18 @@ class BookingController extends Controller
             'message' => 'Confirm Success'
         ]);
     }
+
+    public function hapus($id)
+    {
+        $booking = Bookings::with('billing')->find($id);
+        if ($booking) {
+            if ($booking['billing']) {
+                Billing::where('booking_id', $id)->delete();
+            }
+            $booking->delete();
+        }
+        return response()->json([
+            'msg' => 'Booking deleted'
+        ]);
+    }
 }

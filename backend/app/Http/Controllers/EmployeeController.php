@@ -57,10 +57,6 @@ class EmployeeController extends Controller
             ]);
         }
 
-        if ($request->hasFile('avatar')) {
-            $data['avatar'] = $request->file('avatar')->store('employees');
-        }
-
         $password = Hash::make($request->password);
         $data['password'] = $password;
         Employees::create($data);

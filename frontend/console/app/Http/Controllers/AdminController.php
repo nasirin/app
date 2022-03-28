@@ -20,7 +20,6 @@ class AdminController extends Controller
     public function index()
     {
         $res = Http::get($this->api . 'employee')->json();
-        // dd(session('user'));
         $data = [
             'admin' => $res['data']
         ];
@@ -64,14 +63,12 @@ class AdminController extends Controller
             $data['avatar'] = $img;
             $data['url'] = url('/storage') . '/';
         }
-
         $admin = Http::post($this->api . 'employee', $data);
-
-        if ($admin['status'] == 'error') {
+        if ($admin['status'] === 'error') {
             return redirect()->back()->withErrors($admin['message'])->withInput();
         }
 
-        return redirect('/admin')->with('message', $admin['message']);
+        return redirect('/admin')->with('message', 'Data berhasil di simpan');
     }
 
     /**

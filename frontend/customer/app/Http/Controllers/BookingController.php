@@ -39,7 +39,7 @@ class BookingController extends Controller
         if ($request->hasFile('struck')) {
             $img = $request->file('struck')->store('confirm');
             $data['file_payment'] = url('storage') . '/' . $img;
-            $confirm = Http::patch($this->apibe . 'confirm/' . $id, $data)->json();
+            $confirm = Http::patch($this->apibe . 'confirm/' . $id, $data);
             return redirect()->to('/')->with('success', $confirm['message']);
         }
     }

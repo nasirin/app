@@ -122,7 +122,7 @@
                                     <div class="row">
                                         <div class="col-md-12 mb-1">
                                             <div class="form-group">
-                                                <input type="datetime-local"
+                                                <input type="date"
                                                     class="form-control form-control-lg form-control-a" id="inputName"
                                                     placeholder="Checkin" required name="check_in">
                                             </div>

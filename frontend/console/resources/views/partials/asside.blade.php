@@ -64,7 +64,7 @@
         <!-- End Forms Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
+            <a class="nav-link collapsed" href="/billing">
                 <i class="bi bi-currency-dollar"></i><span>Billing</span>
             </a>
         </li>

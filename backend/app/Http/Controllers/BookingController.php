@@ -115,18 +115,18 @@ class BookingController extends Controller
         }
 
         $data = [
-            'booking_id' => $booking['id'],
+            'booking_id' => $id,
             'payment_date' => date('ymd'),
             'payment_due' => $payment_due,
             'payment_status' => $booking['payment_status'],
             'payment_type' => $booking['payment_type'],
             'total' => $booking['cost']
         ];
-        Billing::create($data);
+        $billing = Billing::create($data);
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Confirm Success'
+            'message' => 'Confirm Success',
         ]);
     }
 

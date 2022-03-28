@@ -84,6 +84,7 @@ Route::post('/badd', [BookingAddCntoller::class, 'store']);
 
 //billing
 Route::get('/grace-billing', [BillingController::class, 'graceBilling']);
+Route::get('/billing', [BillingController::class, 'index']);
 
 // SUMMARY
 Route::get('/summary', [SummaryController::class, 'index']);

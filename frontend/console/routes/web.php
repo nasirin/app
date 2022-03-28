@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FasilityController;
@@ -59,4 +60,7 @@ Route::group(['middleware' => 'loged'], function () {
 
     // PROFILE
     Route::get('/profile', [UserController::class, 'index']);
+
+    // BILLING
+    Route::resource('/billing', BillingController::class);
 });

@@ -14,11 +14,7 @@ class BookingController extends Controller
         $this->api = env('API_BACKEND');
         $this->apiCust = env('URL_CUSTOMER');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $booking = Http::get($this->api . 'booking')->json();
@@ -26,11 +22,6 @@ class BookingController extends Controller
         return view('pages.booking.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $customer = Http::get($this->api . 'customer')->json();
@@ -42,22 +33,6 @@ class BookingController extends Controller
         return view('pages.booking.tambah', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $booking = Http::get($this->api . 'booking/' . $id)->json();
@@ -79,7 +54,7 @@ class BookingController extends Controller
 
     public function confirm($id)
     {
-        $confirm = Http::patch($this->api . 'confirmByadmin/' . $id)->json();
+        Http::patch($this->api . 'confirmByadmin/' . $id)->body();
         return redirect()->back();
     }
 

@@ -91,7 +91,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/template/">
+                        <a href="/YearReport">
                             <i class="bi bi-circle"></i><span>Years report</span>
                         </a>
                     </li>

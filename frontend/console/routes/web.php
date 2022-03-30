@@ -68,5 +68,5 @@ Route::group(['middleware' => 'loged'], function () {
 
     // REPORT
     Route::get('/MonthlyReport', [ReportController::class, 'LaporanBulanan']);
-    Route::get('/YearsReport', [ReportController::class, 'LaporanTahunan']);
+    Route::get('/YearReport', [ReportController::class, 'LaporanTahunan']);
 });

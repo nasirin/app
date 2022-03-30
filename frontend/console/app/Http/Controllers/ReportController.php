@@ -15,8 +15,15 @@ class ReportController extends Controller
 
     public function LaporanBulanan()
     {
-        $laporan = Http::get($this->api . 'booking')->json();
-        dd($laporan);
+        // $laporan = Http::get($this->api . 'LaporanBulanan')->json();
+        return view('pages.LaporanBulanan');
+        // $pdf = PDF::loadview('laporan_bulanan', ['laporan' => $laporan]);
+        // return $pdf->download('laporan-bulanan-pdf');
+    }
+    public function LaporanTahunan()
+    {
+        // $laporan = Http::get($this->api . 'LaporanBulanan')->json();
+        return view('pages.LaporanTahunan');
         // $pdf = PDF::loadview('laporan_bulanan', ['laporan' => $laporan]);
         // return $pdf->download('laporan-bulanan-pdf');
     }

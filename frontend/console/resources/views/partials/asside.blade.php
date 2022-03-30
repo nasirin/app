@@ -86,7 +86,7 @@
                 </a>
                 <ul id="charts-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="/template/">
+                        <a href="/MonthlyReport">
                             <i class="bi bi-circle"></i><span>Monthly report</span>
                         </a>
                     </li>

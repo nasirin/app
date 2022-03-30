@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FasilityController;
 use App\Http\Controllers\KebutuhanController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SummaryController;
 use Illuminate\Support\Facades\Route;
@@ -104,3 +105,7 @@ Route::post('/customer/login', [CustomerAuthController::class, 'login']);
 Route::resource('/additional', BookingAddCntoller::class);
 Route::get('/additional/booking/{id}', [BookingAddCntoller::class, 'getBybooking']);
 Route::get('/additional/total/{id}', [BookingAddCntoller::class, 'getByTotalCost']);
+
+// REPORT
+Route::get('/LaporanBulanan', [ReportController::class, 'LaporanBulanan']);
+Route::get('/LaporanTahunan', [ReportController::class, 'LaporanTahunan']);

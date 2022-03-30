@@ -122,7 +122,7 @@ class BookingController extends Controller
             'payment_type' => $booking['payment_type'],
             'total' => $booking['cost']
         ];
-        $billing = Billing::create($data);
+        Billing::create($data);
 
         return response()->json([
             'status' => 'success',

@@ -63,4 +63,5 @@ Route::group(['middleware' => 'loged'], function () {
 
     // BILLING
     Route::resource('/billing', BillingController::class);
+    Route::post('/billing/{id}', [BillingController::class, 'confirm']);
 });

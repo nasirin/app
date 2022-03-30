@@ -15,11 +15,6 @@ class BillingController extends Controller
         $this->apiCust = env('URL_CUSTOMER');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $billing = Http::get($this->api . 'billing')->json();
@@ -29,69 +24,23 @@ class BillingController extends Controller
         return view('pages.billing.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $booking = Http::get($this->api . 'billing/' . $id)->json();
+        $billing = Http::get($this->api . 'getByBooking/' . $booking['data']['booking_id'])->json();
+        $data = ['billing' => $booking['data'], 'allBilling' => $billing['data']];
+        return view('pages.billing.detail', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Http::delete($this->api . 'billing/' . $id)->json();
+        return redirect()->back();
+    }
+
+    public function confirm($id)
+    {
+        $billing = Http::post($this->api . 'billing/' . $id)->json();
+        return redirect()->back();
     }
 }

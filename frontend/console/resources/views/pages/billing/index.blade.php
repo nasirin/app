@@ -42,7 +42,8 @@
                                         <td>{{ $item['payment_due'] }}</td>
                                         <td>{{ $item['payment_status'] }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-info btn-sm"> <i class="ri-eye-2-line"></i></a>
+                                            <a href="/billing/{{ $item['id'] }}" class="btn btn-info btn-sm"> <i
+                                                    class="ri-eye-2-line"></i></a>
                                             @if (session('user.level') == 'pimpinan')
                                                 <form action="#" method="POST" class="d-inline">
                                                     @csrf

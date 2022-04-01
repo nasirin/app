@@ -9,8 +9,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Lampiran laporan bulanan</title>
 
-    <title>Hello, world!</title>
 </head>
 
 <body>
@@ -31,23 +31,25 @@
         <tbody>
             <tr>
                 <th scope="row">Pemasukan</th>
-                <td>Mark</td>
-                <td>Otto</td>
+                <td>{{ 'Rp ' . number_format($income, 0, ',', '.') }}</td>
+                <td></td>
             </tr>
             <tr>
                 <th scope="row">Pengeluaran</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
+                <td></td>
+                <td>{{ 'Rp ' . number_format($outcome, 0, ',', '.') }}</td>
             </tr>
             <tr>
                 <th scope="row">Total</th>
-                <td>Larry the Bird</td>
-                <td>Larry the Bird</td>
+                <td colspan="2">{{ 'Rp ' . number_format($income - $outcome, 0, ',', '.') }}</td>
             </tr>
         </tbody>
     </table>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script>
+        window.print()
     </script>
 </body>
 

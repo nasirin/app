@@ -103,7 +103,7 @@
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Thumbnail</label>
                                 <div class="col-sm-10">
                                     <div class="row align-items-center">
-                                        <img src="{{ url('storage/' . $rooms['thumbnail']) }}" alt=""
+                                        <img src="{{ $rooms['url']. $rooms['thumbnail'] }}" alt=""
                                             class="mb-2 col-sm-4">
                                         <div class="col-sm-8">
                                             <input type="file" accept="image/jpg,image/png,image/jpeg"

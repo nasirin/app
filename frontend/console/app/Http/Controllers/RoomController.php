@@ -28,7 +28,6 @@ class RoomController extends Controller
         } else {
             $res = Http::get($this->api . 'room')->json();
         }
-        // dd($res);
 
         $data = [
             'rooms' => $res['data'],
@@ -77,6 +76,7 @@ class RoomController extends Controller
         ];
 
         $data = $request->all();
+        // dd($data);
 
         $validate = Validator::make($data, $rule);
 
@@ -96,11 +96,10 @@ class RoomController extends Controller
             $store = $thumbnail->store('/gallery/thumbnail');
             $img = $store;
             $data['thumbnail'] = $img;
-            $data['url'] = $this->url;
+            $data['url'] = url('/storage') . '/';
         }
 
         $room = Http::post($this->api . 'room', $data);
-
         if ($room['status'] == 'error') {
             return redirect()->back()->withErrors($room['message'])->withInput();
         }
@@ -111,7 +110,6 @@ class RoomController extends Controller
     {
         $fasilities = Http::get($this->api . 'fasility')->json();
         $room = Http::get($this->api . 'room/' . $id)->json();
-
         $data = [
             'fasilities' => $fasilities['data'],
             'rooms' => $room['data'],

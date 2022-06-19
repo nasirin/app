@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $room = Rooms::with('RoomFasilities.fasilities')->get();
+        $status = $request->query('status');
+        if ($status) {
+            $room = Rooms::where('status',$status)->with('RoomFasilities.fasilities')->get();
+        }else{
+            $room = Rooms::with('RoomFasilities.fasilities')->get();
+        }
 
         return response()->json([
             'status' => 'success',
@@ -22,7 +27,7 @@ class RoomController extends Controller
 
     public function show($id)
     {
-        $room = Rooms::findOrFail($id)->with('RoomFasilities')->first();
+    $room = Rooms::where('id',$id)->with('RoomFasilities')->first();
 
         return response()->json([
             'status' => 'success',
@@ -50,7 +55,7 @@ class RoomController extends Controller
             "status" => 'required|in:available, unavailable',
             "room_size" => 'required',
             "map" => 'required',
-            "price_monthly" => 'required|integer',
+            "price" => 'required|integer',
             'thumbnail' => 'required',
             'gallery.*' => 'required',
             'fasilities_id' => 'required'

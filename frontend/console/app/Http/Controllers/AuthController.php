@@ -41,7 +41,7 @@ class AuthController extends Controller
 
         $login = Http::post($this->api . 'admin/login', $data)->json();
 
-        if ($login['status'] === 'success') {
+        if ($login && $login['status'] === 'success') {
             session([
                 "user" => [
                     'id' => $login['data']['id'],
@@ -53,7 +53,7 @@ class AuthController extends Controller
 
             return redirect('/');
         } else {
-            return redirect()->back()->with('error', $login['message']);
+            return redirect()->back()->with('error', 'email atau password salah');
         }
 
         // return response()->json([

@@ -20,6 +20,7 @@ class AdminController extends Controller
     public function index()
     {
         $res = Http::get($this->api . 'employee')->json();
+
         $data = [
             'admin' => $res['data']
         ];
@@ -81,8 +82,6 @@ class AdminController extends Controller
     {
         $res = Http::get($this->api . 'employee/' . $id)->json();
         $data['admin'] = $res['data'];
-
-        // dd($data);
         return view('pages.admin.profil', $data);
     }
 

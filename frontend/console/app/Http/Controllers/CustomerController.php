@@ -90,7 +90,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         $res = Http::get($this->api . 'customer/' . $id)->json();
-        dd($res);
+        // dd($res);
         $data = [
             'customer' => $res['data'],
             'booking' => $res['data']['booking']

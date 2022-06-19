@@ -20,7 +20,7 @@ class CustomerController extends Controller
 
     public function show($id)
     {
-        $customer = Customers::find($id)->with('booking', 'booking.BookingAdditional', 'booking.room', 'booking.billing')->first();
+        $customer = Customers::where('id',$id)->with('booking', 'booking.BookingAdditional', 'booking.room', 'booking.billing')->first();
         return  response()->json([
             'status' => 'success',
             'data' => $customer

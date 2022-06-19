@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Billing;
 use App\Models\BookingAdditional;
 use App\Models\Bookings;
 use App\Models\Customers;
@@ -24,7 +23,7 @@ class BookingController extends Controller
 
     public function show($id)
     {
-        $booking = Bookings::with('room', 'customer')->find($id);
+        $booking = Bookings::find($id);
 
         return response()->json([
             'status' => 'success',
@@ -35,14 +34,14 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $rule = [
-            'customers_id' => 'required|integer',
-            'rooms_id' => 'required|integer',
+            'customer_id' => 'required|integer',
+            'room_id' => 'required|integer',
             'check_in' => 'required',
             'guest' => 'required',
             'payment_type' => 'required|in:on check in,transfer',
             // 'payment_status' => 'required|in:pending,success,cancel',
             'cost' => 'required|integer',
-            'rental_type' => 'required|in:month,years'
+            'rental_type' => 'required|in:month, years'
         ];
 
         $data = $request->all();
@@ -57,20 +56,25 @@ class BookingController extends Controller
         }
 
         // cek ketersediaan data
-        Customers::findOrFail($request->customers_id);
-        $room = Rooms::findOrFail($request->rooms_id);
+        Customers::findOrFail($request->customer_id);
+        Rooms::findOrFail($request->room_id);
 
         $data['code'] = uniqid();
-        if ($request['rental_type'] == 'years') {
-            $data['cost'] = $room['price'] * 12;
-        }
         // simpan data booking 
         $booking  = Bookings::create($data);
 
+        // cek ada tambahan apa tidak
+        if ($request->additional) {
+            BookingAdditional::create([
+                'booking_id' => $booking->id,
+                'additional' => $request->additional,
+                'cost' => $request->cost
+            ]);
+        }
+
         return response()->json([
             'status' => 'success',
-            'message' => 'The order has been saved, immediately make a payment at least 1 hour after ordering.',
-            "id" => $booking->id
+            'message' => 'The order has been saved, immediately make a payment at least 1 hour after ordering.'
         ]);
     }
 
@@ -80,67 +84,6 @@ class BookingController extends Controller
 
         return response()->json([
             'data' => $newbooking
-        ]);
-    }
-
-    public function confirm(Request $request, $id)
-    {
-        $data = [
-            'payment_status' => 'waiting confirm',
-            'file_payment' => $request['file_payment']
-        ];
-
-        $booking = Bookings::findOrfail($id);
-        $booking->fill($data);
-        $booking->save();
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Payment Success'
-        ]);
-    }
-
-    public function confirmByadmin($id)
-    {
-        $data['payment_status'] = 'success';
-        $booking = Bookings::findOrfail($id);
-        $booking->fill($data);
-        $booking->save();
-
-        // insert data to billing
-        if ($booking['rental_type'] == 'month') {
-            $payment_due = date('ymd', strtotime('+1 month', strtotime($booking['check_in'])));
-        } else {
-            $payment_due = date('ymd', strtotime('+1 year', strtotime($booking['check_in'])));
-        }
-
-        $data = [
-            'booking_id' => $id,
-            'payment_date' => date('ymd'),
-            'payment_due' => $payment_due,
-            'payment_status' => $booking['payment_status'],
-            'payment_type' => $booking['payment_type'],
-            'total' => $booking['cost']
-        ];
-        Billing::create($data);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Confirm Success',
-        ]);
-    }
-
-    public function hapus($id)
-    {
-        $booking = Bookings::with('billing')->find($id);
-        if ($booking) {
-            if ($booking['billing']) {
-                Billing::where('booking_id', $id)->delete();
-            }
-            $booking->delete();
-        }
-        return response()->json([
-            'msg' => 'Booking deleted'
         ]);
     }
 }

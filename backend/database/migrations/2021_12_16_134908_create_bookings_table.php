@@ -16,8 +16,8 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customers_id')->constrained()->onDelete('cascade');
-            $table->foreignId('rooms_id')->constrained()->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('room_id')->constrained()->onDelete('cascade');
             $table->string('code', 50)->unique();
             $table->date('check_in');
             $table->bigInteger('guest')->default(1);

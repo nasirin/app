@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fasilities;
 use App\Models\RoomFasility;
 use App\Models\Rooms;
 use Illuminate\Http\Request;
@@ -9,28 +10,23 @@ use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $room = Rooms::with('RoomFasilities.fasilities');
-
-        if ($request->has('status')) {
-            $room->where('status', $request['status']);
-        }
+        $room = Rooms::with('RoomFasilities.fasilities')->get();
 
         return response()->json([
             'status' => 'success',
-            'data' => $room->get()
+            'data' => $room
         ]);
     }
 
     public function show($id)
     {
-        $room = Rooms::with('RoomFasilities.fasilities')->find($id);
+        $room = Rooms::findOrFail($id)->with('RoomFasilities')->first();
 
         return response()->json([
             'status' => 'success',
-            'data' => $room,
-            'id' => $id
+            'data' => $room
         ]);
     }
 
@@ -54,7 +50,7 @@ class RoomController extends Controller
             "status" => 'required|in:available, unavailable',
             "room_size" => 'required',
             "map" => 'required',
-            "price" => 'required',
+            "price_monthly" => 'required|integer',
             'thumbnail' => 'required',
             'gallery.*' => 'required',
             'fasilities_id' => 'required'
@@ -82,9 +78,11 @@ class RoomController extends Controller
             RoomFasility::create($fasility);
         }
 
+
         return response()->json([
             'status' => 'success',
             'message' => 'Room data successfully created',
+            // 'data' => $result
         ]);
     }
 
@@ -113,58 +111,6 @@ class RoomController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Room data successfully updated'
-        ]);
-    }
-
-    public function search(Request $request)
-    {
-        $room = Rooms::with('RoomFasilities.fasilities');
-
-        if ($request->has('city')) {
-            $room->where('location', $request['city']);
-        }
-
-        if ($request->has('status')) {
-            $room->where('status', $request['status']);
-        }
-
-        if ($request->has('gender')) {
-            $room->where('type', $request['gender']);
-        }
-
-        if ($request->has('minPrice')) {
-            $room->where('price', '>=', $request['minPrice']);
-        }
-
-        if ($request->has('fasility')) {
-            $room->whereRelation("RoomFasilities", "fasilities_id", '=', $request['fasility']);
-        }
-
-        return response()->json([
-            'status' => 'success',
-            'data' => $room->get()
-        ]);
-    }
-
-    public function best(Request $request)
-    {
-        $room = Rooms::with('RoomFasilities.fasilities');
-
-        if ($request->has('status')) {
-            $room->where('status', $request['status']);
-        }
-        return response()->json([
-            'status' => 'success',
-            'data' => $room->get()
-        ]);
-    }
-
-    public function onShow()
-    {
-        $room = Rooms::with('RoomFasilities.fasilities')->where('status', 'available');
-        return response()->json([
-            'status' => 'success',
-            'data' => $room->get()->take(5)
         ]);
     }
 }

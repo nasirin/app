@@ -21,7 +21,6 @@ class CreateNecessitiesTable extends Migration
             $table->bigInteger("pcs");
             $table->bigInteger("total");
             $table->string("file")->nullable();
-            $table->string("url", 50)->nullable();
             $table->timestamps();
         });
     }

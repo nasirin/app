@@ -1,16 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdditionalController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BookingAddCntoller;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FasilityController;
 use App\Http\Controllers\KebutuhanController;
-use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SummaryController;
 use Illuminate\Support\Facades\Route;
@@ -57,9 +54,6 @@ Route::get('/room/{id}', [RoomController::class, 'show']);
 Route::patch('/room/{id}', [RoomController::class, 'change']);
 Route::delete('/room/{id}', [RoomController::class, 'destroy']);
 Route::post('/room', [RoomController::class, 'store']);
-Route::get('/search', [RoomController::class, 'search']);
-Route::get('/best', [RoomController::class, 'best']);
-Route::get('/onShow', [RoomController::class, 'onShow']);
 
 //fasilities
 Route::get('/fasility', [FasilityController::class, 'index']);
@@ -71,12 +65,10 @@ Route::post('/fasility', [FasilityController::class, 'store']);
 //booking
 Route::get('/booking', [BookingController::class, 'index']);
 Route::get('/booking/{id}', [BookingController::class, 'show']);
-Route::delete('/booking/{id}', [BookingController::class, 'hapus']);
+Route::delete('/booking/{id}', [BookingController::class, 'destroy']);
 Route::post('/booking', [BookingController::class, 'store']);
 Route::patch('/booking/{id}', [BookingController::class, 'checkout']);
 Route::get('/new-booking', [BookingController::class, 'newBooking']);
-Route::patch('/confirm/{id}', [BookingController::class, 'confirm']);
-Route::patch('/confirmByadmin/{id}', [BookingController::class, 'confirmByadmin']);
 
 //booking addtional
 Route::patch('/badd/{id}', [BookingAddCntoller::class, 'change']);
@@ -85,11 +77,6 @@ Route::post('/badd', [BookingAddCntoller::class, 'store']);
 
 //billing
 Route::get('/grace-billing', [BillingController::class, 'graceBilling']);
-Route::get('/billing', [BillingController::class, 'index']);
-Route::get('/billing/{id}', [BillingController::class, 'show']);
-Route::post('/billing/{id}', [BillingController::class, 'store']);
-Route::delete('/billing/{id}', [BillingController::class, 'destroy']);
-Route::get('/getByBooking/{id}', [BillingController::class, 'showAllByIdBooking']);
 
 // SUMMARY
 Route::get('/summary', [SummaryController::class, 'index']);
@@ -97,15 +84,3 @@ Route::get('/summary', [SummaryController::class, 'index']);
 
 // AUTH ADMIN
 Route::post('/admin/login', [AdminAuthController::class, 'login']);
-
-// AUTH CUSTOMER
-Route::post('/customer/login', [CustomerAuthController::class, 'login']);
-
-// BOOKING ADDITIONAL
-Route::resource('/additional', BookingAddCntoller::class);
-Route::get('/additional/booking/{id}', [BookingAddCntoller::class, 'getBybooking']);
-Route::get('/additional/total/{id}', [BookingAddCntoller::class, 'getByTotalCost']);
-
-// REPORT
-Route::get('/LaporanBulanan', [ReportController::class, 'LaporanBulanan']);
-Route::get('/LaporanTahunan', [ReportController::class, 'LaporanTahunan']);

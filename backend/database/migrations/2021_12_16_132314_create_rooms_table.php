@@ -22,9 +22,9 @@ class CreateRoomsTable extends Migration
             $table->string('room_size', 30);
             $table->text('map');
             $table->json('gallery');
-            $table->bigInteger('price');
+            $table->bigInteger('price_monthly');
+            $table->bigInteger('price_years')->nullable();
             $table->string('thumbnail');
-            $table->string('url', 50);
             $table->timestamps();
         });
     }

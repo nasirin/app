@@ -55,6 +55,9 @@ Route::patch('/room/{id}', [RoomController::class, 'change']);
 Route::delete('/room/{id}', [RoomController::class, 'destroy']);
 Route::post('/room', [RoomController::class, 'store']);
 
+// SEARCH 
+// Route::get('/search', [RoomController::class, 'search']);
+
 //fasilities
 Route::get('/fasility', [FasilityController::class, 'index']);
 Route::get('/fasility/{id}', [FasilityController::class, 'show']);

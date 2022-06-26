@@ -12,22 +12,32 @@ class RoomController extends Controller
 {
     public function index(Request $request)
     {
-        $status = $request->query('status');
-        if ($status) {
-            $room = Rooms::where('status',$status)->with('RoomFasilities.fasilities')->get();
-        }else{
-            $room = Rooms::with('RoomFasilities.fasilities')->get();
+        $room = Rooms::with('RoomFasilities.fasilities');
+
+        if ($request->has('status')) {
+            $room->where('status', $request['status']);
+        }
+
+        if ($request->has('city')) {
+            $room->where('location', $request['city']);
+        }
+
+        if ($request->has('minPrice')) {
+            $room->where('price', '<=', $request['minPrice']);
+        }
+        if ($request->has('gender')) {
+            $room->where('type', $request['gender']);
         }
 
         return response()->json([
             'status' => 'success',
-            'data' => $room
+            'data' => $room->get()
         ]);
     }
 
     public function show($id)
     {
-    $room = Rooms::where('id',$id)->with('RoomFasilities')->first();
+        $room = Rooms::where('id', $id)->with('RoomFasilities')->first();
 
         return response()->json([
             'status' => 'success',
@@ -118,4 +128,26 @@ class RoomController extends Controller
             'message' => 'Room data successfully updated'
         ]);
     }
+
+    // public function search(Request $request)
+    // {
+    //     $room = Rooms::with('RoomFasilities.fasilities');
+
+    //     if ($request->has('status')) {
+    //         $room->where('status', $request['status']);
+    //     }
+
+    //     if ($request->has('city')) {
+    //         $room->where('location', $request['city']);
+    //     }
+
+    //     if ($request->has('minPrice')) {
+    //         $room->where('price', '<=', $request['minPrice']);
+    //     }
+
+    //     return response()->json([
+    //         'request' => $request->all(),
+    //         'room' => $room->get(),
+    //     ]);
+    // }
 }

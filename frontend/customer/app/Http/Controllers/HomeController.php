@@ -19,10 +19,12 @@ class HomeController extends Controller
     public function index()
     {
         $location = GeoIP::getLocation($_SERVER['REMOTE_ADDR']);
+        // $lokasi['city'] = $location->city;
         $lokasi['city'] = $location->city;
-        $room = Http::get($this->apibe . 'search', $lokasi);
+        $room = Http::get($this->apibe . 'room', $lokasi);
+        // dd($lokasi);
         if ($room['data'] == null) {
-            $room = Http::get($this->apibe . 'onShow')->json();
+            $room = Http::get($this->apibe . 'room')->json();
             $lokasi = '';
         }
         $fasility = Http::get($this->apibe . 'fasility');

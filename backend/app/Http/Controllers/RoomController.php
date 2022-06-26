@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Fasilities;
 use App\Models\RoomFasility;
 use App\Models\Rooms;
+use Illuminate\Database\Query\Builder;
+// use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,6 +29,10 @@ class RoomController extends Controller
         }
         if ($request->has('gender')) {
             $room->where('type', $request['gender']);
+        }
+
+        if ($request->has('fasility')) {
+            $room->whereRelation('RoomFasilities.fasilities', 'fasilities_id', '=', $request['fasility']);
         }
 
         return response()->json([

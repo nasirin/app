@@ -43,7 +43,7 @@ class RoomController extends Controller
 
     public function show($id)
     {
-        $room = Rooms::where('id', $id)->with('RoomFasilities')->first();
+        $room = Rooms::where('id', $id)->with( 'RoomFasilities.fasilities')->first();
 
         return response()->json([
             'status' => 'success',

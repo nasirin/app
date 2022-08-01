@@ -42,7 +42,7 @@ Route::group(['middleware' => 'loged'], function () {
 
     // BOOKING
     Route::resource('/booking', BookingController::class);
-    Route::get('/new-booking', [BookingController::class, 'NewBooking']);
+    // Route::get('/new-booking', [BookingController::class, 'NewBooking']);
     Route::get('/confirm/{id}', [BookingController::class, 'confirm']);
     Route::post('/additional', [BookingController::class, 'additional']);
     Route::delete('/additional/{id}', [BookingController::class, 'additionalDestroy']);

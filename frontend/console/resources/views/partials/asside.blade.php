@@ -39,20 +39,20 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="/new-booking"> <i class="bi bi-circle"></i><span>New</span> </a>
+                    <a href="/booking/?status=new"> <i class="bi bi-circle"></i><span>New</span> </a>
                 </li>
                 <li>
-                    <a href="/template/#">
+                    <a href="/booking/?status=grace">
                         <i class="bi bi-circle"></i><span>Grace (tenggang)</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/template/#">
+                    <a href="/booking/?status=late">
                         <i class="bi bi-circle"></i><span>Late (terlambat)</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/template/#"> <i class="bi bi-circle"></i><span>Normal</span> </a>
+                    <a href="/booking/?status=normal"> <i class="bi bi-circle"></i><span>Normal</span> </a>
                 </li>
                 <li>
                     <a href="/booking">

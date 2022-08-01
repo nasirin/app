@@ -15,9 +15,27 @@ class BookingController extends Controller
         $this->apiCust = env('URL_CUSTOMER');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $booking = Http::get($this->api . 'booking')->json();
+        $query = $request->query('status');
+        switch ($query) {
+            case 'new':
+                $booking = Http::get($this->api . 'booking')->json();
+                break;
+            case 'grace':
+                $booking = Http::get($this->api . 'booking')->json();
+                break;
+            case 'late':
+                $booking = Http::get($this->api . 'booking')->json();
+                break;
+            case 'normal':
+                $booking = Http::get($this->api . 'booking')->json();
+                break;
+            default:
+                $booking = Http::get($this->api . 'booking')->json();
+                break;
+        }
+        // dd($booking);
         $data['booking'] = $booking['data'];
         return view('pages.booking.index', $data);
     }

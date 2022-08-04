@@ -26,11 +26,14 @@ class  AuthController extends Controller
     public function loginAuth(Request $request)
     {
         $data = $request->all();
-        $login = Http::post($this->apibe . 'customer/login', $data)->json();
-        if ($login['status'] === 'error') {
+        $login = Http::post($this->apibe . 'customer/login', $data);
+        $data = $login->json();
+        $status = $login->status();
+
+        if ($status == 404) {
             return redirect()->back()->with('error', $login['message']);
         }
-
+        
         session([
             "user" => $login['data']
         ]);

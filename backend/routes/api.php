@@ -40,6 +40,7 @@ Route::get('/customer/{id}', [CustomerController::class, 'show']);
 Route::patch('/customer/{id}', [CustomerController::class, 'change']);
 Route::delete('/customer/{id}', [CustomerController::class, 'destroy']);
 Route::post('/customer', [CustomerController::class, 'store']);
+Route::post('/customer/login', [CustomerController::class, 'login']);
 
 //necessities
 Route::get('/necessities', [KebutuhanController::class, 'index']);

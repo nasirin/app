@@ -20,7 +20,7 @@ class CustomerController extends Controller
 
     public function show($id)
     {
-        $customer = Customers::where('id',$id)->with('booking', 'booking.BookingAdditional', 'booking.room', 'booking.billing')->first();
+        $customer = Customers::where('id', $id)->with('booking', 'booking.BookingAdditional', 'booking.room', 'booking.billing')->first();
         return  response()->json([
             'status' => 'success',
             'data' => $customer
@@ -119,5 +119,32 @@ class CustomerController extends Controller
             'status' => 'success',
             'message' => 'customer data successfully changed',
         ]);
+    }
+
+    public function login(Request $request)
+    {
+        $rule = [
+            'email' => 'required|email',
+            'password' => 'required'
+        ];
+        $data = $request->all();
+        $validator = Validator::make($data, $rule);
+
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()], 400);
+        }
+
+        $email = Customers::where('email', $request['email'])->first();
+        if (!$email) {
+            return response()->json(['message' => 'Email or Password Wrong'], 404);
+        }
+        $password = Hash::check($request['password'], $email['password']);
+        if (!$password) {
+            return response()->json(['message' => 'Email or Password Wrong'], 404);
+        }
+
+        return response()->json([
+            'data' => $email
+        ], 200);
     }
 }

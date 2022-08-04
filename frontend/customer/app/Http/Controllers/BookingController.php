@@ -19,17 +19,18 @@ class BookingController extends Controller
     {
         $data = $request->all();
         $data["customers_id"] = session('user.id');
-        $data["rooms_id"] = $id;
+        $data["rooms_id"] = (int)$id;
         $data["guest"] = 1;
         $data["cost"] = $cost;
 
-        $booking = Http::post($this->apibe . 'booking', $data);
+        $booking = Http::post($this->apibe . 'booking', $data)->json();
         return redirect()->to('checkout/' . $booking['id']);
     }
 
     public function checkout($id)
     {
         $booking = Http::get($this->apibe . 'booking/' . $id)->json();
+        dd($booking);
         $data = ['checkout' => $booking['data']];
         return view('pages.checkout', $data);
     }

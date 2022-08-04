@@ -34,8 +34,8 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $rule = [
-            'customer_id' => 'required|integer',
-            'room_id' => 'required|integer',
+            'customers_id' => 'required|integer',
+            'rooms_id' => 'required|integer',
             'check_in' => 'required',
             'guest' => 'required',
             'payment_type' => 'required|in:on check in,transfer',
@@ -56,25 +56,26 @@ class BookingController extends Controller
         }
 
         // cek ketersediaan data
-        Customers::findOrFail($request->customer_id);
-        Rooms::findOrFail($request->room_id);
+        Customers::findOrFail($request['customers_id']);
+        Rooms::findOrFail($request['rooms_id']);
 
         $data['code'] = uniqid();
         // simpan data booking 
         $booking  = Bookings::create($data);
 
         // cek ada tambahan apa tidak
-        if ($request->additional) {
+        if ($request->note) {
             BookingAdditional::create([
                 'booking_id' => $booking->id,
-                'additional' => $request->additional,
+                'additional' => $request->note,
                 'cost' => $request->cost
             ]);
         }
 
         return response()->json([
             'status' => 'success',
-            'message' => 'The order has been saved, immediately make a payment at least 1 hour after ordering.'
+            'message' => 'The order has been saved, immediately make a payment at least 1 hour after ordering.',
+            'id' => $booking['id']
         ]);
     }
 

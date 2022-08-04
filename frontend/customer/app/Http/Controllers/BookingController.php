@@ -30,7 +30,6 @@ class BookingController extends Controller
     public function checkout($id)
     {
         $booking = Http::get($this->apibe . 'booking/' . $id)->json();
-        dd($booking);
         $data = ['checkout' => $booking['data']];
         return view('pages.checkout', $data);
     }
@@ -39,8 +38,8 @@ class BookingController extends Controller
     {
         if ($request->hasFile('struck')) {
             $img = $request->file('struck')->store('confirm');
-            $data['file_payment'] = url('storage') . '/' . $img;
-            $confirm = Http::patch($this->apibe . 'confirm/' . $id, $data);
+            $data['file_payment'] = url('/storage') . '/' . $img;
+            $confirm = Http::patch($this->apibe . 'booking/' . $id, $data);
             return redirect()->to('/')->with('success', $confirm['message']);
         }
     }

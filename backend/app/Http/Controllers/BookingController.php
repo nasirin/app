@@ -23,7 +23,8 @@ class BookingController extends Controller
 
     public function show($id)
     {
-        $booking = Bookings::find($id);
+        // $booking = Bookings::find($id);
+        $booking = Bookings::with('room')->find($id);
 
         return response()->json([
             'status' => 'success',
@@ -86,5 +87,20 @@ class BookingController extends Controller
         return response()->json([
             'data' => $newbooking
         ]);
+    }
+
+    public function confirm(Request $request, $id)
+    {
+        $data = $request->all();
+        $data['payment_status'] = 'waiting confirm';
+
+        $booking = Bookings::find($id);
+        $booking->fill($data);
+        $booking->save();
+
+        return response()->json([
+            'res' => $booking,
+            'message' => 'Booking terkonfirmasi, admin akan memproses pesanan anda'
+        ], 200);
     }
 }

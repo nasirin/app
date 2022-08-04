@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="socials-footer">
-                                    <a href="" class="btn btn-success">Ubah</a>
+                                    <a href="/profile/ubah" class="btn btn-success">Ubah</a>
                                 </div>
                             </div>
                         </div>

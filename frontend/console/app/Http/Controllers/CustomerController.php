@@ -133,7 +133,6 @@ class CustomerController extends Controller
             "identity" => 'mimes:jpg,jpeg,png|max:1024',
             "gender" => "required|in:male,female",
             "status" => "required|in:single,married",
-            // 'password' => 'string|min:6',
         ];
 
         $data = $request->all();

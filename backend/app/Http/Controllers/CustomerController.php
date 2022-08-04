@@ -118,7 +118,7 @@ class CustomerController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'customer data successfully changed',
-        ]);
+        ], 200);
     }
 
     public function login(Request $request)

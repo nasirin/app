@@ -27,15 +27,15 @@ class  AuthController extends Controller
     {
         $data = $request->all();
         $login = Http::post($this->apibe . 'customer/login', $data);
-        $data = $login->json();
+        $res = $login->json();
         $status = $login->status();
 
         if ($status == 404) {
-            return redirect()->back()->with('error', $login['message']);
+            return redirect()->back()->with('error', $res['message']);
         }
-        
+
         session([
-            "user" => $login['data']
+            "user" => $res['data']
         ]);
 
         return redirect('/');

@@ -32,7 +32,7 @@
 
                 <li class="nav-item">
                     @if (session('user'))
-                        <a class="nav-link " href="/profile/{{ session('user.id') }}">My profile</a>
+                        <a class="nav-link " href="/profile">My profile</a>
                     @endif
                 </li>
 

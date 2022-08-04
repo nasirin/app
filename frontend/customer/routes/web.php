@@ -33,7 +33,9 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 
 // PROFILE
-Route::get('/profile/{id}', [UserController::class, 'index'])->middleware('login');
+Route::get('/profile', [UserController::class, 'index'])->middleware('login');
+Route::get('/profile/ubah', [UserController::class, 'show'])->middleware('login');
+Route::post('/profile/ubah', [UserController::class, 'update'])->middleware('login');
 
 // SEARCH
 Route::post('/search', [RoomController::class, 'search']);

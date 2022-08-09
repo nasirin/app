@@ -54,12 +54,12 @@ class BookingController extends Controller
     public function show($id)
     {
         $booking = Http::get($this->api . 'booking/' . $id)->json();
-        $additional = Http::get($this->api . 'additional/booking/' . $id)->json();
-        $totalCost = Http::get($this->api . 'additional/total/' . $id)->json();
+
         $data = [
             'booking' => $booking['data'],
-            'additional' => $additional['data'],
-            'totalCost' => $totalCost['data']
+            'customer' => $booking['data']['customer'],
+            'additional' => $booking['data']['booking_additional'],
+            'totalCost' => 12345678
         ];
         return view('pages.booking.detail', $data);
     }
@@ -72,7 +72,8 @@ class BookingController extends Controller
 
     public function confirm($id)
     {
-        Http::patch($this->api . 'confirmByadmin/' . $id)->body();
+        $confirm = Http::patch($this->api . 'booking-confirm-admin/' . $id)->json();
+        dd($confirm);
         return redirect()->back();
     }
 

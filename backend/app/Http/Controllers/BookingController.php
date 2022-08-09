@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Billing;
 use App\Models\BookingAdditional;
 use App\Models\Bookings;
 use App\Models\Customers;
@@ -24,7 +25,7 @@ class BookingController extends Controller
     public function show($id)
     {
         // $booking = Bookings::find($id);
-        $booking = Bookings::with('room')->find($id);
+        $booking = Bookings::with(['room', 'BookingAdditional', 'customer'])->find($id);
 
         return response()->json([
             'status' => 'success',
@@ -101,6 +102,39 @@ class BookingController extends Controller
         return response()->json([
             'res' => $booking,
             'message' => 'Booking terkonfirmasi, admin akan memproses pesanan anda'
+        ], 200);
+    }
+
+    public function adminConfirmPayment($id)
+    {
+        $data = ['payment_status' => 'success'];
+        $booking = Bookings::find($id);
+        $booking->fill($data);
+        $booking->save();
+
+        $payment_due = '';
+        if ($booking['rental_type'] == 'month') {
+            $payment_due = '+1 month';
+        } else {
+            $payment_due = '+1 year';
+        }
+
+        $billing = [
+            'booking_id' => $id,
+            'payment_date' => date('ymd', strtotime($booking['check_in'])),
+            'payment_due' => date('ymd', strtotime($payment_due, strtotime($booking['check_in']))),
+            'payment_status' => 'success',
+            'payment_type' => $booking['payment_type'],
+            'total' => $booking['cost']
+        ];
+
+        $billing = Billing::create($billing);
+
+        return response()->json([
+            'res' => $booking,
+            'message' => 'Booking terkonfirmasi',
+            'booking' => $booking,
+            'billing' => $billing
         ], 200);
     }
 }

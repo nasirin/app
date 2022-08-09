@@ -19,12 +19,12 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                         <img src="/happy-customer.png" alt="Profile" class="rounded-circle">
-                        <h2>{{ $booking['customer']['nick_name'] }}</h2>
-                        <h3>{{ $booking['customer']['gender'] }}</h3>
-                        <h3>{{ $booking['customer']['email'] }}</h3>
-                        <h3>{{ $booking['customer']['phone'] }}</h3>
-                        <h3>{{ $booking['customer']['address'] }}</h3>
-                        <h3>{{ $booking['customer']['jobs'] }}</h3>
+                        <h2>{{ $customer['nick_name'] }}</h2>
+                        <h3>{{ $customer['gender'] }}</h3>
+                        <h3>{{ $customer['email'] }}</h3>
+                        <h3>{{ $customer['phone'] }}</h3>
+                        <h3>{{ $customer['address'] }}</h3>
+                        <h3>{{ $customer['jobs'] }}</h3>
                         @if ($booking['payment_status'] == 'waiting confirm')
                             <a href="/confirm/{{ $booking['id'] }}" class="btn btn-primary">Confirm</a>
                         @endif

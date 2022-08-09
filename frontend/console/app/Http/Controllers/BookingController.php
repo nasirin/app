@@ -54,12 +54,13 @@ class BookingController extends Controller
     public function show($id)
     {
         $booking = Http::get($this->api . 'booking/' . $id)->json();
+        $total = Http::get($this->api . 'total-cost/' . $id)->json();
 
         $data = [
             'booking' => $booking['data'],
             'customer' => $booking['data']['customer'],
             'additional' => $booking['data']['booking_additional'],
-            'totalCost' => 12345678
+            'totalCost' => $total
         ];
         return view('pages.booking.detail', $data);
     }
@@ -73,7 +74,6 @@ class BookingController extends Controller
     public function confirm($id)
     {
         $confirm = Http::patch($this->api . 'booking-confirm-admin/' . $id)->json();
-        dd($confirm);
         return redirect()->back();
     }
 
@@ -85,7 +85,7 @@ class BookingController extends Controller
 
     public function additionalDestroy($id)
     {
-        Http::delete($this->api . 'additional/' . $id);
+        Http::delete($this->api . 'badd/' . $id);
         return redirect()->back();
     }
 }

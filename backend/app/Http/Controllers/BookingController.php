@@ -41,7 +41,6 @@ class BookingController extends Controller
             'check_in' => 'required',
             'guest' => 'required',
             'payment_type' => 'required|in:on check in,transfer',
-            // 'payment_status' => 'required|in:pending,success,cancel',
             'cost' => 'required|integer',
             'rental_type' => 'required|in:month, years'
         ];
@@ -66,10 +65,10 @@ class BookingController extends Controller
         $booking  = Bookings::create($data);
 
         // cek ada tambahan apa tidak
-        if ($request->note) {
+        if ($request->tambahan) {
             BookingAdditional::create([
                 'booking_id' => $booking->id,
-                'additional' => $request->note,
+                'additional' => $request->tambahan,
                 'cost' => $request->cost
             ]);
         }

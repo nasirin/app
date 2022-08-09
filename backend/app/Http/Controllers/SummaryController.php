@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Billing;
+use App\Models\BookingAdditional;
 use App\Models\Bookings;
 use App\Models\Customers;
 use App\Models\Necessities;
@@ -25,5 +26,15 @@ class SummaryController extends Controller
             'pendapatan' => intval($billingSuccess - $totalPengeluaran),
             'totalCustomer' => intval($pelanggan)
         ]);
+    }
+
+    public function totalCost($id)
+    {
+        // ambil data booking
+        $booking = Bookings::withSum('BookingAdditional', 'cost')->find($id);
+
+        $total = $booking['cost'] + $booking['booking_additional_sum_cost'];
+
+        return response()->json($total, 200);
     }
 }

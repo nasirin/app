@@ -85,7 +85,7 @@ Route::get('/grace-billing', [BillingController::class, 'graceBilling']);
 
 // SUMMARY
 Route::get('/summary', [SummaryController::class, 'index']);
-
+Route::get('/total-cost/{id}', [SummaryController::class, 'totalCost']);
 
 // AUTH ADMIN
 Route::post('/admin/login', [AdminAuthController::class, 'login']);

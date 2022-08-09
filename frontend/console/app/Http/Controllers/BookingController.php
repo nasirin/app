@@ -79,7 +79,7 @@ class BookingController extends Controller
 
     public function additional(Request $request)
     {
-        Http::post($this->api . 'additional', $request->all());
+        Http::post($this->api . 'badd', $request->all());
         return redirect()->back();
     }
 

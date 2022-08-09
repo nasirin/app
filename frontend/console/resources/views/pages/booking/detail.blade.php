@@ -74,7 +74,7 @@
                                     <div class="col-lg-9 col-md-8">{{ $booking['payment_status'] }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">Total Payment</div>
+                                    <div class="col-lg-3 col-md-4 label ">Room Cost</div>
                                     <div class="col-lg-9 col-md-8">
                                         {{ 'Rp ' . number_format($booking['cost'], 0, ',', '.') }}
                                     </div>

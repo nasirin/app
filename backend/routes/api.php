@@ -84,6 +84,7 @@ Route::post('/badd', [BookingAddCntoller::class, 'store']);
 Route::get('/billing', [BillingController::class, 'index']);
 Route::get('/billing/{id}', [BillingController::class, 'show']);
 Route::delete('/billing/{id}', [BillingController::class, 'destroy']);
+Route::post('/billing/{id}', [BillingController::class, 'store']);
 
 // SUMMARY
 Route::get('/summary', [SummaryController::class, 'index']);

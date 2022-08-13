@@ -24,6 +24,31 @@ class BillingController extends Controller
         return response()->json($billing->get(), 200);
     }
 
+    public function store($id)
+    {
+        $billing = Billing::with('booking')->find($id)->latest()->first();
+
+        $payment_due = '';
+        if ($billing['booking']['rental_type'] == 'month') {
+            $payment_due = '+1 month';
+        } else {
+            $payment_due = '+1 year';
+        }
+
+        $data = [
+            'booking_id' => $billing['booking_id'],
+            'payment_date' => date('ymd'),
+            'payment_due' => date('ymd', strtotime($payment_due, strtotime($billing['payment_due']))),
+            'payment_status' => 'success',
+            'payment_type' => $billing['payment_type'],
+            'total' => $billing['total']
+        ];
+
+        Billing::create($data);
+
+        return response()->json('pembayaran berhasil', 200);
+    }
+
     public function show($id)
     {
         $billing = Billing::with('booking.customer', 'booking.room', 'booking.BookingAdditional')->find($id);

@@ -65,6 +65,7 @@ Route::group(['middleware' => 'loged'], function () {
     // BILLING
     Route::resource('/billing', BillingController::class);
     Route::post('/billing/{id}', [BillingController::class, 'confirm']);
+    // Route::delete('/payment/{id}', [BillingController::class, 'destroypayment']);
 
     // REPORT
     Route::get('/MonthlyReport', [ReportController::class, 'LaporanBulanan']);

@@ -45,12 +45,11 @@
                                             <a href="/billing/{{ $item['id'] }}" class="btn btn-info btn-sm"> <i
                                                     class="ri-eye-2-line"></i></a>
                                             @if (session('user.level') == 'pimpinan')
-                                                <form action="#" method="POST" class="d-inline">
+                                                <form action="/billing/{{ $item['id'] }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('delete')
                                                     <button onclick="return confirm('apakah anda yakin?')"
-                                                        class="btn btn-danger btn-sm"><i
-                                                            class="bx bxs-trash"></i></button>
+                                                        class="btn btn-danger btn-sm"><i class="bx bxs-trash"></i></button>
                                                 </form>
                                             @endif
                                         </td>

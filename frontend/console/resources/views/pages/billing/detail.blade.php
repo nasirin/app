@@ -19,14 +19,14 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                         <img src="/happy-customer.png" alt="Profile" class="rounded-circle">
-                        <h2>{{ $billing['booking']['customer']['nick_name'] }}</h2>
-                        <h3>{{ $billing['booking']['customer']['gender'] }}</h3>
-                        <h3>{{ $billing['booking']['customer']['email'] }}</h3>
-                        <h3>{{ $billing['booking']['customer']['phone'] }}</h3>
-                        <h3>{{ $billing['booking']['customer']['address'] }}</h3>
-                        <h3>{{ $billing['booking']['customer']['jobs'] }}</h3>
-                        @if ($billing['booking']['payment_status'] == 'waiting confirm')
-                            <a href="/confirm/{{ $billing['id'] }}" class="btn btn-primary">Confirm</a>
+                        <h2>{{ $booking['customer']['nick_name'] }}</h2>
+                        <h3>{{ $booking['customer']['gender'] }}</h3>
+                        <h3>{{ $booking['customer']['email'] }}</h3>
+                        <h3>{{ $booking['customer']['phone'] }}</h3>
+                        <h3>{{ $booking['customer']['address'] }}</h3>
+                        <h3>{{ $booking['customer']['jobs'] }}</h3>
+                        @if ($booking['payment_status'] == 'waiting confirm')
+                            <a href="/confirm/{{ $booking['id'] }}" class="btn btn-primary">Confirm</a>
                         @endif
                     </div>
                 </div>
@@ -50,8 +50,7 @@
                                     data-bs-target="#profile-edit">Additional</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab"
-                                    data-bs-target="#billing">Billing</button>
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#billing">Billing</button>
                             </li>
 
                         </ul>
@@ -62,42 +61,42 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">No Room</div>
-                                    <div class="col-lg-9 col-md-8">{{ $billing['booking']['room']['no_room'] }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ $booking['room']['no_room'] }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">Rental type</div>
-                                    <div class="col-lg-9 col-md-8">{{ $billing['booking']['rental_type'] }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ $booking['rental_type'] }}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">Check in</div>
-                                    <div class="col-lg-9 col-md-8">{{ $billing['booking']['check_in'] }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ $booking['check_in'] }}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">Payment status</div>
-                                    <div class="col-lg-9 col-md-8">{{ $billing['booking']['payment_status'] }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ $booking['payment_status'] }}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">Total Payment</div>
                                     <div class="col-lg-9 col-md-8">
-                                        {{ 'Rp ' . number_format($billing['booking']['cost'], 0, ',', '.') }}
+                                        {{ 'Rp ' . number_format($booking['cost'], 0, ',', '.') }}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">Payment proof</div>
                                     <div class="col-lg-9 col-md-8">
-                                        <img src="{{ $billing['booking']['file_payment'] }}" width="200" alt="">
+                                        <img src="{{ $booking['file_payment'] }}" width="200" alt="">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                                @if ($billing['payment_status'] != 'success')
+                                @if ($booking['payment_status'] != 'success')
                                     <p>Konfirmasi dulu sebelum mengisi additional</p>
                                 @else
                                     <form action="/additional" method="POST">
                                         @csrf
-                                        <input type="hidden" value="{{ $billing['id'] }}" name="billing_id">
+                                        <input type="hidden" value="{{ $booking['id'] }}" name="billing_id">
                                         <div class="row mb-3">
                                             <label for="inputEmail" class="col-sm-4 col-form-label">Additional</label>
                                             <div class="col-sm-8">
@@ -130,7 +129,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($billing['booking']['booking_additional'] as $key => $value)
+                                            @foreach ($booking['booking_additional'] as $key => $value)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $value['additional'] }}</td>
@@ -151,7 +150,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>Total Cost</th>
-                                                <td colspan="3">Rp 123.123.123</td>
+                                                <td colspan="3">{{ 'Rp ' . number_format($total, 0, ',', '.') }}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -159,7 +158,7 @@
                             </div>
 
                             <div class="tab-pane fade profile-edit pt-3" id="billing">
-                                <form action="/billing/{{ $billing['id'] }}" method="POST">
+                                <form action="/billing/{{ $booking['id'] }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-info">Confirm</button>
                                 </form>
@@ -173,14 +172,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($allBilling as $key => $item)
+                                        @foreach ($booking['billing'] as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ 'Rp ' . number_format($item['total'], 0, ',', '.') }}</td>
-                                                <td>{{ date('d M Y', strtotime($item['payment_due'])) }}</td>
+                                                <td>{{ 'Rp ' . number_format($value['total'], 0, ',', '.') }}</td>
+                                                <td>{{ $value['payment_due'] }}</td>
                                                 <td>
-                                                    <form action="/billing/{{ $item['id'] }}" method="POST">
-                                                        @csrf @method('delete')
+                                                    <form action="/billing/{{ $value['id'] }}" method="POST">
+                                                        @csrf
+                                                        @method('delete')
                                                         <button onclick="return confirm('apakah anda yakin?')"
                                                             class="btn btn-danger btn-sm"><i
                                                                 class="bx bxs-trash"></i></button>

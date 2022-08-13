@@ -81,7 +81,9 @@ Route::delete('/badd/{id}', [BookingAddCntoller::class, 'destroy']);
 Route::post('/badd', [BookingAddCntoller::class, 'store']);
 
 //billing
-Route::get('/grace-billing', [BillingController::class, 'graceBilling']);
+Route::get('/billing', [BillingController::class, 'index']);
+Route::get('/billing/{id}', [BillingController::class, 'show']);
+Route::delete('/billing/{id}', [BillingController::class, 'destroy']);
 
 // SUMMARY
 Route::get('/summary', [SummaryController::class, 'index']);

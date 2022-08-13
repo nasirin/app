@@ -33,7 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($billing['data'] as $key => $item)
+                                @foreach ($billing as $key => $item)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $item['booking']['customer']['nick_name'] }}</td>

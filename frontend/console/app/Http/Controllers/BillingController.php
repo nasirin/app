@@ -27,15 +27,15 @@ class BillingController extends Controller
     public function show($id)
     {
         $booking = Http::get($this->api . 'billing/' . $id)->json();
-        $billing = Http::get($this->api . 'getByBooking/' . $booking['data']['booking_id'])->json();
-        $data = ['billing' => $booking['data'], 'allBilling' => $billing['data']];
-        return view('pages.billing.detail', $data);
+        $data['data'] = $booking;
+        // dd($booking['booking']['customer']['nick_name']);
+        return view('pages.billing.detail', $booking);
     }
 
     public function destroy($id)
     {
         Http::delete($this->api . 'billing/' . $id)->json();
-        return redirect()->back();
+        return redirect()->to('billing');
     }
 
     public function confirm($id)

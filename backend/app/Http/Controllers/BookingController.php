@@ -24,7 +24,6 @@ class BookingController extends Controller
 
     public function show($id)
     {
-        // $booking = Bookings::find($id);
         $booking = Bookings::with(['room', 'BookingAdditional', 'customer'])->find($id);
 
         return response()->json([

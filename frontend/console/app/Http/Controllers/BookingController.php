@@ -20,16 +20,16 @@ class BookingController extends Controller
         $query = $request->query('status');
         switch ($query) {
             case 'new':
-                $booking = Http::get($this->api . 'booking')->json();
+                $booking = Http::get($this->api . 'booking/?status=new')->json();
                 break;
             case 'grace':
-                $booking = Http::get($this->api . 'booking')->json();
+                $booking = Http::get($this->api . 'booking/?status=grace')->json();
                 break;
             case 'late':
-                $booking = Http::get($this->api . 'booking')->json();
+                $booking = Http::get($this->api . 'booking/?status=late')->json();
                 break;
             case 'normal':
-                $booking = Http::get($this->api . 'booking')->json();
+                $booking = Http::get($this->api . 'booking/?status=normal')->json();
                 break;
             default:
                 $booking = Http::get($this->api . 'booking')->json();

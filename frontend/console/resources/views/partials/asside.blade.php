@@ -52,9 +52,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/booking/?status=normal"> <i class="bi bi-circle"></i><span>Normal</span> </a>
-                </li>
-                <li>
                     <a href="/booking">
                         <i class="bi bi-circle"></i><span>All Booking</span>
                     </a>

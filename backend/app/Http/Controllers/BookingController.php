@@ -12,13 +12,38 @@ use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $booking = Bookings::with(['customer', 'room', 'BookingAdditional', 'billing'])->get();
+        $booking = Bookings::with(['customer', 'room', 'BookingAdditional', 'billing']);
+
+        $query = $request->query('status');
+
+        switch ($query) {
+            case 'new':
+                $booking->where('payment_status', 'waiting confirm');
+                break;
+            case 'grace':
+
+                $booking->where('payment_status', 'grace');
+                break;
+            case 'late':
+                $booking->where('payment_status', 'late');
+                # code...
+                break;
+            case 'normal':
+                $booking->where('payment_status', 'normal');
+                # code...
+                break;
+                // default:
+                //     $booking->get();
+                //     # code...
+                //     break;
+        }
 
         return response()->json([
             'status' => 'success',
-            'data' => $booking
+            'data' => $booking->get(),
+            'query' => $query
         ]);
     }
 
@@ -76,15 +101,6 @@ class BookingController extends Controller
             'status' => 'success',
             'message' => 'The order has been saved, immediately make a payment at least 1 hour after ordering.',
             'id' => $booking['id']
-        ]);
-    }
-
-    public function newBooking()
-    {
-        $newbooking = Bookings::where('payment_status', 'waiting confirm')->with(['customer', 'room'])->get();
-
-        return response()->json([
-            'data' => $newbooking
         ]);
     }
 

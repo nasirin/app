@@ -97,7 +97,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        {{-- <div class="row mb-3">
                             <label for="inputNumber" class="col-sm-2 col-form-label">Cost</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" name="cost" required>
@@ -109,7 +109,7 @@
                                 </div>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row my-3">
                             <label for="inputText" class="col-sm-2 col-form-label">Rental type</label>
                             <div class="col-sm-10">

@@ -151,4 +151,12 @@ class BookingController extends Controller
             'billing' => $billing
         ], 200);
     }
+
+    public function destroy($id)
+    {
+        $booking = Bookings::find($id);
+        $booking->delete();
+
+        return response()->json('data terhapus', 200);
+    }
 }

@@ -23,21 +23,14 @@ class BookingController extends Controller
                 $booking->where('payment_status', 'waiting confirm');
                 break;
             case 'grace':
-
                 $booking->where('payment_status', 'grace');
                 break;
             case 'late':
                 $booking->where('payment_status', 'late');
-                # code...
                 break;
             case 'normal':
                 $booking->where('payment_status', 'normal');
-                # code...
                 break;
-                // default:
-                //     $booking->get();
-                //     # code...
-                //     break;
         }
 
         return response()->json([
@@ -156,6 +149,9 @@ class BookingController extends Controller
     public function destroy($id)
     {
         $booking = Bookings::find($id);
+        $room = Rooms::find($booking['rooms_id']);
+        $room->fill(['status' => 'available']);
+        $room->save();
         $booking->delete();
 
         return response()->json('data terhapus', 200);

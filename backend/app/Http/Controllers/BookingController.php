@@ -65,7 +65,7 @@ class BookingController extends Controller
             'check_in' => 'required',
             'guest' => 'required',
             'payment_type' => 'required|in:on check in,transfer',
-            'cost' => 'required|integer',
+            'cost' => 'integer',
             'rental_type' => 'required|in:month, years'
         ];
 
@@ -82,9 +82,10 @@ class BookingController extends Controller
 
         // cek ketersediaan data
         Customers::findOrFail($request['customers_id']);
-        Rooms::findOrFail($request['rooms_id']);
+        $room = Rooms::findOrFail($request['rooms_id']);
 
         $data['code'] = uniqid();
+
         // simpan data booking 
         $booking  = Bookings::create($data);
 
@@ -158,5 +159,63 @@ class BookingController extends Controller
         $booking->delete();
 
         return response()->json('data terhapus', 200);
+    }
+
+    public function bookingbyadmin(Request $request)
+    {
+        $rule = [
+            'customers_id' => 'required|integer',
+            'rooms_id' => 'required|integer',
+            'check_in' => 'required',
+            'guest' => 'required',
+            'payment_type' => 'required|in:on check in,transfer',
+            'cost' => 'required|integer',
+            'rental_type' => 'required|in:month,years'
+        ];
+
+        $data = $request->all();
+
+        $validate = Validator::make($data, $rule);
+
+        if ($validate->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $validate->errors()
+            ]);
+        }
+
+        // simpan data booking, ubah status kamar menjadi unavailable
+        $data['code'] = uniqid();
+        $data['payment_status'] = 'success';
+
+        // simpan data booking 
+        $booking  = Bookings::create($data);
+
+        // simpan data billing.
+        if ($request['rental_type'] == 'month') {
+            $payment_due = '+1 month';
+        } else {
+            $payment_due = '+1 year';
+        }
+
+        $billing = [
+            'booking_id' => $booking['id'],
+            'payment_date' => date('ymd',),
+            'payment_due' => date('ymd', strtotime($payment_due, strtotime(date('ymd')))), 'payment_status' => 'success',
+            'payment_type' => $request['payment_type'],
+            'total' => $request['cost']
+        ];
+        $bill = Billing::create($billing);
+
+        // ubah status kamar menjadi unavailable
+        $roomData = ["status" => 'unavailable'];
+        $room = Rooms::find($request['rooms_id']);
+        $room->fill($roomData);
+        $room->save();
+
+        return response()->json(
+            $booking['id'],
+            200
+        );
     }
 }

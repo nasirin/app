@@ -73,7 +73,7 @@ Route::delete('/booking/{id}', [BookingController::class, 'destroy']);
 Route::post('/booking', [BookingController::class, 'store']);
 Route::patch('/booking/{id}', [BookingController::class, 'confirm']);
 Route::patch('/booking-confirm-admin/{id}', [BookingController::class, 'adminConfirmPayment']);
-// Route::get('/new-booking', [BookingController::class, 'newBooking']);
+Route::post('/booking-admin', [BookingController::class, 'bookingbyadmin']);
 
 //booking addtional
 Route::patch('/badd/{id}', [BookingAddCntoller::class, 'change']);
@@ -84,7 +84,6 @@ Route::post('/badd', [BookingAddCntoller::class, 'store']);
 Route::get('/billing', [BillingController::class, 'index']);
 Route::get('/billing/{id}', [BillingController::class, 'show']);
 Route::delete('/billing/{id}', [BillingController::class, 'destroy']);
-// Route::delete('/billing-payment/{id}', [BillingController::class, 'destroypayment']);
 Route::post('/billing/{id}', [BillingController::class, 'store']);
 
 // SUMMARY

@@ -40,15 +40,22 @@ class BookingController extends Controller
         return view('pages.booking.index', $data);
     }
 
-    public function create()
+    public function create($id)
     {
         $customer = Http::get($this->api . 'customer')->json();
-        $room = Http::get($this->api . 'room')->json();
+        $room = Http::get($this->api . 'room/' . $id)->json();
         $data = [
             'customers' => $customer['data'],
             'rooms' => $room['data']
         ];
         return view('pages.booking.tambah', $data);
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        $booking = Http::post($this->api . 'booking-admin', $data)->json();
+        return redirect()->to('booking/' . $booking);
     }
 
     public function show($id)

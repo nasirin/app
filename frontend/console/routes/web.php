@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FasilityController;
 use App\Http\Controllers\HomeController;
@@ -42,7 +43,7 @@ Route::group(['middleware' => 'loged'], function () {
 
     // BOOKING
     Route::resource('/booking', BookingController::class);
-    // Route::get('/new-booking', [BookingController::class, 'NewBooking']);
+    Route::get('/booking/create/{id}', [BookingController::class, 'create']);
     Route::get('/confirm/{id}', [BookingController::class, 'confirm']);
     Route::post('/additional', [BookingController::class, 'additional']);
     Route::delete('/additional/{id}', [BookingController::class, 'additionalDestroy']);
@@ -65,9 +66,11 @@ Route::group(['middleware' => 'loged'], function () {
     // BILLING
     Route::resource('/billing', BillingController::class);
     Route::post('/billing/{id}', [BillingController::class, 'confirm']);
-    // Route::delete('/payment/{id}', [BillingController::class, 'destroypayment']);
 
     // REPORT
     Route::get('/MonthlyReport', [ReportController::class, 'LaporanBulanan']);
     Route::get('/YearReport', [ReportController::class, 'LaporanTahunan']);
+
+    // CHECKOUT
+    Route::get('/checkout/{id}', [CheckoutController::class, 'index']);
 });

@@ -66,6 +66,6 @@ class SummaryController extends Controller
 
         $total = $booking['cost'] + $booking['booking_additional_sum_cost'];
 
-        return response()->json(['total' => $total, 'check due date' => $this->CheckDueDate()], 200);
+        return response()->json($total, 200);
     }
 }

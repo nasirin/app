@@ -60,8 +60,10 @@
                                                         class="btn btn-danger btn-sm"><i class="bx bxs-trash"></i></button>
                                                 </form>
                                             @endif
-                                            <a href="{{ url('/booking/create') }}" title="Add Booking"
-                                                class="btn btn-info btn-sm"> <i class="ri-book-2-fill"></i></a>
+                                            @if ($room['status'] == 'available')
+                                                <a href="{{ url('/booking/create/' . $room['id']) }}" title="Add Booking"
+                                                    class="btn btn-info btn-sm"> <i class="ri-book-2-fill"></i></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

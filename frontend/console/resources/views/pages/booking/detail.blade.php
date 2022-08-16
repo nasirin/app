@@ -9,7 +9,7 @@
                 <li class="breadcrumb-item">Booking</li>
                 <li class="breadcrumb-item active">Detail</li>
             </ol>
-        </nav>  
+        </nav>
     </div><!-- End Page Title -->
 
     <section class="section profile">
@@ -147,7 +147,8 @@
                                         <tfoot>
                                             <tr>
                                                 <th>Total Cost</th>
-                                                <td colspan="3">{{ 'Rp ' . number_format($totalCost, 0, ',', '.') }}</td>
+                                                <td colspan="3">{{ 'Rp ' . number_format($totalCost, 0, ',', '.') }}
+                                                </td>
                                             </tr>
                                         </tfoot>
                                     </table>

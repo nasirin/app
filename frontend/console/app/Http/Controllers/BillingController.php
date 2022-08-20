@@ -28,7 +28,6 @@ class BillingController extends Controller
     {
         $booking = Http::get($this->api . 'billing/' . $id)->json();
         $data['data'] = $booking;
-        // dd($booking['booking']['customer']['nick_name']);
         return view('pages.billing.detail', $booking);
     }
 
@@ -41,6 +40,7 @@ class BillingController extends Controller
     public function confirm($id)
     {
         $billing = Http::post($this->api . 'billing/' . $id)->json();
+
         return redirect()->back();
     }
 }

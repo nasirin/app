@@ -26,7 +26,8 @@ class BillingController extends Controller
 
     public function store($id)
     {
-        $billing = Billing::with('booking')->find($id)->latest()->first();
+        $billing = Billing::with('booking')->whereRelation('booking', 'booking_id', '=', $id)->latest()->first();
+
 
         $payment_due = '';
         if ($billing['booking']['rental_type'] == 'month') {
@@ -36,7 +37,7 @@ class BillingController extends Controller
         }
 
         $data = [
-            'booking_id' => $billing['booking_id'],
+            'booking_id' => $billing['booking']['id'],
             'payment_date' => date('ymd'),
             'payment_due' => date('ymd', strtotime($payment_due, strtotime($billing['payment_due']))),
             'payment_status' => 'success',
@@ -46,7 +47,7 @@ class BillingController extends Controller
 
         Billing::create($data);
 
-        return response()->json('pembayaran berhasil', 200);
+        return response()->json('confirmasi berhasil', 200);
     }
 
     public function show($id)

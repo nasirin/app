@@ -134,26 +134,4 @@ class RoomController extends Controller
             'message' => 'Room data successfully updated'
         ]);
     }
-
-    // public function search(Request $request)
-    // {
-    //     $room = Rooms::with('RoomFasilities.fasilities');
-
-    //     if ($request->has('status')) {
-    //         $room->where('status', $request['status']);
-    //     }
-
-    //     if ($request->has('city')) {
-    //         $room->where('location', $request['city']);
-    //     }
-
-    //     if ($request->has('minPrice')) {
-    //         $room->where('price', '<=', $request['minPrice']);
-    //     }
-
-    //     return response()->json([
-    //         'request' => $request->all(),
-    //         'room' => $room->get(),
-    //     ]);
-    // }
 }

@@ -70,8 +70,8 @@ class RoomController extends Controller
             "room_size" => 'required',
             "map" => 'required',
             "price" => 'required|integer',
-            'thumbnail' => 'required|image|mimes:jpg,jpeg,png|max:1024|dimensions:min_width=600,min_height=800',
-            'gallery.*' => 'required|mimes:jpg,jpeg,png|max:1024|dimensions:min_width=500,min_height=300',
+            'thumbnail' => 'required|image|mimes:jpg,jpeg,png|max:1024',
+            'gallery.*' => 'required|mimes:jpg,jpeg,png|max:1024',
             'fasilities_id' => 'required'
         ];
 

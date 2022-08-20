@@ -83,12 +83,12 @@
                 </a>
                 <ul id="charts-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="/MonthlyReport" target="_blank">
+                        <a href="/report?bulanan" target="_blank">
                             <i class="bi bi-circle"></i><span>Monthly report</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/YearReport" target="_blank">
+                        <a href="/report?tahunan" target="_blank">
                             <i class="bi bi-circle"></i><span>Years report</span>
                         </a>
                     </li>

@@ -68,8 +68,8 @@ Route::group(['middleware' => 'loged'], function () {
     Route::post('/billing/{id}', [BillingController::class, 'confirm']);
 
     // REPORT
-    Route::get('/MonthlyReport', [ReportController::class, 'LaporanBulanan']);
-    Route::get('/YearReport', [ReportController::class, 'LaporanTahunan']);
+
+    Route::get('/report', [ReportController::class, 'index']);
 
     // CHECKOUT
     Route::get('/checkout/{id}', [CheckoutController::class, 'index']);

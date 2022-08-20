@@ -68,4 +68,71 @@ class SummaryController extends Controller
 
         return response()->json($total, 200);
     }
+
+    private function contEveryYears($month)
+    {
+        $billing = Billing::where('payment_status', 'success')->whereMonth('created_at', $month)->whereYear('created_at', date('Y'))->sum('total');
+        $additional = BookingAdditional::whereMonth('created_at', $month)->whereYear('created_at', date('Y'))->sum('cost');
+        $kebutuhan = Necessities::whereMonth('created_at', $month)->whereYear('created_at', date('Y'))->sum('total');
+        $totalBooking = $billing + $additional;
+
+        $data = [
+            'booking' => $totalBooking,
+            'kebutuhan' => $kebutuhan,
+        ];
+
+        return $data;
+    }
+
+    public function report(Request $request)
+    {
+        if ($request->has('bulanan')) {
+            $billing = Billing::where('payment_status', 'success')->whereMonth('created_at', date('m'))->sum('total');
+            $additional = BookingAdditional::whereMonth('created_at', '08')->sum('cost');
+            $kebutuhan = Necessities::whereMonth('created_at', '08')->sum('total');
+            $totalBooking = $billing + $additional;
+            $data = [
+                'booking' => $totalBooking,
+                'kebutuhan' => $kebutuhan,
+                'total' => $totalBooking - $kebutuhan
+            ];
+        }
+        if ($request->has('tahunan')) {
+
+            $januari = $this->contEveryYears('01');
+            $februari = $this->contEveryYears('02');
+            $maret = $this->contEveryYears('03');
+            $april = $this->contEveryYears('04');
+            $mei = $this->contEveryYears('05');
+            $juni = $this->contEveryYears('06');
+            $juli = $this->contEveryYears('07');
+            $agustus = $this->contEveryYears('08');
+            $september = $this->contEveryYears('09');
+            $oktober = $this->contEveryYears('10');
+            $november = $this->contEveryYears('11');
+            $desember = $this->contEveryYears('12');
+            $total = [
+                'booking' => $januari['booking'] + $februari['booking'] + $maret['booking'] + $april['booking'] + $mei['booking'] + $juni['booking'] + $juli['booking'] + $agustus['booking'] + $september['booking'] + $oktober['booking'] + $november['booking'] + $desember['booking'],
+                'pengeluaran' => $januari['kebutuhan'] + $februari['kebutuhan'] + $maret['kebutuhan'] + $april['kebutuhan'] + $mei['kebutuhan'] + $juni['kebutuhan'] + $juli['kebutuhan'] + $agustus['kebutuhan'] + $september['kebutuhan'] + $oktober['kebutuhan'] + $november['kebutuhan'] + $desember['kebutuhan'],
+            ];
+
+
+            $data = [
+                'januari' => $januari,
+                'februari' => $februari,
+                'maret' => $maret,
+                'april' => $april,
+                'mei' => $mei,
+                'juni' => $juni,
+                'juli' => $juli,
+                'agustus' => $agustus,
+                'september' => $september,
+                'oktober' => $oktober,
+                'november' => $november,
+                'desember' => $desember,
+                'total' => $total
+            ];
+        }
+        return response()->json($data, 200);
+    }
 }

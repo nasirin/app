@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Barryvdh\DomPDF\PDF;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class ReportController extends Controller
@@ -13,16 +14,15 @@ class ReportController extends Controller
         $this->api = env('API_BACKEND');
     }
 
-    public function LaporanBulanan()
+    public function index(Request $request)
     {
-        $laporan = Http::get($this->api . 'LaporanBulanan')->json();
+        if ($request->has('bulanan')) {
+            $laporan = Http::get($this->api . 'report?bulanan')->json();
+        }
+        if ($request->has('tahunan')) {
+            $laporan = Http::get($this->api . 'report?tahunan')->json();
+        }
 
-        return view('pages.LaporanBulanan', $laporan);
-    }
-    public function LaporanTahunan()
-    {
-        $laporan = Http::get($this->api . 'LaporanTahunan')->json();
-
-        return view('pages.LaporanTahunan', $laporan);
+        return view('pages.LaporanBulanan');
     }
 }

@@ -90,6 +90,8 @@ Route::post('/billing/{id}', [BillingController::class, 'store']);
 Route::get('/summary', [SummaryController::class, 'index']);
 Route::get('/total-cost/{id}', [SummaryController::class, 'totalCost']);
 Route::get('/test', [SummaryController::class, 'CheckDueDate']);
+Route::get('/report', [SummaryController::class, 'report']);
+
 
 // AUTH ADMIN
 Route::post('/admin/login', [AdminAuthController::class, 'login']);

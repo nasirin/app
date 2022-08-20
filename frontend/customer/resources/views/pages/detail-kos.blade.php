@@ -39,7 +39,7 @@
                         <div class="swiper-wrapper">
                             @foreach ($room['gallery'] as $item)
                                 <div class="carousel-item-b swiper-slide">
-                                    <img src="{{ $room['url'] . $item['path'] }}" alt="">
+                                    <img src="{{ $room['url'] . $item['path'] }}" alt="" height="500">
                                 </div>
                             @endforeach
                         </div>

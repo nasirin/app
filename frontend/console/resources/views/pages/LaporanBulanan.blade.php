@@ -31,17 +31,17 @@
         <tbody>
             <tr>
                 <th scope="row">Pemasukan</th>
-                <td>{{ 'Rp ' . number_format($income, 0, ',', '.') }}</td>
+                <td>{{ 'Rp ' . number_format($booking, 0, ',', '.') }}</td>
                 <td></td>
             </tr>
             <tr>
                 <th scope="row">Pengeluaran</th>
                 <td></td>
-                <td>{{ 'Rp ' . number_format($outcome, 0, ',', '.') }}</td>
+                <td>{{ 'Rp ' . number_format($kebutuhan, 0, ',', '.') }}</td>
             </tr>
             <tr>
                 <th scope="row">Total</th>
-                <td colspan="2">{{ 'Rp ' . number_format($income - $outcome, 0, ',', '.') }}</td>
+                <td colspan="2">{{ 'Rp ' . number_format($total, 0, ',', '.') }}</td>
             </tr>
         </tbody>
     </table>

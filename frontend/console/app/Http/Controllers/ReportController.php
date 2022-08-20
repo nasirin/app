@@ -18,11 +18,13 @@ class ReportController extends Controller
     {
         if ($request->has('bulanan')) {
             $laporan = Http::get($this->api . 'report?bulanan')->json();
+            $return = 'LaporanBulanan';
         }
         if ($request->has('tahunan')) {
             $laporan = Http::get($this->api . 'report?tahunan')->json();
+            $return = 'LaporanTahunan';
         }
 
-        return view('pages.LaporanBulanan');
+        return view('pages.' . $return, $laporan);
     }
 }
